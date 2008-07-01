@@ -20,6 +20,8 @@ sub BUILDARGS {
     confess "I don't know how to handle $class->new(@_)";
 }
 
+__PACKAGE__->meta->make_immutable;
+no Moose;
 
 1;
 
