@@ -6,6 +6,11 @@ use Moose;
 
 our $VERSION = '0.01';
 
+has raw => (
+    is  => 'ro',
+    isa => 'Str',
+);
+
 sub BUILDARGS {
     my $class = shift;
 
