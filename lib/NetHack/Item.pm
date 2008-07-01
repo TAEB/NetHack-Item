@@ -12,6 +12,11 @@ has raw => (
     required => 1,
 );
 
+has type => (
+    is  => 'ro',
+    isa => 'Str',
+);
+
 sub BUILDARGS {
     my $class = shift;
 
