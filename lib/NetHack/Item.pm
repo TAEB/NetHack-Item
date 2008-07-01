@@ -1,7 +1,5 @@
 #!/usr/bin/env perl
 package NetHack::Item;
-use strict;
-use warnings;
 use Moose;
 
 our $VERSION = '0.01';
