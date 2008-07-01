@@ -1,4 +1,4 @@
-#!perl
+#!/usr/bin/env perl
 package NetHack::Item;
 use strict;
 use warnings;
