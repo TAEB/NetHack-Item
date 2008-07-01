@@ -31,6 +31,16 @@ sub BUILDARGS {
     confess "I don't know how to handle $class->new(@_)";
 }
 
+sub BUILD {
+    my $self = shift;
+
+    if ($self->type) {
+        my $class = "NetHack::Item::" . ucfirst $self->type;
+        my $meta = Class::MOP::load_class($class);
+        $meta->rebless_instance($self);
+    }
+}
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
