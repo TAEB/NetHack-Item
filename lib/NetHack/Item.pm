@@ -29,6 +29,35 @@ sub BUILDARGS {
     confess "I don't know how to handle $class->new(@_)";
 }
 
+around BUILDARGS => sub {
+    my $orig = shift;
+    my $class = shift;
+    my $args = $class->$orig(@_);
+
+    # if they provide any of these, then the others are obviously false
+    if (grep { $args->{$_} } qw/is_blessed is_uncursed is_cursed/) {
+        %$args = (
+            is_blessed  => 0,
+            is_uncursed => 0,
+            is_cursed   => 0,
+            %$args,
+        );
+    }
+
+    # if they specify a buc, then the others are obviously false
+    if ($args->{buc}) {
+        %$args = (
+            %$args,
+            is_blessed        => 0,
+            is_uncursed       => 0,
+            is_cursed         => 0,
+            "is_$args->{buc}" => 1,
+        );
+    }
+
+    return $args;
+};
+
 sub BUILD {
     my $self = shift;
     my $args = shift;
