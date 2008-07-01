@@ -6,6 +6,19 @@ use Moose;
 
 our $VERSION = '0.01';
 
+sub BUILDARGS {
+    my $class = shift;
+
+    if (@_ == 1) {
+        return $_[0] if ref($_[0]) eq 'HASH';
+        return { raw => $_[0] } if !ref($_[0]);
+    }
+    else {
+        return { @_ };
+    }
+
+    confess "I don't know how to handle $class->new(@_)";
+}
 
 
 1;
