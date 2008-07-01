@@ -7,8 +7,9 @@ use Moose;
 our $VERSION = '0.01';
 
 has raw => (
-    is  => 'ro',
-    isa => 'Str',
+    is       => 'ro',
+    isa      => 'Str',
+    required => 1,
 );
 
 sub BUILDARGS {
