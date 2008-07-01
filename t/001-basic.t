@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use Test::More tests => 6;
+use Test::Exception;
 use NetHack::Item;
 
 my $item = NetHack::Item->new("a long sword");
