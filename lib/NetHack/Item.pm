@@ -10,6 +10,11 @@ has raw => (
     required => 1,
 );
 
+has [qw/is_blessed is_uncursed is_cursed/] => (
+    is  => 'rw',
+    isa => 'Bool',
+);
+
 sub BUILDARGS {
     my $class = shift;
 
