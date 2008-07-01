@@ -12,11 +12,6 @@ has raw => (
     required => 1,
 );
 
-has type => (
-    is  => 'ro',
-    isa => 'Str',
-);
-
 sub BUILDARGS {
     my $class = shift;
 
@@ -33,9 +28,10 @@ sub BUILDARGS {
 
 sub BUILD {
     my $self = shift;
+    my $args = shift;
 
-    if ($self->type) {
-        my $class = "NetHack::Item::" . ucfirst $self->type;
+    if ($args->{type}) {
+        my $class = "NetHack::Item::" . ucfirst lc $args->{type};
         my $meta = Class::MOP::load_class($class);
         $meta->rebless_instance($self);
     }
