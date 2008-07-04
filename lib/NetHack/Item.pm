@@ -22,6 +22,12 @@ has quantity => (
     default => 1,
 );
 
+has wielded => (
+    is      => 'rw',
+    isa     => 'Bool',
+    default => 0,
+);
+
 for my $buc (qw/is_blessed is_uncursed is_cursed/) {
     my %others = map { $_ => 1 } qw/is_blessed is_uncursed is_cursed/;
     delete $others{$buc};
@@ -202,6 +208,7 @@ sub incorporate_stats {
 
     $self->slot($stats->{slot}) if defined $stats->{slot};
     $self->quantity($stats->{quantity});
+    $self->wielded($stats->{wielded});
 
     if ($stats->{buc}) {
         my $is_buc = "is_$stats->{buc}";
