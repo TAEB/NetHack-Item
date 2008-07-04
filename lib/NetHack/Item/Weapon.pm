@@ -7,6 +7,18 @@ with 'NetHack::Item::Role::Damageable';
 
 use constant type => "weapon";
 
+has is_poisoned => (
+    is  => 'rw',
+    isa => 'Bool',
+);
+
+after incorporate_stats => sub {
+    my $self  = shift;
+    my $stats = shift;
+
+    $self->is_poisoned($stats->{poisoned});
+};
+
 around can_drop => sub {
     my $orig = shift;
     my $self = shift;
