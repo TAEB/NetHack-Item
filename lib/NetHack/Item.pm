@@ -117,7 +117,7 @@ sub extract_stats {
 
     my @fields = qw/slot quantity buc greased poisoned erosion1 erosion2 proof
                     used eaten diluted enchantment item generic specific
-                    recharges charges candles lit_candelabrum lit laid chain
+                    recharges charges candles lit_candelabrum lit laid chained
                     quivered offhand offhand_wield wield wear price/;
 
     # this regex was written by Jesse Luehrs
@@ -143,7 +143,7 @@ sub extract_stats {
           (?:\((no|[1-7])\ candles?(,\ lit|\ attached)\))?\s* # lit candelabrum
           (\(lit\))?\s*                                    # lit
           (\(laid\ by\ you\))?\s*                          # eggs
-          (\(chained\ to\ you\))?\s*                       # iron balls
+          (\(chained\ to\ you\))?\s*                       # chained iron balls
           (\(in\ quiver\))?\s*                             # quivered
           (\(alternate\ weapon;\ not\ wielded\))?\s*       # off-hand weapon
           (\(wielded\ in\ other.*?\))?\s*                  # offhand wield
@@ -166,7 +166,7 @@ sub extract_stats {
     $stats{candles} = 0 if ($stats{candles}||'') eq 'no';
 
     # boolean stats
-    for (qw/greased poisoned erosion1 erosion2 used eaten diluted lit laid chain quivered offhand offhand_wield wield/) {
+    for (qw/greased poisoned erosion1 erosion2 used eaten diluted lit laid chained quivered offhand offhand_wield wield/) {
         $stats{$_} = defined($stats{$_}) ? 1 : 0;
     }
 
