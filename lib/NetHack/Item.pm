@@ -10,10 +10,23 @@ has raw => (
     required => 1,
 );
 
-has [qw/is_blessed is_uncursed is_cursed/] => (
-    is  => 'rw',
-    isa => 'Bool',
-);
+for my $type (qw/is_blessed is_uncursed is_cursed/) {
+    my %others = map { $_ => 1 } qw/is_blessed is_uncursed is_cursed/;
+    delete $others{$type};
+
+    has $type => (
+        is      => 'rw',
+        isa     => 'Bool',
+        trigger => sub {
+            my $self = shift;
+            my $set  = shift;
+
+            if ($set) {
+                $self->$_(0) for keys %others;
+            }
+        },
+    );
+}
 
 sub BUILDARGS {
     my $class = shift;
@@ -34,25 +47,8 @@ around BUILDARGS => sub {
     my $class = shift;
     my $args = $class->$orig(@_);
 
-    # if they provide any of these, then the others are obviously false
-    if (grep { $args->{$_} } qw/is_blessed is_uncursed is_cursed/) {
-        %$args = (
-            is_blessed  => 0,
-            is_uncursed => 0,
-            is_cursed   => 0,
-            %$args,
-        );
-    }
-
-    # if they specify a buc, then the others are obviously false
     if ($args->{buc}) {
-        %$args = (
-            %$args,
-            is_blessed        => 0,
-            is_uncursed       => 0,
-            is_cursed         => 0,
-            "is_$args->{buc}" => 1,
-        );
+        $args->{"is_$args->{buc}"} = 1;
     }
 
     return $args;
