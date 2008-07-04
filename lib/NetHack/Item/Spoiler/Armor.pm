@@ -569,8 +569,8 @@ sub list {
     # tag each armor with its name and appearance
     for my $name (keys %$armor) {
         my $stats = $armor->{$name};
-        $stats->{name} = $name;
-        $stats->{type} = 'armor';
+        $stats->{name}       = $name;
+        $stats->{type}       = 'armor';
         $stats->{appearance} = $name
             unless $stats->{appearance} || $stats->{appearances};
     }

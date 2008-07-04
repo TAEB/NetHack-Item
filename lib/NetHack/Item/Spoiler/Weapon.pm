@@ -1032,8 +1032,8 @@ sub list {
     # tag each weapon with its name and appearance
     for my $name (keys %$weapons) {
         my $stats = $weapons->{$name};
-        $stats->{name} = $name;
-        $stats->{type} = 'weapon';
+        $stats->{name}       = $name;
+        $stats->{type}       = 'weapon';
         $stats->{appearance} = $name
             unless $stats->{appearance} || $stats->{appearances};
     }

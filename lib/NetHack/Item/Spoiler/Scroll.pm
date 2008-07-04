@@ -124,12 +124,12 @@ sub list {
     # tag each scroll with its name, weight, appearances, etc
     for my $name (keys %$scrolls) {
         my $stats = $scrolls->{$name};
-        $stats->{name}    = $name;
-        $stats->{weight}  = 5;
-        $stats->{type}    = 'scroll';
-        ($stats->{plural} = $name) =~ s/\bscroll\b/scrolls/;
+        $stats->{name}        = $name;
+        $stats->{weight}      = 5;
+        $stats->{type}        = 'scroll';
+        ($stats->{plural}     = $name) =~ s/\bscroll\b/scrolls/;
         $stats->{appearances} = \@scrolls
-            unless $stats->{appearance};
+            unless $stats->{appearance} || $stats->{appearances};
     }
 
     return $scrolls;

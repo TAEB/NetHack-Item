@@ -114,7 +114,7 @@ sub list {
         $stats->{type}        = 'ring';
         $stats->{weight}    ||= 3;
         $stats->{appearances} = \@rings
-            unless $stats->{appearance};
+            unless $stats->{appearance} || $stats->{appearances};
     }
 
     return $rings;
