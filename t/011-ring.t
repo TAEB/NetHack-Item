@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 9;
+use Test::More tests => 14;
 use NetHack::Item::Ring;
 
 my $ring = NetHack::Item::Ring->new("a ring of conflict");
@@ -9,6 +9,7 @@ ok($ring, "got a ring");
 is($ring->type, "ring");
 is($ring->hand, undef);
 ok(!$ring->worn, "ring is not worn");
+is($ring->enchantment, undef, "unknown enchantment");
 
 my $item = NetHack::Item->new(raw => "a ring of conflict (on left hand)", type => "ring");
 ok($item, "got an item");
@@ -16,4 +17,10 @@ is($item->type, "ring");
 isa_ok $item => 'NetHack::Item::Ring';
 is($item->hand, 'left');
 ok($item->worn, "ring is being worn");
+is($ring->enchantment, undef, "unknown enchantment");
+
+$ring = NetHack::Item::Ring->new("a +30 ring of adornment");
+ok($ring, "got a ring");
+is($ring->type, "ring");
+is($ring->enchantment, '+30', "you need it");
 
