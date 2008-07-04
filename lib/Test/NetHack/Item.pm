@@ -18,11 +18,11 @@ sub test_items {
     local $Test::Builder::Level = $Test::Builder::Level + 1;
     my @all_checks = @_;
 
-    while (my ($item, $checks) = splice @_, 0, 2) {
-        my $item = NetHack::Item->new($item);
+    while (my ($raw, $checks) = splice @_, 0, 2) {
+        my $item = NetHack::Item->new($raw);
 
         for my $check (sort keys %$checks) {
-            Test::More::is($item->$check, $checks->{$check}, "'$item' $check");
+            Test::More::is($item->$check, $checks->{$check}, "'$raw' $check");
         }
     }
 }
