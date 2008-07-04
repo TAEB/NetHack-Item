@@ -7,11 +7,28 @@ use List::Util 'sum';
 
 my %all_checks = (
     "a long sword" => {
-        quantity => 1,
+        quantity    => 1,
+        enchantment => undef,
+        generic     => undef,
+        specific    => undef,
     },
     "the blessed +1 Excalibur" => {
         quantity    => 1,
         enchantment => '+1',
+        generic     => undef,
+        specific    => undef,
+    },
+    "2 +3 darts" => {
+        quantity    => 2,
+        enchantment => '+3',
+        generic     => undef,
+        specific    => undef,
+    },
+    "a potion called foo named bar " => {
+        quantity    => 1,
+        enchantment => undef,
+        generic     => 'foo',
+        specific    => 'bar',
     },
 );
 
