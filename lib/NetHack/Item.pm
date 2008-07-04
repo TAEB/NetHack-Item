@@ -106,13 +106,20 @@ sub BUILD {
     my $self = shift;
     my $args = shift;
 
-    if ($args->{type}) {
-        my $class = "NetHack::Item::" . ucfirst lc $args->{type};
-        my $meta = Class::MOP::load_class($class);
-        $meta->rebless_instance($self);
-    }
+    $self->_rebless_into($args->{type}) if $args->{type};
 
     $self->parse_raw;
+}
+
+sub _rebless_into {
+    my $self = shift;
+    my $type = shift;
+
+    return if !blessed($self);
+
+    my $class = "NetHack::Item::" . ucfirst lc $type;
+    my $meta = Class::MOP::load_class($class);
+    $meta->rebless_instance($self);
 }
 
 sub extract_stats {
