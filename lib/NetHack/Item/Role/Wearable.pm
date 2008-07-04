@@ -3,7 +3,7 @@ package NetHack::Item::Role::Wearable;
 use Moose::Role;
 use MooseX::AttributeHelpers;
 
-has worn => (
+has is_worn => (
     metaclass => 'Bool',
     is        => 'rw',
     isa       => 'Bool',
@@ -17,7 +17,7 @@ after incorporate_stats => sub {
     my $self  = shift;
     my $stats = shift;
 
-    $self->worn($stats->{worn} ? 1 : 0);
+    $self->is_worn($stats->{worn} ? 1 : 0);
 };
 
 no Moose::Role;
