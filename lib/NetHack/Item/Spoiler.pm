@@ -39,7 +39,12 @@ sub name_to_type {
     my $self = shift;
     my $name = shift;
 
-    $self->name_to_type_list->{$name};
+    my $type = $self->name_to_type_list->{$name};
+
+    # handle e.g. "potion called fruit juice"
+    $type ||= $name if (__PACKAGE__."::\u\L$name")->can('list');
+
+    return $type;
 }
 # }}}
 # possibilities and appearances {{{
