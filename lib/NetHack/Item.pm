@@ -337,7 +337,7 @@ NetHack::Item - parse and interact with a NetHack item
 =head1 SYNOPSIS
 
     use NetHack::Item;
-    my $item = NetHack::Item->new("f - a wand of wishing (0:3) named SWEET");
+    my $item = NetHack::Item->new("f - a wand of wishing named SWEET (0:3)" );
 
     $item->slot           # f
     $item->type           # wand
