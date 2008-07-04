@@ -8,6 +8,7 @@ has recharges => (
     is        => 'rw',
     isa       => 'Int',
     predicate => 'recharges_known',
+    clearer   => '_clear_recharges',
     provides  => {
         inc => 'inc_recharges',
     },
@@ -87,6 +88,9 @@ after incorporate_stats => sub {
     my $stats = shift;
 
     $self->charges($stats->{charges}) if defined($stats->{charges});
+
+    # apparently Counter sets the default to 0 for you. orz.
+    $self->_clear_recharges;
     $self->recharges($stats->{recharges}) if defined($stats->{recharges});
 };
 
