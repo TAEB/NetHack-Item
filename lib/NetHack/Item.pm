@@ -2,6 +2,8 @@
 package NetHack::Item;
 use Moose;
 
+use NetHack::Item::Spoiler;
+
 our $VERSION = '0.01';
 
 has raw => (
@@ -166,10 +168,28 @@ sub extract_stats {
         $                                                      # anchor
     }x;
 
+    # this canonicalization must come early
     if ($stats{item} =~ /^potion of ((?:un)?holy) water$/) {
         $stats{item} = 'potion of water';
         $stats{buc}  = $1;
     }
+
+    # go from japanese to english if possible
+    $stats{item} = NetHack::Item::Spoiler->japanese_to_english->{$stats{item}}
+                || $stats{item};
+
+    # singularize the item if possible
+    $stats{item} = NetHack::Item::Spoiler->singularize($stats{item})
+                || $stats{item};
+
+    $stats{type} = NetHack::Item::Spoiler->name_to_type($stats{item});
+
+    confess "Unknown item type for '$stats{item}' from $raw"
+        if !$stats{type};
+
+    $self->_rebless_into($stats{type});
+
+    # canonicalize the rest of the stats
 
     $stats{quantity} = 1 if !defined($stats{quantity})
                          || $stats{quantity} =~ /\D/;
