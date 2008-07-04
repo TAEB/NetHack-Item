@@ -59,11 +59,11 @@ my %all_checks = (
 
 plan tests => sum map { scalar keys %$_ } values %all_checks;
 
-for my $item (keys %all_checks) {
+for my $item (sort keys %all_checks) {
     my $checks = $all_checks{$item};
 
     my $stats = NetHack::Item->extract_stats($item);
-    for my $stat (keys %$checks) {
+    for my $stat (sort keys %$checks) {
         is($stats->{$stat}, $checks->{$stat}, "'$item' $stat");
     }
 }
