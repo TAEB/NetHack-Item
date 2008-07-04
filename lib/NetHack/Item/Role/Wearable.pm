@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 package NetHack::Item::Role::Wearable;
 use Moose::Role;
+use MooseX::AttributeHelpers;
 
 has worn => (
     metaclass => 'Bool',
