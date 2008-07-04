@@ -120,7 +120,5 @@ sub list {
     return $rings;
 }
 
-sub extra_names { @rings }
-
 1;
 

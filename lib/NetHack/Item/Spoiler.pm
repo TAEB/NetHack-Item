@@ -23,6 +23,10 @@ sub name_to_type_list {
         my $list = $class->list;
         for (values %$list) {
             $all_types{$_->{name}} = $type;
+            $all_types{$_} = $type
+                for grep { defined }
+                    $_->{appearance},
+                    @{ $_->{appearances} || [] };
         }
 
         if ($class->can('extra_names')) {

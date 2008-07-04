@@ -578,7 +578,5 @@ sub list {
     return $armor;
 }
 
-sub extra_names { (@cloaks, @helmets, @gloves, @boots) }
-
 1;
 

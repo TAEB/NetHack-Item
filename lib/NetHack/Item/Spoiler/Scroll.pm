@@ -135,13 +135,11 @@ sub list {
     return $scrolls;
 }
 
-sub extra_names { (@scrolls, 'stamped scroll', 'unlabeled scroll') }
-
 sub extra_plurals {
     my $self = shift;
     my %extra;
 
-    for ($self->extra_names) {
+    for (@scrolls, 'stamped scroll', 'unlabeled scroll') {
         (my $plural = $_) =~ s/\bscroll\b/scrolls/;
         $extra{$_} = $plural;
     }

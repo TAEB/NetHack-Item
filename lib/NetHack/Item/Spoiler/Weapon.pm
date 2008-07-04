@@ -1044,13 +1044,12 @@ sub list {
 # these are stackable weapon appearances where name != appearance
 sub extra_plurals {
     my $self = shift;
-    return { map { $_ => "${_}s" } $self->extra_names };
-}
-
-sub extra_names {
-    return ('stout spear', 'runed arrow', 'runed dagger', 'runed spear',
-            'crude arrow', 'crude dagger', 'crude spear', 'throwing spear',
-            'throwing star', 'bamboo arrow');
+    return {
+        map { $_ => "${_}s" }
+        'stout spear', 'runed arrow', 'runed dagger', 'runed spear',
+        'crude arrow', 'crude dagger', 'crude spear', 'throwing spear',
+        'throwing star', 'bamboo arrow'
+    };
 }
 
 1;
