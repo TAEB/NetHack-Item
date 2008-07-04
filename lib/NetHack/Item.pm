@@ -298,6 +298,8 @@ sub incorporate_stats {
     $self->quantity($stats->{quantity});
     $self->is_wielded($stats->{wielded});
     $self->is_greased($stats->{greased});
+    $self->is_quivered($stats->{quivered});
+    $self->is_offhand($stats->{offhand});
 
     $self->generic_name($stats->{generic});
     $self->specific_name($stats->{specific});
