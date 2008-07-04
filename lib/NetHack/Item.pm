@@ -154,6 +154,17 @@ sub extract_stats {
 
     $stats{quantity} = 1 if !defined($stats{quantity})
                          || $stats{quantity} =~ /\D/;
+    $stats{lit} ||= delete $stats{lit_candelabrum};
+
+    # boolean stats
+    for (qw/greased poisoned erosion1 erosion2 used eaten diluted lit/) {
+        $stats{$_} = defined($stats{$_}) ? 1 : 0;
+    }
+
+    # maybe-boolean stats
+    for (qw/proof/) {
+        $stats{$_} = defined($stats{$_}) ? 1 : undef;
+    }
 
     return \%stats;
 }
