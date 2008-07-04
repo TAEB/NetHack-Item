@@ -127,6 +127,54 @@ my %all_checks = (
         item  => 'food ration',
         eaten => 1,
     },
+    "p - a scroll labeled TEMOV" => {
+        slot => 'p',
+        item => 'scroll labeled TEMOV',
+    },
+    "p - a blessed scroll of charging" => {
+        slot => 'p',
+        item => 'scroll of charging',
+        buc  => 'blessed',
+    },
+    "q - a fizzy potion" => {
+        slot => 'q',
+        item => 'fizzy potion',
+    },
+    "q - an uncursed potion of oil" => {
+        slot => 'q',
+        item => 'potion of oil',
+        buc  => 'uncursed',
+    },
+    "o - a wand of wishing (0:3)" => {
+        slot      => 'o',
+        item      => 'wand of wishing',
+        charges   => 3,
+        recharges => 0,
+    },
+    "o - a wand of wishing (0:0)" => {
+        slot      => 'o',
+        item      => 'wand of wishing',
+        recharges => 0,
+        charges   => 0,
+    },
+    "o - a wand of wishing (1:3)" => {
+        slot      => 'o',
+        item      => 'wand of wishing',
+        charges   => 3,
+        recharges => 1,
+    },
+    "t - a wand of wishing (0:-1)" => {
+        slot      => 't',
+        item      => 'wand of wishing',
+        charges   => -1,
+        recharges => 0,
+    },
+    "o - a wand of wishing (1:-1)" => {
+        slot      => 'o',
+        item      => 'wand of wishing',
+        charges   => -1,
+        recharges => 1,
+    },
 );
 
 plan tests => scalar keys %all_checks;
