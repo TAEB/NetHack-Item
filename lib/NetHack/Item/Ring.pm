@@ -2,6 +2,7 @@
 package NetHack::Item::Ring;
 use Moose;
 extends 'NetHack::Item';
+with 'NetHack::Item::Role::Wearable';
 
 use Moose::Util::TypeConstraints 'enum';
 
