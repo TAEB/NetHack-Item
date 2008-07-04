@@ -3,6 +3,7 @@ package NetHack::Item::Tool;
 use Moose;
 extends 'NetHack::Item';
 with 'NetHack::Item::Role::Wearable'; # lenses, towel
+with 'NetHack::Item::Role::Lightable'; # lamp, candles
 
 use constant type => "tool";
 
