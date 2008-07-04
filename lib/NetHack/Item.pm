@@ -82,6 +82,19 @@ for ([holy => 'blessed'], [unholy => 'cursed']) {
 sub buc {
     my $self = shift;
 
+    if (@_) {
+        my $new_buc = shift;
+        my %others = map { $_ => 1 } qw/blessed uncursed cursed/;
+
+        delete $others{$new_buc}
+            or confess "Invalid BUC: $new_buc";
+
+        my $is_new_buc = "is_$new_buc";
+        $self->$is_new_buc(1);
+
+        return $new_buc;
+    }
+
     for my $buc (qw/blessed uncursed cursed/) {
         my $is_buc = "is_$buc";
         return $buc if $self->$is_buc;
