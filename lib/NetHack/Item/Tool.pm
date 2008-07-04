@@ -2,11 +2,11 @@
 package NetHack::Item::Tool;
 use Moose;
 extends 'NetHack::Item';
-with 'TAEB::World::Item::Role::Chargeable';  # bags of tricks
-with 'TAEB::World::Item::Role::Enchantable'; # unicorn horn
-with 'TAEB::World::Item::Role::Erodable';    # pick-axe
-with 'TAEB::World::Item::Role::Lightable';   # lamps
-with 'TAEB::World::Item::Role::Wearable';    # towel
+with 'NetHack::Item::Role::Chargeable';  # bags of tricks
+with 'NetHack::Item::Role::Damageable';  # pick-axe
+with 'NetHack::Item::Role::Enchantable'; # unicorn horn
+with 'NetHack::Item::Role::Lightable';   # lamps
+with 'NetHack::Item::Role::Wearable';    # towel
 
 use constant type => "tool";
 
