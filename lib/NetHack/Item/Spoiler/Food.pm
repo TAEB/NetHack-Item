@@ -2099,5 +2099,11 @@ sub list {
     return $food;
 }
 
+sub extra_plurals {
+    return {
+        tin => 'tins',
+    };
+}
+
 1;
 
