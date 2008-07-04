@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 54;
+use Test::More tests => 89;
 use NetHack::Item;
 
 my %equivalents = (
@@ -14,10 +14,13 @@ for my $buc (qw/blessed uncursed cursed/) {
     delete $others{$buc};
 
     for my $input ($buc, @{ $equivalents{$buc} || [] }) {
-        for (["is_$buc" => 1], [buc => $input]) {
+        for (["is_$buc" => 1], [buc => $input], []) {
             my $item = NetHack::Item->new(raw => "a long sword", @$_);
+            $item->buc($input) if !@$_;
+
             my $method = "is_$buc";
             ok($item->$method, "the sword is $buc");
+            is($item->buc, $buc, "correct value from ->buc");
 
             for my $buc (keys %others) {
                 my $method = "is_$buc";
@@ -29,6 +32,7 @@ for my $buc (qw/blessed uncursed cursed/) {
 
         my $sword = NetHack::Item->new("a $input long sword");
         ok($sword->$method, "the sword is $buc, parsed from the description");
+        is($sword->buc, $buc, "correct value from ->buc");
 
         for my $buc (keys %others) {
             my $method = "is_$buc";
