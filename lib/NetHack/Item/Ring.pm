@@ -12,6 +12,15 @@ has hand => (
     isa => enum [qw/left right/],
 );
 
+after incorporate_stats => sub {
+    my $self  = shift;
+    my $stats = shift;
+
+    if (($stats->{worn} || '') =~ /(left|right)/) {
+        $self->hand($1);
+    }
+};
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 no Moose::Util::TypeConstraints;
