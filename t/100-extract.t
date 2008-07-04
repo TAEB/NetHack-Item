@@ -216,6 +216,11 @@ my %all_checks = (
         item => 'ring of conflict',
         worn => 'right',
     },
+    "h - 100 gold pieces" => {
+        slot     => 'h',
+        item     => 'gold pieces',
+        quantity => 100,
+    },
 );
 
 plan tests => scalar keys %all_checks;
