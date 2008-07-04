@@ -3,7 +3,6 @@ use strict;
 use warnings;
 use Test::More;
 use NetHack::Item;
-use List::Util 'sum';
 
 my %base = (
     slot            => undef,

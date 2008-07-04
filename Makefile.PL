@@ -6,7 +6,6 @@ all_from 'lib/NetHack/Item.pm';
 requires 'Moose';
 requires 'MooseX::AttributeHelpers';
 requires 'Module::Pluggable';
-requires 'List::Util';
 
 build_requires 'Test::More';
 build_requires 'Test::Exception';
