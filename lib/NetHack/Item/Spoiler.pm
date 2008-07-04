@@ -6,11 +6,43 @@ use warnings;
 use Module::Pluggable search_path => __PACKAGE__, require => 1;
 
 use Memoize;
+memoize 'name_to_type_list';
 memoize 'possibilities_to_appearances';
 memoize 'plurals';
 memoize 'plural_of_list';
 memoize 'singular_of_list';
 
+# names, appearances, and types {{{
+sub name_to_type_list {
+    my $self = shift;
+    my %all_types;
+
+    for my $class ($self->plugins) {
+        my ($type) = map { lc } $class =~ /.*::(.*)$/;
+
+        my $list = $class->list;
+        for (values %$list) {
+            $all_types{$_->{name}} = $type;
+        }
+
+        if ($class->can('extra_appearances')) {
+            for ($class->extra_appearances) {
+                $all_types{$_} = $type;
+            }
+        }
+    }
+
+    return \%all_types;
+}
+
+sub name_to_type {
+    my $self = shift;
+    my $name = shift;
+
+    $self->name_to_type_list->{$name};
+}
+# }}}
+# possibilities and appearances {{{
 sub possibilities_to_appearances {
     my $self = shift;
     my $list = $self->list;
@@ -38,7 +70,8 @@ sub possibilities_for_appearance {
 
     return $possibilities;
 }
-
+# }}}
+# singularize and pluralize {{{
 sub plurals {
     my $self = shift;
     my $list = $self->list;
@@ -87,6 +120,7 @@ sub singularize {
 
     $self->singular_of_list->{$item};
 }
+# }}}
 
 1;
 
