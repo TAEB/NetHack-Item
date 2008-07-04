@@ -33,7 +33,7 @@ my %base = (
     wielded         => 0,
     offhand_wielded => 0,
     worn            => 0,
-    price           => 0,
+    cost            => 0,
 );
 
 my %all_checks = (

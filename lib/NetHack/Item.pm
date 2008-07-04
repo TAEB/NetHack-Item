@@ -25,6 +25,12 @@ has quantity => (
     default => 1,
 );
 
+has cost => (
+    is      => 'rw',
+    isa     => 'Int',
+    default => 0,
+);
+
 has [qw/generic_name specific_name/] => (
     is      => 'rw',
     isa     => 'Str',
@@ -177,7 +183,7 @@ sub extract_stats {
     my @fields = qw/slot quantity buc greased poisoned erosion1 erosion2 proofed
                     used eaten diluted enchantment item generic specific
                     recharges charges candles lit_candelabrum lit laid chained
-                    quivered offhand offhand_wielded wielded worn price/;
+                    quivered offhand offhand_wielded wielded worn cost/;
 
     # this regex was written by Jesse Luehrs
     @stats{@fields} = $raw =~ m{
@@ -275,7 +281,7 @@ sub extract_stats {
     }
 
     # numeric, undef = 0 stats
-    for (qw/candles price/) {
+    for (qw/candles cost/) {
         $stats{$_} = 0 if !defined($stats{$_});
     }
 
@@ -310,6 +316,7 @@ sub incorporate_stats {
     $self->is_offhand($stats->{offhand});
     $self->generic_name($stats->{generic});
     $self->specific_name($stats->{specific});
+    $self->cost($stats->{cost});
 
     $self->_best_match($stats->{item});
 }
