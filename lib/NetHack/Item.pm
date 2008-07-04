@@ -128,35 +128,35 @@ sub extract_stats {
 
     # this regex was written by Jesse Luehrs
     @stats{@fields} = $raw =~
-        m{^                                                # anchor the regex
-          (?:([\w\#\$])\s[+-]\s)?\s*                       # inventory slot
-          ([Aa]n?|[Tt]he|\d+)?\s*                          # number
-          (blessed|(?:un)?cursed|(?:un)?holy)?\s*          # cursedness
-          (greased)?\s*                                    # greasy
-          (poisoned)?\s*                                   # poisoned
-          ((?:(?:very|thoroughly)\ )?(?:burnt|rusty))?\s*  # erosion 1
-          ((?:(?:very|thoroughly)\ )?(?:rotted|corroded))?\s* # erosion 2
-          (fixed|(?:fire|rust|corrode)proof)?\s*           # fooproof
-          (partly\ used)?\s*                               # candles
-          (partly\ eaten)?\s*                              # food
-          (diluted)?\s*                                    # potions
-          ([+-]\d+)?\s*                                    # enchantment
-          (?:(?:pair|set)\ of)?\s*                         # gloves and boots
-          (.*?)\s*                                         # item name
-          (?:called\ (.*?))?\s*                            # non-specific name
-          (?:named\ (.*?))?\s*                             # specific name
-          (?:\((\d+):(-?\d+)\))?\s*                        # charges
-          (?:\((no|[1-7])\ candles?(,\ lit|\ attached)\))?\s* # lit candelabrum
-          (\(lit\))?\s*                                    # lit
-          (\(laid\ by\ you\))?\s*                          # eggs
-          (\(chained\ to\ you\))?\s*                       # chained iron balls
-          (\(in\ quiver\))?\s*                             # quivered
-          (\(alternate\ weapon;\ not\ wielded\))?\s*       # off-hand weapon
-          (\(wielded\ in\ other.*?\))?\s*                  # offhand wield
-          (\(weapon.*?\))?\s*                              # wielding
-          (\((?:being|embedded|on).*?\))?\s*               # worn
-          (?:\(unpaid,\ (\d+)\ zorkmids?\))?\s*            # shops
-          $                                                # anchor the regex
+        m{^                                                      # anchor
+          (?:([\w\#\$])\s[+-]\s)?\s*                             # slot
+          ([Aa]n?|[Tt]he|\d+)?\s*                                # quantity
+          (blessed|(?:un)?cursed|(?:un)?holy)?\s*                # buc
+          (greased)?\s*                                          # grease
+          (poisoned)?\s*                                         # poison
+          ((?:(?:very|thoroughly)\ )?(?:burnt|rusty))?\s*        # erosion 1
+          ((?:(?:very|thoroughly)\ )?(?:rotted|corroded))?\s*    # erosion 2
+          (fixed|(?:fire|rust|corrode)proof)?\s*                 # proof
+          (partly\ used)?\s*                                     # candles
+          (partly\ eaten)?\s*                                    # food
+          (diluted)?\s*                                          # potions
+          ([+-]\d+)?\s*                                          # enchantment
+          (?:(?:pair|set)\ of)?\s*                               # gloves boots
+          (.*?)\s*                                               # item name
+          (?:called\ (.*?))?\s*                                  # generic name
+          (?:named\ (.*?))?\s*                                   # specific name
+          (?:\((\d+):(-?\d+)\))?\s*                              # charges
+          (?:\((no|[1-7])\ candles?(,\ lit|\ attached)\))?\s*    # candelabrum
+          (\(lit\))?\s*                                          # lit
+          (\(laid\ by\ you\))?\s*                                # eggs
+          (\(chained\ to\ you\))?\s*                             # iron balls
+          (\(in\ quiver\))?\s*                                   # quivered
+          (\(alternate\ weapon;\ not\ wielded\))?\s*             # offhand
+          (\(wielded\ in\ other.*?\))?\s*                        # offhand wield
+          (\(weapon.*?\))?\s*                                    # wielding
+          (\((?:being|embedded|on).*?\))?\s*                     # worn
+          (?:\(unpaid,\ (\d+)\ zorkmids?\))?\s*                  # shops
+          $                                                      # anchor
          }x;
 
     if ($stats{item} =~ /^potion of ((?:un)?holy) water$/) {
