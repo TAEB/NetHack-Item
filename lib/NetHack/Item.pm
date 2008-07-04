@@ -84,15 +84,8 @@ sub buc {
 
     if (@_) {
         my $new_buc = shift;
-        my %others = map { $_ => 1 } qw/blessed uncursed cursed/;
-
-        delete $others{$new_buc}
-            or confess "Invalid BUC: $new_buc";
-
         my $is_new_buc = "is_$new_buc";
-        $self->$is_new_buc(1);
-
-        return $new_buc;
+        return $self->$is_new_buc(1);
     }
 
     for my $buc (qw/blessed uncursed cursed/) {
