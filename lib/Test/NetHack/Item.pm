@@ -22,7 +22,12 @@ sub test_items {
         my $item = NetHack::Item->new($raw);
 
         for my $check (sort keys %$checks) {
-            Test::More::is($item->$check, $checks->{$check}, "'$raw' $check");
+            if ($item->can($check)) {
+                Test::More::is($item->$check, $checks->{$check}, "'$raw' $check");
+            }
+            else {
+                Test::More::fail("'$raw' leaves us without a $check method");
+            }
         }
     }
 }
