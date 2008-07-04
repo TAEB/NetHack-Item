@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-package NetHack::Item::Other
+package NetHack::Item::Other;
 use Moose;
 extends 'NetHack::Item';
 
