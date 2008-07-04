@@ -7,6 +7,7 @@ with 'NetHack::Item::Role::Damageable';  # pick-axe
 with 'NetHack::Item::Role::Enchantable'; # unicorn horn
 with 'NetHack::Item::Role::Lightable';   # lamps
 with 'NetHack::Item::Role::Wearable';    # towel
+with 'NetHack::Item::Role::EnchantBUC';
 
 use constant type => "tool";
 

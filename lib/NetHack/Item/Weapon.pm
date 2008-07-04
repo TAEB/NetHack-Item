@@ -4,6 +4,7 @@ use Moose;
 extends 'NetHack::Item';
 with 'NetHack::Item::Role::Enchantable';
 with 'NetHack::Item::Role::Damageable';
+with 'NetHack::Item::Role::EnchantBUC';
 
 use constant type => "weapon";
 
@@ -25,14 +26,6 @@ around can_drop => sub {
 
     return 0 if $self->is_wielded && $self->is_cursed;
     $self->$orig(@_);
-};
-
-# if we know the enchantment and BUC isn't set, then set it to uncursed
-after enchantment => sub {
-    my $self = shift;
-    return if !@_;
-
-    $self->is_uncursed(1) if !$self->buc;
 };
 
 __PACKAGE__->meta->make_immutable;
