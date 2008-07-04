@@ -14,6 +14,13 @@ has is_lit => (
     },
 );
 
+after incorporate_stats => sub {
+    my $self  = shift;
+    my $stats = shift;
+
+    $self->is_lit($stats->{lit} ? 1 : 0);
+};
+
 no Moose::Role;
 
 1;
