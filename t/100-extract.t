@@ -51,10 +51,11 @@ my %all_checks = (
         enchantment => '-3',
         quantity    => 2,
     },
-    "a potion called foo named bar" => {
+    "a diluted potion called foo named bar" => {
         item     => "potion",
         generic  => 'foo',
         specific => 'bar',
+        diluted  => 1,
     },
     "a - a +0 katana (weapon in hand)" => {
         item        => "katana",
@@ -99,6 +100,12 @@ my %all_checks = (
         lit     => 1,
         slot    => 'o',
         candles => 1,
+    },
+    "q - a poisoned dart (in quiver)" => {
+        item     => 'dart',
+        slot     => 'q',
+        poisoned => 1,
+        quivered => 1,
     },
     "r - a potion of holy water" => {
         slot => 'r',
