@@ -197,6 +197,11 @@ sub extract_stats {
         $stats{buc}  = $1;
     }
 
+    if ($stats{item} =~ /^(statue|figurine) of (.*)$/) {
+        $stats{item} = $1;
+        $stats{$1}   = $2;
+    }
+
     # go from japanese to english if possible
     $stats{item} = NetHack::Item::Spoiler->japanese_to_english->{$stats{item}}
                 || $stats{item};
