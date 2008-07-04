@@ -25,6 +25,18 @@ has quantity => (
     default => 1,
 );
 
+has [qw/generic_name specific_name/] => (
+    is      => 'rw',
+    isa     => 'Str',
+    default => '',
+);
+
+has _best_match => (
+    is            => 'rw',
+    isa           => 'Str',
+    documentation => "This is the item's identity if available, otherwise its appearance. This attribute is temporary, until we get possibility tracking.",
+);
+
 for my $type (qw/wield quiver grease offhand/) {
     my $is = "is_$type";
 
@@ -44,12 +56,6 @@ for my $type (qw/wield quiver grease offhand/) {
         },
     )
 }
-
-has [qw/generic_name specific_name/] => (
-    is      => 'rw',
-    isa     => 'Str',
-    default => '',
-);
 
 for my $buc (qw/is_blessed is_uncursed is_cursed/) {
     my %others = map { $_ => 1 } qw/is_blessed is_uncursed is_cursed/;
@@ -295,19 +301,17 @@ sub incorporate_stats {
     my $stats = shift;
 
     $self->slot($stats->{slot}) if defined $stats->{slot};
+    $self->buc($stats->{buc}) if $stats->{buc};
+
     $self->quantity($stats->{quantity});
     $self->is_wielded($stats->{wielded});
     $self->is_greased($stats->{greased});
     $self->is_quivered($stats->{quivered});
     $self->is_offhand($stats->{offhand});
-
     $self->generic_name($stats->{generic});
     $self->specific_name($stats->{specific});
 
-    if ($stats->{buc}) {
-        my $is_buc = "is_$stats->{buc}";
-        $self->$is_buc(1);
-    }
+    $self->_best_match($stats->{item});
 }
 
 sub can_drop { 1 }
