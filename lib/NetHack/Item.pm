@@ -165,8 +165,12 @@ sub extract_stats {
     $stats{lit} = delete($stats{lit_candelabrum}) || $stats{lit};
     $stats{candles} = 0 if ($stats{candles}||'') eq 'no';
 
+    $stats{worn} = !defined($stats{worn})               ? 0
+                 : $stats{worn} =~ /\(on (left|right) / ? $1
+                                                        : 1;
+
     # boolean stats
-    for (qw/greased poisoned erosion1 erosion2 used eaten diluted lit laid chained quivered offhand offhand_wielded wielded worn/) {
+    for (qw/greased poisoned erosion1 erosion2 used eaten diluted lit laid chained quivered offhand offhand_wielded wielded/) {
         $stats{$_} = defined($stats{$_}) ? 1 : 0;
     }
 

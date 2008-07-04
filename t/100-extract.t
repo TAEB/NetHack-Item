@@ -199,6 +199,12 @@ my %all_checks = (
         erosion1    => 1,
         buc         => 'uncursed',
     },
+    "e - an uncursed ring of conflict (on left hand)" => {
+        slot => 'e',
+        buc  => 'uncursed',
+        item => 'ring of conflict',
+        worn => 'left',
+    },
 );
 
 plan tests => scalar keys %all_checks;
