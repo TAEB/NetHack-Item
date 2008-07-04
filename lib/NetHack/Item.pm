@@ -157,13 +157,18 @@ sub extract_stats {
     $stats{lit} ||= delete $stats{lit_candelabrum};
 
     # boolean stats
-    for (qw/greased poisoned erosion1 erosion2 used eaten diluted lit/) {
+    for (qw/greased poisoned erosion1 erosion2 used eaten diluted lit laid chain quiver offhand wield/) {
         $stats{$_} = defined($stats{$_}) ? 1 : 0;
     }
 
     # maybe-boolean stats
     for (qw/proof/) {
         $stats{$_} = defined($stats{$_}) ? 1 : undef;
+    }
+
+    # numeric, undef = 0 stats
+    for (qw/candles price/) {
+        $stats{$_} = 0 if !defined($stats{$_});
     }
 
     return \%stats;
