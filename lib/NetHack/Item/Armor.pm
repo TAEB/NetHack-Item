@@ -3,6 +3,7 @@ package NetHack::Item::Armor;
 use Moose;
 extends 'NetHack::Item';
 with 'NetHack::Item::Role::Wearable';
+with 'NetHack::Item::Role::Enchantable';
 
 use constant type => "armor";
 
