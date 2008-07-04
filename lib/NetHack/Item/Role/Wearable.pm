@@ -3,8 +3,13 @@ package NetHack::Item::Role::Wearable;
 use Moose::Role;
 
 has worn => (
-    is  => 'rw',
-    isa => 'Bool',
+    metaclass => 'Bool',
+    is        => 'rw',
+    isa       => 'Bool',
+    provides  => {
+        set   => 'wear',
+        unset => 'remove',
+    },
 );
 
 after incorporate_stats => sub {
