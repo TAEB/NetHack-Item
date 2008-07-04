@@ -191,6 +191,14 @@ my %all_checks = (
         item => 'cockatrice egg',
         laid => 1,
     },
+    "b - an uncursed burnt +0 cloak of magic resistance (being worn)" => {
+        slot        => 'b',
+        item        => 'cloak of magic resistance',
+        enchantment => '+0',
+        worn        => 1,
+        erosion1    => 1,
+        buc         => 'uncursed',
+    },
 );
 
 plan tests => scalar keys %all_checks;
