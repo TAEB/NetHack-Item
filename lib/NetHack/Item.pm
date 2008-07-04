@@ -155,7 +155,10 @@ sub extract_stats {
 
     $stats{quantity} = 1 if !defined($stats{quantity})
                          || $stats{quantity} =~ /\D/;
+
+    $stats{lit_candelabrum} = ($stats{lit_candelabrum}||'') =~ /lit/;
     $stats{lit} = delete($stats{lit_candelabrum}) || $stats{lit};
+    $stats{candles} = 0 if ($stats{candles}||'') eq 'no';
 
     # boolean stats
     for (qw/greased poisoned erosion1 erosion2 used eaten diluted lit laid chain quiver offhand offhand_wield wield/) {

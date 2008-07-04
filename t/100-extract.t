@@ -74,6 +74,32 @@ my %all_checks = (
         enchantment   => '+0',
         offhand_wield => 1,
     },
+    "p - a partly used candle (lit)" => {
+        item => 'candle',
+        lit  => 1,
+        slot => 'p',
+        used => 1,
+    },
+    "p - a partly used candle" => {
+        item => 'candle',
+        slot => 'p',
+        used => 1,
+    },
+    "o - a candelabrum (no candles attached)" => {
+        item    => 'candelabrum',
+        slot    => 'o',
+    },
+    "o - a candelabrum (1 candle attached)" => {
+        item    => 'candelabrum',
+        slot    => 'o',
+        candles => 1,
+    },
+    "o - a candelabrum (1 candle, lit)" => {
+        item    => 'candelabrum',
+        lit     => 1,
+        slot    => 'o',
+        candles => 1,
+    },
 );
 
 plan tests => scalar keys %all_checks;
