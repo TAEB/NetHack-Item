@@ -136,7 +136,7 @@ sub extract_stats {
 
     my %stats;
 
-    my @fields = qw/slot quantity buc greased poisoned erosion1 erosion2 proof
+    my @fields = qw/slot quantity buc greased poisoned erosion1 erosion2 proofed
                     used eaten diluted enchantment item generic specific
                     recharges charges candles lit_candelabrum lit laid chained
                     quivered offhand offhand_wielded wielded worn price/;
@@ -151,7 +151,7 @@ sub extract_stats {
         (poisoned)?                                       \s*  # poison
         ((?:(?:very|thoroughly)\ )?(?:burnt|rusty))?      \s*  # erosion 1
         ((?:(?:very|thoroughly)\ )?(?:rotted|corroded))?  \s*  # erosion 2
-        (fixed|(?:fire|rust|corrode)proof)?               \s*  # proof
+        (fixed|(?:fire|rust|corrode)proof)?               \s*  # proofed
         (partly\ used)?                                   \s*  # candles
         (partly\ eaten)?                                  \s*  # food
         (diluted)?                                        \s*  # potions
@@ -208,13 +208,26 @@ sub extract_stats {
                  : $stats{worn} =~ /\(on (left|right) / ? $1
                                                         : 1;
 
+    # item damage
+    for (qw/burnt rusty rotted corroded/) {
+        my $match = ($stats{erosion1}||'') =~ $_ ? $stats{erosion1}
+                  : ($stats{erosion2}||'') =~ $_ ? $stats{erosion2}
+                                           : 0;
+
+        $stats{$_} = $match ? $match =~ /thoroughly/ ? 3
+                            : $match =~ /very/       ? 2
+                                                     : 1
+                                                     : 0;
+    }
+    delete @stats{qw/erosion1 erosion2/};
+
     # boolean stats
-    for (qw/greased poisoned erosion1 erosion2 used eaten diluted lit laid chained quivered offhand offhand_wielded wielded/) {
+    for (qw/greased poisoned used eaten diluted lit laid chained quivered offhand offhand_wielded wielded/) {
         $stats{$_} = defined($stats{$_}) ? 1 : 0;
     }
 
     # maybe-boolean stats
-    for (qw/proof/) {
+    for (qw/proofed/) {
         $stats{$_} = defined($stats{$_}) ? 1 : undef;
     }
 
