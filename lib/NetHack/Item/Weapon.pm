@@ -27,6 +27,14 @@ around can_drop => sub {
     $self->$orig(@_);
 };
 
+# if we know the enchantment and BUC isn't set, then set it to uncursed
+after enchantment => sub {
+    my $self = shift;
+    return if !@_;
+
+    $self->is_uncursed(1) if !$self->buc;
+};
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
