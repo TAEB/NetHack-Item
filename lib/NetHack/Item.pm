@@ -84,7 +84,7 @@ sub buc {
 
     for my $buc (qw/blessed uncursed cursed/) {
         my $is_buc = "is_$buc";
-        return $_ if $self->$is_buc;
+        return $buc if $self->$is_buc;
     }
 
     return undef;
