@@ -8,6 +8,8 @@ with 'TAEB::World::Item::Role::Erodable';    # pick-axe
 with 'TAEB::World::Item::Role::Lightable';   # lamps
 with 'TAEB::World::Item::Role::Wearable';    # towel
 
+use constant type => "tool";
+
 has is_partly_used => (
     is      => 'rw',
     isa     => 'Bool',
@@ -27,8 +29,6 @@ after incorporate_stats => sub {
     $self->is_partly_used($stats->{used});
     $self->candles_attached($stats->{candles});
 };
-
-use constant type => "tool";
 
 __PACKAGE__->meta->make_immutable;
 no Moose;
