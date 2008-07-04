@@ -52,7 +52,7 @@ sub spend_charge {
     $self->add_charges_spent_this_recharge($count);
 
     return unless $self->charges_known;
-    $self->subtract_charges($$count);
+    $self->subtract_charges($count);
     if ($self->charges < 0) {
         $self->charges(0);
     }
