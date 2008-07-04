@@ -199,11 +199,22 @@ my %all_checks = (
         erosion1    => 1,
         buc         => 'uncursed',
     },
+    "e - an uncursed ring of conflict" => {
+        slot => 'e',
+        buc  => 'uncursed',
+        item => 'ring of conflict',
+    },
     "e - an uncursed ring of conflict (on left hand)" => {
         slot => 'e',
         buc  => 'uncursed',
         item => 'ring of conflict',
         worn => 'left',
+    },
+    "e - an uncursed ring of conflict (on right hand)" => {
+        slot => 'e',
+        buc  => 'uncursed',
+        item => 'ring of conflict',
+        worn => 'right',
     },
 );
 
