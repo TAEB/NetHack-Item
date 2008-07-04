@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 27;
+use Test::More tests => 36;
 use NetHack::Item;
 
 for my $buc (qw/blessed uncursed cursed/) {
@@ -29,4 +29,17 @@ for my $buc (qw/blessed uncursed cursed/) {
         is($sword->$method, 0, "the sword is NOT $buc");
     }
 }
+
+my $sword = NetHack::Item->new("a long sword");
+is($sword->$_, undef, $_) for qw/is_blessed is_uncursed is_cursed/;
+
+$sword->is_cursed(0);
+
+is($sword->$_, undef, $_) for qw/is_blessed is_uncursed/;
+is($sword->is_cursed, 0, "is_cursed");
+
+$sword->is_blessed(0);
+
+is($sword->$_, 0, $_) for qw/is_blessed is_cursed/;
+is($sword->is_uncursed, 1, "setting two of the three to 0 will set the other to 1");
 
