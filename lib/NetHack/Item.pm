@@ -60,6 +60,11 @@ for my $buc (qw/is_blessed is_uncursed is_cursed/) {
     );
 }
 
+for ([holy => 'blessed'], [unholy => 'cursed']) {
+    my ($holiness, $buc) = @$_;
+    __PACKAGE__->meta->alias_method("is_$holiness" => __PACKAGE__->meta->find_method_by_name("is_$buc"));
+}
+
 sub BUILDARGS {
     my $class = shift;
 
@@ -82,6 +87,11 @@ around BUILDARGS => sub {
     if ($args->{buc}) {
         $args->{"is_$args->{buc}"} = 1;
     }
+
+    $args->{is_blessed} = delete $args->{is_holy}
+        if exists $args->{is_holy};
+    $args->{is_cursed} = delete $args->{is_unholy}
+        if exists $args->{is_unholy};
 
     return $args;
 };
