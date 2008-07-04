@@ -262,6 +262,8 @@ sub incorporate_stats {
     }
 }
 
+sub can_drop { 1 }
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
