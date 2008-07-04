@@ -175,6 +175,22 @@ my %all_checks = (
         charges   => -1,
         recharges => 1,
     },
+    "v - a bag of tricks (0:14)" => {
+        slot      => 'v',
+        item      => 'bag of tricks',
+        charges   => 14,
+        recharges => 0,
+    },
+    "x - a heavy iron ball (chained to you)" => {
+        slot    => 'x',
+        item    => 'heavy iron ball',
+        chained => 1,
+    },
+    "o - a cockatrice egg (laid by you)" => {
+        slot => 'o',
+        item => 'cockatrice egg',
+        laid => 1,
+    },
 );
 
 plan tests => scalar keys %all_checks;
