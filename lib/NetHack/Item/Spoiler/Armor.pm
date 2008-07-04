@@ -578,5 +578,7 @@ sub list {
     return $armor;
 }
 
+sub extra_appearances { (@cloaks, @helmets, @gloves, @boots) }
+
 1;
 
