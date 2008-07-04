@@ -16,11 +16,9 @@ sub import_extra {
 
 sub test_items {
     local $Test::Builder::Level = $Test::Builder::Level + 1;
-    my %all_checks = @_;
+    my @all_checks = @_;
 
-    for my $item (sort keys %all_checks) {
-        my $checks = $all_checks{$item};
-
+    while (my ($item, $checks) = splice @_, 0, 2) {
         my $item = NetHack::Item->new($item);
 
         for my $check (sort keys %$checks) {
@@ -30,10 +28,12 @@ sub test_items {
 }
 
 sub plan_items {
-    my %all_checks = @_;
+    my @all_checks = @_;
 
     my $tests = 0;
-    $tests += keys %$_ for values %all_checks;
+    while (my ($item, $checks) = splice @_, 0, 2) {
+        $tests += keys %$checks;
+    }
 
     return $tests if defined wantarray;
 
