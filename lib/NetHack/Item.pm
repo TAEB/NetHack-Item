@@ -153,6 +153,11 @@ sub extract_stats {
           $                                                # anchor the regex
          }x;
 
+    if ($stats{item} =~ /^potion of ((?:un)?holy) water$/) {
+        $stats{item} = 'potion of water';
+        $stats{buc}  = $1;
+    }
+
     $stats{quantity} = 1 if !defined($stats{quantity})
                          || $stats{quantity} =~ /\D/;
 

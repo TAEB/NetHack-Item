@@ -100,6 +100,21 @@ my %all_checks = (
         slot    => 'o',
         candles => 1,
     },
+    "r - a potion of holy water" => {
+        slot => 'r',
+        item => 'potion of water',
+        buc  => 'holy',
+    },
+    "r - a potion of unholy water" => {
+        slot => 'r',
+        item => 'potion of water',
+        buc  => 'unholy',
+    },
+    "r - an uncursed potion of water" => {
+        slot => 'r',
+        item => 'potion of water',
+        buc  => 'uncursed',
+    },
 );
 
 plan tests => scalar keys %all_checks;
