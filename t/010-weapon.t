@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 9;
+use Test::More tests => 11;
 use NetHack::Item::Weapon;
 
 my $weapon = NetHack::Item::Weapon->new("a +1 long sword");
@@ -18,4 +18,9 @@ is($item->enchantment, '-3', "-3 enchantment");
 $weapon = NetHack::Item::Weapon->new("a long sword (weapon in hand)");
 ok($weapon, "got a weapon");
 ok($weapon->wielded, "wielding this weapon");
+
+$weapon->unwield;
+ok(!$weapon->wielded, "weapon is no longer wielded");
+$weapon->wield;
+ok($weapon->wielded, "weapon is now wielded");
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 package NetHack::Item;
 use Moose;
+use MooseX::AttributeHelpers;
 
 use NetHack::Item::Spoiler;
 
@@ -25,9 +26,14 @@ has quantity => (
 );
 
 has wielded => (
-    is      => 'rw',
-    isa     => 'Bool',
-    default => 0,
+    metaclass => 'Bool',
+    is        => 'rw',
+    isa       => 'Bool',
+    default   => 0,
+    provides  => {
+        set   => 'wield',
+        unset => 'unwield',
+    },
 );
 
 for my $buc (qw/is_blessed is_uncursed is_cursed/) {
