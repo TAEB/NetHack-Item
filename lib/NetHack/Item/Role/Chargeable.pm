@@ -4,9 +4,13 @@ use Moose::Role;
 use MooseX::AttributeHelpers;
 
 has recharges => (
-    is      => 'rw',
-    isa     => 'Int',
-    default => 0,
+    metaclass => 'Counter',
+    is        => 'rw',
+    isa       => 'Int',
+    predicate => 'recharges_known',
+    provides  => {
+        inc => 'inc_recharges',
+    },
 );
 
 has charges => (
@@ -30,6 +34,16 @@ has charges_spent_this_recharge => (
     },
 );
 
+has times_recharged => (
+    metaclass => 'Counter',
+    is        => 'rw',
+    isa       => 'Int',
+    default   => 0,
+    provides  => {
+        inc => 'inc_times_recharged',
+    },
+);
+
 sub spend_charge {
     my $self = shift;
     my $count = shift || 1;
@@ -47,11 +61,15 @@ sub recharge {
     my $self = shift;
 
     $self->set_charges_unknown;
-    $self->recharges($self->recharges + 1);
+    $self->inc_times_recharged;
+    $self->inc_recharges if $self->has_recharges;
 }
 
 sub chance_to_recharge {
     my $self = shift;
+
+    return undef if !$self->has_recharges;
+
     my $n = $self->recharges;
 
     # can always recharge at 0 recharges
@@ -63,6 +81,14 @@ sub chance_to_recharge {
     # (n/7)^3
     return 100 - int(100 * (($n/7) ** 3));
 }
+
+after incorporate_stats => sub {
+    my $self  = shift;
+    my $stats = shift;
+
+    $self->charges($stats->{charges}) if defined($stats->{charges});
+    $self->recharges($stats->{recharges}) if defined($stats->{recharges});
+};
 
 no Moose::Role;
 
