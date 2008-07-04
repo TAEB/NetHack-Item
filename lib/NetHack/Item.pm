@@ -332,23 +332,52 @@ __END__
 
 =head1 NAME
 
-NetHack::Item - ???
+NetHack::Item - parse and interact with a NetHack item
 
 =head1 VERSION
 
-Version 0.01 released ???
+Version 0.01 released 04 Jul 08
 
 =head1 SYNOPSIS
 
     use NetHack::Item;
+    my $item = NetHack::Item->new("f - a wand of wishing (0:3) named SWEET");
+
+    $item->slot           # f
+    $item->type           # wand
+    $item->specific_name  # SWEET
+    $item->charges        # 3
+
+    $item->spend_charge;
+    $item->wield;
+    $item->buc("blessed");
 
 =head1 DESCRIPTION
 
+NetHack's items are complex beasts. This library attempts to control that
+complexity.
 
+More doc soon.. in the meantime, use
+C<< NetHack::Item->new("...")->meta->compute_all_applicable_methods >> to see
+what you can do with items. Note that items are automatically blessed into
+whichever subclass the item is (e.g. L<NetHack::Item::Weapon>).
+
+This library provides spoilers for all the items. However, they are not
+well-integrated into the rest of the code, since we need to add possibility
+tracking before that is useful. This is also why you can't see the identity
+of items just yet..
+
+The code is a slight redesign of TAEB's item code.
+
+=head1 SEE ALSO
+
+L<http://sartak.org/code/TAEB/>
 
 =head1 AUTHOR
 
-Shawn M Moore, C<< <sartak at gmail.com> >>
+Shawn M Moore, C<< <sartak@gmail.com> >>
+
+Jesse Luehrs, C<< <jluehrs2@uiuc.edu> >>
 
 =head1 BUGS
 
@@ -360,7 +389,7 @@ L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=NetHack-Item>.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2008 Shawn M Moore.
+Copyright 2008 Shawn M Moore and Jesse Luehrs.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
