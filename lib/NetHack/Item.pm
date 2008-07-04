@@ -47,6 +47,12 @@ has is_greased => (
     },
 );
 
+has [qw/generic_name specific_name/] => (
+    is      => 'rw',
+    isa     => 'Str',
+    default => '',
+);
+
 for my $buc (qw/is_blessed is_uncursed is_cursed/) {
     my %others = map { $_ => 1 } qw/is_blessed is_uncursed is_cursed/;
     delete $others{$buc};
@@ -269,6 +275,11 @@ sub extract_stats {
         $stats{$_} = 0 if !defined($stats{$_});
     }
 
+    # strings
+    for (qw/generic specific/) {
+        $stats{$_} = '' if !defined($stats{$_});
+    }
+
     return \%stats;
 }
 
@@ -289,6 +300,9 @@ sub incorporate_stats {
     $self->quantity($stats->{quantity});
     $self->is_wielded($stats->{wielded});
     $self->is_greased($stats->{greased});
+
+    $self->generic_name($stats->{generic});
+    $self->specific_name($stats->{specific});
 
     if ($stats->{buc}) {
         my $is_buc = "is_$stats->{buc}";
