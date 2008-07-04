@@ -4,6 +4,7 @@ use Moose;
 extends 'NetHack::Item';
 with 'NetHack::Item::Role::Wearable';
 with 'NetHack::Item::Role::Enchantable';
+with 'NetHack::Item::Role::Damageable';
 
 use constant type => "armor";
 
