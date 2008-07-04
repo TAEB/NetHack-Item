@@ -255,6 +255,39 @@ my %all_checks = (
         quantity => 100,
         type     => 'other',
     },
+    "l - a turquoise spellbook" => {
+        slot => 'l',
+        item => 'turquoise spellbook',
+        type => 'spellbook',
+    },
+    "l - a blessed spellbook of force bolt" => {
+        slot => 'l',
+        item => 'spellbook of force bolt',
+        buc  => 'blessed',
+        type => 'spellbook',
+    },
+    "q - a hexagonal amulet" => {
+        slot => 'q',
+        item => "hexagonal amulet",
+        type => "amulet",
+    },
+    "q - an uncursed amulet versus poison" => {
+        slot => 'q',
+        item => "amulet versus poison",
+        buc  => 'uncursed',
+        type => "amulet",
+    },
+    "r - blue gem" => {
+        slot => 'r',
+        item => "blue gem",
+        type => "gem",
+    },
+    "r - an uncursed turquoise stone" => {
+        slot => 'r',
+        item => "turquoise stone",
+        buc  => "uncursed",
+        type => "gem",
+    },
 );
 
 plan tests => scalar keys %all_checks;
