@@ -17,10 +17,10 @@ is($item->enchantment, '-3', "-3 enchantment");
 
 $weapon = NetHack::Item::Weapon->new("a long sword (weapon in hand)");
 ok($weapon, "got a weapon");
-ok($weapon->wielded, "wielding this weapon");
+ok($weapon->is_wielded, "wielding this weapon");
 
 $weapon->unwield;
-ok(!$weapon->wielded, "weapon is no longer wielded");
+ok(!$weapon->is_wielded, "weapon is no longer wielded");
 $weapon->wield;
-ok($weapon->wielded, "weapon is now wielded");
+ok($weapon->is_wielded, "weapon is now wielded");
 

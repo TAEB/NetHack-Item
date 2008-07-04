@@ -25,7 +25,7 @@ has quantity => (
     default => 1,
 );
 
-has wielded => (
+has is_wielded => (
     metaclass => 'Bool',
     is        => 'rw',
     isa       => 'Bool',
@@ -254,7 +254,7 @@ sub incorporate_stats {
 
     $self->slot($stats->{slot}) if defined $stats->{slot};
     $self->quantity($stats->{quantity});
-    $self->wielded($stats->{wielded});
+    $self->is_wielded($stats->{wielded});
 
     if ($stats->{buc}) {
         my $is_buc = "is_$stats->{buc}";
