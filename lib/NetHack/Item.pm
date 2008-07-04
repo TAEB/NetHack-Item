@@ -191,13 +191,20 @@ sub parse_raw {
     my $self = shift;
     my $raw  = shift || $self->raw;
 
-    my %stats = %{ $self->extract_stats($raw) };
+    my $stats = $self->extract_stats($raw);
 
-    $self->slot($stats{slot}) if defined $stats{slot};
-    $self->quantity($stats{quantity});
+    $self->incorporate_stats($stats);
+}
 
-    if ($stats{buc}) {
-        my $is_buc = "is_$stats{buc}";
+sub incorporate_stats {
+    my $self  = shift;
+    my $stats = shift;
+
+    $self->slot($stats->{slot}) if defined $stats->{slot};
+    $self->quantity($stats->{quantity});
+
+    if ($stats->{buc}) {
+        my $is_buc = "is_$stats->{buc}";
         $self->$is_buc(1);
     }
 }
