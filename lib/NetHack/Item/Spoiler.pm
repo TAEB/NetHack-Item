@@ -45,6 +45,11 @@ sub plurals {
             if $_->{plural};
     }
 
+    if ($self->can('extra_plurals')) {
+        my $extra = $self->extra_plurals;
+        @plurals{keys %$extra} = values %$extra;
+    }
+
     return \%plurals;
 }
 
