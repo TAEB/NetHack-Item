@@ -25,10 +25,13 @@ has quantity => (
     default => 1,
 );
 
-for my $type (qw/wield quiver grease/) {
+for my $type (qw/wield quiver grease offhand/) {
     my $is = "is_$type";
-    $is .= 'e' unless $is =~ /e$/; # avoid "greaseed"
-    $is .= 'd';
+
+    unless ($type =~ /offhand/) {
+        $is .= 'e' unless $is =~ /e$/; # avoid "greaseed"
+        $is .= 'd';
+    }
 
     has $is => (
         metaclass => 'Bool',
