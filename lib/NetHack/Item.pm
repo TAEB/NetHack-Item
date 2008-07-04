@@ -16,6 +16,12 @@ has slot => (
     predicate => 'has_slot',
 );
 
+has quantity => (
+    is      => 'rw',
+    isa     => 'Int',
+    default => 1,
+);
+
 for my $buc (qw/is_blessed is_uncursed is_cursed/) {
     my %others = map { $_ => 1 } qw/is_blessed is_uncursed is_cursed/;
     delete $others{$buc};
@@ -98,8 +104,8 @@ sub parse_raw {
     my $raw = $self->raw;
 
     # this regex was written by Jesse Luehrs
-    my ($slot, $num, $buc, $greased, $poisoned, $ero1, $ero2, $proof, $used,
-        $eaten, $dilute, $spe, $item, $call, $name, $recharges, $charges,
+    my ($slot, $quantity, $buc, $greased, $poisoned, $ero1, $ero2, $proof,
+        $used, $eaten, $dilute, $spe, $item, $call, $name, $recharges, $charges,
         $ncandles, $lit_candelabrum, $lit, $laid, $chain, $quiver, $offhand,
         $wield, $wear, $price) = $raw =~
         m{^                                                # anchor the regex
@@ -133,6 +139,9 @@ sub parse_raw {
          }x;
 
     $self->slot($slot) if defined $slot;
+
+    $quantity = 1 if !defined($quantity) || $quantity =~ /\D/;
+    $self->quantity($quantity);
 
     if ($buc) {
         my $is_buc = "is_$buc";
