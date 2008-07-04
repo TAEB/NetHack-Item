@@ -10,11 +10,11 @@ has raw => (
     required => 1,
 );
 
-for my $type (qw/is_blessed is_uncursed is_cursed/) {
+for my $buc (qw/is_blessed is_uncursed is_cursed/) {
     my %others = map { $_ => 1 } qw/is_blessed is_uncursed is_cursed/;
-    delete $others{$type};
+    delete $others{$buc};
 
-    has $type => (
+    has $buc => (
         is      => 'rw',
         isa     => 'Bool',
         trigger => sub {
