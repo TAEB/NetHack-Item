@@ -109,15 +109,19 @@ sub BUILD {
     $self->parse_raw;
 }
 
-sub parse_raw {
+sub extract_stats {
     my $self = shift;
-    my $raw = $self->raw;
+    my $raw  = shift || $self->raw;
+
+    my %stats;
+
+    my @fields = qw/slot quantity buc greased poisoned erosion1 erosion2 proof
+                    used eaten diluted enchantment item generic specific
+                    recharges charges candles lit_candelabrum lit laid chain
+                    quiver offhand wield wear price/;
 
     # this regex was written by Jesse Luehrs
-    my ($slot, $quantity, $buc, $greased, $poisoned, $ero1, $ero2, $proof,
-        $used, $eaten, $dilute, $spe, $item, $call, $name, $recharges, $charges,
-        $ncandles, $lit_candelabrum, $lit, $laid, $chain, $quiver, $offhand,
-        $wield, $wear, $price) = $raw =~
+    @stats{@fields} = $raw =~
         m{^                                                # anchor the regex
           (?:([\w\#\$])\s[+-]\s)?\s*                       # inventory slot
           ([Aa]n?|[Tt]he|\d+)?\s*                          # number
@@ -148,13 +152,23 @@ sub parse_raw {
           $                                                # anchor the regex
          }x;
 
-    $self->slot($slot) if defined $slot;
+    $stats{quantity} = 1 if !defined($stats{quantity})
+                         || $stats{quantity} =~ /\D/;
 
-    $quantity = 1 if !defined($quantity) || $quantity =~ /\D/;
-    $self->quantity($quantity);
+    return \%stats;
+}
 
-    if ($buc) {
-        my $is_buc = "is_$buc";
+sub parse_raw {
+    my $self = shift;
+    my $raw  = shift || $self->raw;
+
+    my %stats = %{ $self->extract_stats($raw) };
+
+    $self->slot($stats{slot}) if defined $stats{slot};
+    $self->quantity($stats{quantity});
+
+    if ($stats{buc}) {
+        my $is_buc = "is_$stats{buc}";
         $self->$is_buc(1);
     }
 }
