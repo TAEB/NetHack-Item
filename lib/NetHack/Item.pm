@@ -79,6 +79,17 @@ for ([holy => 'blessed'], [unholy => 'cursed']) {
     __PACKAGE__->meta->alias_method("is_$holiness" => __PACKAGE__->meta->find_method_by_name("is_$buc"));
 }
 
+sub buc {
+    my $self = shift;
+
+    for my $buc (qw/blessed uncursed cursed/) {
+        my $is_buc = "is_$buc";
+        return $_ if $self->$is_buc;
+    }
+
+    return undef;
+}
+
 sub BUILDARGS {
     my $class = shift;
 
