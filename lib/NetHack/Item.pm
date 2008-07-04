@@ -25,27 +25,22 @@ has quantity => (
     default => 1,
 );
 
-has is_wielded => (
-    metaclass => 'Bool',
-    is        => 'rw',
-    isa       => 'Bool',
-    default   => 0,
-    provides  => {
-        set   => 'wield',
-        unset => 'unwield',
-    },
-);
+for my $type (qw/wield quiver grease/) {
+    my $is = "is_$type";
+    $is .= 'e' unless $is =~ /e$/; # avoid "greaseed"
+    $is .= 'd';
 
-has is_greased => (
-    metaclass => 'Bool',
-    is        => 'rw',
-    isa       => 'Bool',
-    default   => 0,
-    provides  => {
-        set   => 'grease',
-        unset => 'ungrease',
-    },
-);
+    has $is => (
+        metaclass => 'Bool',
+        is        => 'rw',
+        isa       => 'Bool',
+        default   => 0,
+        provides  => {
+            set   => "$type",
+            unset => "un$type",
+        },
+    )
+}
 
 has [qw/generic_name specific_name/] => (
     is      => 'rw',
