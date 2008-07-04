@@ -4,6 +4,7 @@ name     'NetHack-Item';
 all_from 'lib/NetHack/Item.pm';
 
 requires 'Moose';
+requires 'MooseX::AttributeHelpers';
 requires 'List::Util';
 
 build_requires 'Test::More';
