@@ -64,7 +64,7 @@ for my $item (keys %all_checks) {
 
     my $stats = NetHack::Item->extract_stats($item);
     for my $stat (keys %$checks) {
-        is($checks->{$stat}, $stats->{$stat}, "'$item' $stat");
+        is($stats->{$stat}, $checks->{$stat}, "'$item' $stat");
     }
 }
 
