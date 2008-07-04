@@ -126,6 +126,25 @@ sub singularize {
     $self->singular_of_list->{$item};
 }
 # }}}
+# japanese names {{{
+sub japanese_to_english {
+    return {
+        "wakizashi"       => "short sword",
+        "ninja-to"        => "broadsword",
+        "nunchaku"        => "flail",
+        "naginata"        => "glaive",
+        "osaku"           => "lock pick",
+        "koto"            => "wooden harp",
+        "shito"           => "knife",
+        "tanko"           => "plate mail",
+        "kabuto"          => "helmet",
+        "yugake"          => "leather gloves",
+        "gunyoki"         => "food ration",
+        "potion of sake"  => "potion of booze",
+        "potions of sake" => "potions of booze",
+    };
+}
+# }}}
 
 1;
 
