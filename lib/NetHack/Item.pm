@@ -352,6 +352,11 @@ Version 0.01 released 04 Jul 08
     $item->wield;
     $item->buc("blessed");
 
+    $item->charges        # 2
+    $item->is_wielded     # 1
+    $item->is_blessed     # 1
+    $item->is_cursed      # 0
+
 =head1 DESCRIPTION
 
 NetHack's items are complex beasts. This library attempts to control that
