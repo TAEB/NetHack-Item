@@ -27,7 +27,7 @@ my %base = (
     lit           => 0,
     laid          => 0,
     chain         => 0,
-    quiver        => 0,
+    quivered      => 0,
     offhand       => 0,
     wield         => 0,
     offhand_wield => 0,
@@ -121,6 +121,11 @@ my %all_checks = (
         slot => 'r',
         item => 'potion of water',
         buc  => 'uncursed',
+    },
+    "u - a partly eaten food ration" => {
+        slot  => 'u',
+        item  => 'food ration',
+        eaten => 1,
     },
 );
 
