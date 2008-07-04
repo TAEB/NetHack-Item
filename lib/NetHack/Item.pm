@@ -108,14 +108,7 @@ sub parse_raw {
 
     if ($buc) {
         my $is_buc = "is_$buc";
-
-        my %set_to_zero = map { $_ => 1 } qw/is_blessed is_uncursed is_cursed/;
-        delete $set_to_zero{$is_buc};
-
-        my $method = "$is_buc";
-        $self->$method(1);
-
-        $self->$_(0) for keys %set_to_zero;
+        $self->$is_buc(1);
     }
 }
 
