@@ -120,7 +120,7 @@ sub list {
     return $rings;
 }
 
-sub extra_appearances { @rings }
+sub extra_names { @rings }
 
 1;
 

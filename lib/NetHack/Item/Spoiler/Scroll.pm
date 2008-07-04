@@ -124,8 +124,9 @@ sub list {
     # tag each scroll with its name, weight, appearances, etc
     for my $name (keys %$scrolls) {
         my $stats = $scrolls->{$name};
-        $stats->{name}   = $name;
-        $stats->{weight} = 5;
+        $stats->{name}    = $name;
+        $stats->{weight}  = 5;
+        $stats->{type}    = 'scroll';
         ($stats->{plural} = $name) =~ s/\bscroll\b/scrolls/;
         $stats->{appearances} = \@scrolls
             unless $stats->{appearance};
@@ -134,13 +135,13 @@ sub list {
     return $scrolls;
 }
 
-sub extra_appearances { (@scrolls, 'stamped scroll', 'unlabeled scroll') }
+sub extra_names { (@scrolls, 'stamped scroll', 'unlabeled scroll') }
 
 sub extra_plurals {
     my $self = shift;
     my %extra;
 
-    for ($self->extra_appearances) {
+    for ($self->extra_names) {
         (my $plural = $_) =~ s/\bscroll\b/scrolls/;
         $extra{$_} = $plural;
     }

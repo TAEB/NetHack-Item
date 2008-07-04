@@ -25,8 +25,8 @@ sub name_to_type_list {
             $all_types{$_->{name}} = $type;
         }
 
-        if ($class->can('extra_appearances')) {
-            for ($class->extra_appearances) {
+        if ($class->can('extra_names')) {
+            for ($class->extra_names) {
                 $all_types{$_} = $type;
             }
         }
