@@ -30,9 +30,13 @@ sub possibilities_to_appearances {
 sub possibilities_for_appearance {
     my $self = shift;
     my $appearance = shift;
+    my $possibilities;
 
-    return [$appearance] if $self->list->{$appearance};
-    return $self->possibilities_to_appearances->{$appearance};
+    $possibilities = [$appearance] if $self->list->{$appearance};
+    $possibilities ||= $self->possibilities_to_appearances->{$appearance};
+    $possibilities ||= [];
+
+    return $possibilities;
 }
 
 sub plurals {
