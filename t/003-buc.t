@@ -1,18 +1,32 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 9;
+use Test::More tests => 27;
 use NetHack::Item;
 
-for ([is_blessed => 1], [buc => "blessed"]) {
-    my $item = NetHack::Item->new(raw => "a long sword", @$_);
-    ok($item->is_blessed, "the sword is blessed");
-    is($item->is_uncursed, 0, "the sword is not uncursed");
-    is($item->is_cursed, 0, "the sword is not cursed");
-}
+for my $buc (qw/blessed uncursed cursed/) {
+    my %others = map { $_ => 1 } qw/blessed uncursed cursed/;
+    delete $others{$buc};
 
-my $blessed_sword = NetHack::Item->new("a blessed long sword");
-ok($blessed_sword->is_blessed, "the sword is blessed, parsed from the description");
-is($blessed_sword->is_uncursed, 0, "the sword is NOT uncursed");
-is($blessed_sword->is_cursed, 0, "the sword is NOT cursed");
+    for (["is_$buc" => 1], [buc => $buc]) {
+        my $item = NetHack::Item->new(raw => "a long sword", @$_);
+        my $method = "is_$buc";
+        ok($item->$method, "the sword is $buc");
+
+        for my $buc (keys %others) {
+            my $method = "is_$buc";
+            is($item->$method, 0, "the sword is not $buc");
+        }
+    }
+
+    my $method = "is_$buc";
+
+    my $sword = NetHack::Item->new("a $buc long sword");
+    ok($sword->$method, "the sword is $buc, parsed from the description");
+
+    for my $buc (keys %others) {
+        my $method = "is_$buc";
+        is($sword->$method, 0, "the sword is NOT $buc");
+    }
+}
 
