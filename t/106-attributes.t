@@ -1,4 +1,5 @@
 #!/usr/bin/env perl
+use lib 't/lib';
 use Test::NetHack::Items (
     "a - a +1 club" => {
         is_poisoned => 0,

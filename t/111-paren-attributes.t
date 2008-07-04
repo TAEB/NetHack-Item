@@ -1,4 +1,5 @@
 #!/usr/bin/env perl
+use lib 't/lib';
 use Test::NetHack::Items (
     "a - a +1 long sword (weapon in hand)",
     {is_quivered => 0, is_offhand => 0, is_wielded => 1},

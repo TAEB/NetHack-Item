@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 use Test::More skip_all => "possibility tracking isn't in yet";
+use lib 't/lib';
 
 use Test::NetHack::Items (
     "x - a samurai sword",

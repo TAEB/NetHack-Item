@@ -1,4 +1,5 @@
 #!/usr/bin/env perl
+use lib 't/lib';
 use Test::NetHack::Items (
     "b - a wakizashi",      {_best_match => "short sword"},
     "f - a ninja-to",       {_best_match => "broadsword"},

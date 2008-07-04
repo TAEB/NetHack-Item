@@ -1,4 +1,5 @@
 #!/usr/bin/env perl
+use lib 't/lib';
 use Test::NetHack::Items (
     "a - a blessed +1 quarterstaff (weapon in hands) (unpaid, 15 zorkmids)",
     {cost => 15},

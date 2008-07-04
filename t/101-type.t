@@ -1,4 +1,5 @@
 #!/usr/bin/env perl
+use lib 't/lib';
 use Test::NetHack::Items (
     "x - 100 gold pieces",                             {type => "other"    },
     "a - a +1 long sword (weapon in hand)",            {type => "weapon"   },
