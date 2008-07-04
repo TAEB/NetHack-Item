@@ -55,6 +55,21 @@ my %all_checks = (
         generic     => 'foo',
         specific    => 'bar',
     },
+    "a - a +0 katana (weapon in hand)" => {
+        offhand       => 0,
+        wield         => 1,
+        offhand_wield => 0,
+    },
+    "b - a +0 wakizashi (alternate weapon; not wielded)" => {
+        offhand       => 1,
+        wield         => 0,
+        offhand_wield => 0,
+    },
+    "b - a +0 wakizashi (wielded in other hand)" => {
+        offhand       => 0,
+        wield         => 0,
+        offhand_wield => 1,
+    },
 );
 
 plan tests => sum map { scalar keys %$_ } values %all_checks;
