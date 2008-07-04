@@ -10,6 +10,12 @@ has raw => (
     required => 1,
 );
 
+has slot => (
+    is        => 'rw',
+    isa       => 'Str',
+    predicate => 'has_slot',
+);
+
 for my $buc (qw/is_blessed is_uncursed is_cursed/) {
     my %others = map { $_ => 1 } qw/is_blessed is_uncursed is_cursed/;
     delete $others{$buc};
@@ -125,6 +131,8 @@ sub parse_raw {
           (?:\(unpaid,\ (\d+)\ zorkmids?\))?\s*            # shops
           $                                                # anchor the regex
          }x;
+
+    $self->slot($slot) if defined $slot;
 
     if ($buc) {
         my $is_buc = "is_$buc";
