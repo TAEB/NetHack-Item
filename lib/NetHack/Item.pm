@@ -5,7 +5,7 @@ use MooseX::AttributeHelpers;
 
 use NetHack::Item::Spoiler;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 has raw => (
     is       => 'ro',
@@ -333,10 +333,6 @@ __END__
 =head1 NAME
 
 NetHack::Item - parse and interact with a NetHack item
-
-=head1 VERSION
-
-Version 0.01 released 04 Jul 08
 
 =head1 SYNOPSIS
 
