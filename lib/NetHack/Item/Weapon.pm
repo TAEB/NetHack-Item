@@ -2,6 +2,7 @@
 package NetHack::Item::Weapon;
 use Moose;
 extends 'NetHack::Item';
+with 'NetHack::Item::Role::Enchantable';
 
 use constant type => "weapon";
 
