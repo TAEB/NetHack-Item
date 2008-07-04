@@ -21,8 +21,8 @@ after incorporate_stats => sub {
     my $self  = shift;
     my $stats = shift;
 
-    $self->is_partly_eaten($stats{eaten});
-    $self->is_laid_by_you($stats{laid});
+    $self->is_partly_eaten($stats->{eaten});
+    $self->is_laid_by_you($stats->{laid});
 };
 
 __PACKAGE__->meta->make_immutable;
