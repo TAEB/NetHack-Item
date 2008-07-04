@@ -36,6 +36,17 @@ has is_wielded => (
     },
 );
 
+has is_greased => (
+    metaclass => 'Bool',
+    is        => 'rw',
+    isa       => 'Bool',
+    default   => 0,
+    provides  => {
+        set   => 'grease',
+        unset => 'ungrease',
+    },
+);
+
 for my $buc (qw/is_blessed is_uncursed is_cursed/) {
     my %others = map { $_ => 1 } qw/is_blessed is_uncursed is_cursed/;
     delete $others{$buc};
@@ -277,6 +288,7 @@ sub incorporate_stats {
     $self->slot($stats->{slot}) if defined $stats->{slot};
     $self->quantity($stats->{quantity});
     $self->is_wielded($stats->{wielded});
+    $self->is_greased($stats->{greased});
 
     if ($stats->{buc}) {
         my $is_buc = "is_$stats->{buc}";
