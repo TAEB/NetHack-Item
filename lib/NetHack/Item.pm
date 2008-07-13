@@ -360,6 +360,13 @@ sub identity {
     return undef;
 }
 
+sub appearance {
+    my $self = shift;
+    my $spoiler = $self->spoilers
+        or return undef;
+    return $spoiler->{appearance};
+}
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
