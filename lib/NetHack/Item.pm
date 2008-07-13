@@ -170,7 +170,11 @@ sub choose_item_class {
 
 sub spoiler_class {
     my $self = shift;
+    my $type = shift;
+    $type ||= $self->type if $self->can('type');
 
+    return "NetHack::Item::Spoiler::" . ucfirst lc $type
+        if $type;
     return "NetHack::Item::Spoiler";
 }
 
