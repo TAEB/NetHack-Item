@@ -163,13 +163,20 @@ sub BUILD {
     $self->parse_raw;
 }
 
+sub choose_item_class {
+    my $self = shift;
+    my $type = shift;
+
+    return "NetHack::Item::" . ucfirst lc $type;
+}
+
 sub _rebless_into {
     my $self = shift;
     my $type = shift;
 
     return if !blessed($self);
 
-    my $class = "NetHack::Item::" . ucfirst lc $type;
+    my $class = $self->choose_item_class($type);
     my $meta = Class::MOP::load_class($class);
     $meta->rebless_instance($self);
 }
