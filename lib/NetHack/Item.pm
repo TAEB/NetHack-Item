@@ -249,8 +249,6 @@ sub extract_stats {
     confess "Unknown item type for '$stats{item}' from $raw"
         if !$stats{type};
 
-    $self->_rebless_into($stats{type});
-
     # canonicalize the rest of the stats
 
     $stats{quantity} = 1 if !defined($stats{quantity})
@@ -305,6 +303,8 @@ sub parse_raw {
     my $raw  = shift || $self->raw;
 
     my $stats = $self->extract_stats($raw);
+
+    $self->_rebless_into($stats->{type});
 
     $self->incorporate_stats($stats);
 }
