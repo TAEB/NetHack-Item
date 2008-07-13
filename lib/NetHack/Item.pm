@@ -341,6 +341,25 @@ sub incorporate_stats {
 
 sub can_drop { 1 }
 
+sub spoilers {
+    my $self = shift;
+    my $identity = $self->identity
+        or return undef;
+
+    my $spoiler = $self->spoiler_class;
+    return $spoiler->list->{$identity};
+}
+
+sub identity {
+    my $self = shift;
+    my $spoiler = $self->spoiler_class;
+    Class::MOP::load_class($spoiler);
+
+    my $possibilities = $spoiler->possibilities_for_appearance($self->_best_match);
+    return $possibilities->[0] if @$possibilities == 1;
+    return undef;
+}
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
