@@ -4,10 +4,7 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
-use Memoize;
-memoize 'list';
-
-sub list {
+sub _list {
     my $weapons = {
             'Cleaver' => {
                 artifact => 1,
@@ -1028,15 +1025,6 @@ sub list {
                 plural => 'yumis',
             },
     };
-
-    # tag each weapon with its name and appearance
-    for my $name (keys %$weapons) {
-        my $stats = $weapons->{$name};
-        $stats->{name}       = $name;
-        $stats->{type}       = 'weapon';
-        $stats->{appearance} = $name
-            unless $stats->{appearance} || $stats->{appearances};
-    }
 
     return $weapons;
 }

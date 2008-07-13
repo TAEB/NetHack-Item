@@ -4,10 +4,7 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
-use Memoize;
-memoize 'list';
-
-sub list {
+sub _list {
     my $food = {
         'meatball' => {
             price => 5, weight => 1, nutrition => 5, time => 1,
@@ -2085,15 +2082,6 @@ sub list {
                 plural     => "$name eggs",
             };
         }
-    }
-
-    # tag each food with its name, weight, appearances, etc
-    for my $name (keys %$food) {
-        my $stats = $food->{$name};
-        $stats->{name}       = $name;
-        $stats->{type}       = 'food';
-        $stats->{appearance} = $stats->{name}
-            unless $stats->{appearance} || $stats->{appearances};
     }
 
     return $food;

@@ -4,15 +4,12 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
-use Memoize;
-memoize 'list';
-
 my @amulets = map { "$_ amulet" } (
     qw/circular spherical oval triangular pyramidal square concave hexagonal
     octagonal/
 );
 
-sub list {
+sub _list {
     my $amulets = {
         'Eye of the Aethiopica' => {
             price    => 4000,
@@ -65,17 +62,7 @@ sub list {
         },
     };
 
-    # tag each amulet with its name, weight, appearances, etc
-    for my $name (keys %$amulets) {
-        my $stats = $amulets->{$name};
-        $stats->{name}        = $name;
-        $stats->{type}        = 'amulet';
-        $stats->{weight}    ||= 20;
-        $stats->{appearances} = \@amulets
-            unless $stats->{appearance} || $stats->{appearances};
-    }
-
-    return $amulets;
+    return $amulets, (weight => 20, appearances => \@amulets);
 }
 
 1;

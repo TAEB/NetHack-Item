@@ -6,12 +6,46 @@ use warnings;
 use Module::Pluggable search_path => __PACKAGE__, require => 1;
 
 use Memoize;
+memoize 'list';
 memoize 'name_to_type_list';
 memoize 'possibilities_to_appearances';
 memoize 'plurals';
 memoize 'plural_of_list';
 memoize 'singular_of_list';
 
+# actual item lookups {{{
+sub list {
+    my $self = shift;
+    my ($items, %defaults) = $self->_list;
+    my $type = lc $self;
+    $type =~ s/.*:://;
+
+    # tag each item with its name, weight, appearances, etc
+    for my $name (keys %$items) {
+        my $stats = $items->{$name};
+        $stats->{name}        = $name;
+        $stats->{type}        = $type;
+        $stats->{weight}    ||= $defaults{weight};
+        $stats->{plural}      = $defaults{plural}($name)
+            if exists $defaults{plural};
+        my $need_appearance = !exists $stats->{appearance}
+                           && !exists $stats->{appearances};
+        my $has_appearance = exists $defaults{appearance}
+                          || exists $defaults{appearances};
+        if ($need_appearance) {
+            if ($has_appearance) {
+                $stats->{appearance}  = $defaults{appearance};
+                $stats->{appearances} = $defaults{appearances};
+            }
+            else {
+                $stats->{appearance}  = $name;
+            }
+        }
+    }
+
+    return $items;
+}
+# }}}
 # names, appearances, and types {{{
 sub name_to_type_list {
     my $self = shift;

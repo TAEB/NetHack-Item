@@ -4,9 +4,6 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
-use Memoize;
-memoize 'list';
-
 my @scrolls = map { "scroll labeled $_" } (
     'ZELGO MER', 'JUYED AWK YACC', 'NR 9', 'XIXAXA XOXAXA XUXAXA',
     'PRATYAVAYAH', 'DAIYEN FOOELS', 'LEP GEX VEN ZEA', 'PRIRUTSENIE',
@@ -16,7 +13,7 @@ my @scrolls = map { "scroll labeled $_" } (
     'READ ME', 'FOOBIE BLETCH', 'GARVEN DEH',
 );
 
-sub list {
+sub _list {
     my $scrolls = {
         'scroll of mail' => {
             price      => 0,
@@ -121,18 +118,12 @@ sub list {
         },
     };
 
-    # tag each scroll with its name, weight, appearances, etc
-    for my $name (keys %$scrolls) {
-        my $stats = $scrolls->{$name};
-        $stats->{name}        = $name;
-        $stats->{weight}      = 5;
-        $stats->{type}        = 'scroll';
-        ($stats->{plural}     = $name) =~ s/\bscroll\b/scrolls/;
-        $stats->{appearances} = \@scrolls
-            unless $stats->{appearance} || $stats->{appearances};
-    }
-
-    return $scrolls;
+    return $scrolls, (weight => 5, appearances => \@scrolls,
+                      plural => sub {
+                        my $name = shift;
+                        $name =~ s/\bscroll\b/scrolls/;
+                        return $name;
+                      })
 }
 
 sub extra_plurals {

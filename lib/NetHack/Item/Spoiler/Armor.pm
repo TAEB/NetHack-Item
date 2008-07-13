@@ -4,15 +4,12 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
-use Memoize;
-memoize 'list';
-
 my @cloaks  = ('tattered cape', 'opera cloak', 'ornamental cope', 'piece of cloth');
 my @helmets = map { "$_ helmet" } qw/plumed etched crested visored/;
 my @gloves  = map { "$_ gloves" } qw/old padded riding fencing/;
 my @boots   = map { "$_ boots"  } qw/combat jungle hiking mud buckled riding snow/;
 
-sub list {
+sub _list {
     my $armor = {
         'Mitre of Holiness' => {
             artifact   => 1,
@@ -565,15 +562,6 @@ sub list {
             appearances => \@boots,
         },
     };
-
-    # tag each armor with its name and appearance
-    for my $name (keys %$armor) {
-        my $stats = $armor->{$name};
-        $stats->{name}       = $name;
-        $stats->{type}       = 'armor';
-        $stats->{appearance} = $name
-            unless $stats->{appearance} || $stats->{appearances};
-    }
 
     return $armor;
 }

@@ -4,15 +4,12 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
-use Memoize;
-memoize 'list';
-
 my @wands = map { "$_ wand" }
     qw/glass balsa crystal maple pine oak ebony marble tin brass copper silver
     platinum iridium zinc aluminum uranium iron steel hexagonal short runed
     long curved forked spiked jeweled/;
 
-sub list {
+sub _list {
     my $wands = {
         'wand of light' => {
             price      => 100,
@@ -136,17 +133,7 @@ sub list {
         },
     };
 
-    # tag each wand with its name, weight, appearances, etc
-    for my $name (keys %$wands) {
-        my $stats = $wands->{$name};
-        $stats->{name}        = $name;
-        $stats->{type}        = 'wand';
-        $stats->{weight}    ||= 7;
-        $stats->{appearances} = \@wands
-            unless $stats->{appearance} || $stats->{appearances};
-    }
-
-    return $wands;
+    return $wands, (weight => 7, appearances => \@wands);
 }
 
 1;

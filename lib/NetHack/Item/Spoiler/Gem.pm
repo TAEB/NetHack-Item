@@ -4,10 +4,7 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
-use Memoize;
-memoize 'list';
-
-sub list {
+sub _list {
     my $gems = {
         'Heart of Ahriman' => {
             artifact   => 1,
@@ -270,15 +267,6 @@ sub list {
             plural     => 'rocks',
         },
     };
-
-    # tag each gem with its name and appearance
-    for my $name (keys %$gems) {
-        my $stats = $gems->{$name};
-        $stats->{name}       = $name;
-        $stats->{type}       = 'gem';
-        $stats->{appearance} = $name
-            unless $stats->{appearance} || $stats->{appearances};
-    }
 
     return $gems;
 }
