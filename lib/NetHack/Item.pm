@@ -3,8 +3,6 @@ package NetHack::Item;
 use Moose;
 use MooseX::AttributeHelpers;
 
-use NetHack::Item::Spoiler;
-
 our $VERSION = '0.02';
 
 has raw => (
@@ -170,6 +168,12 @@ sub choose_item_class {
     return "NetHack::Item::" . ucfirst lc $type;
 }
 
+sub spoiler_class {
+    my $self = shift;
+
+    return "NetHack::Item::Spoiler";
+}
+
 sub _rebless_into {
     my $self = shift;
     my $type = shift;
@@ -237,14 +241,17 @@ sub extract_stats {
     }
 
     # go from japanese to english if possible
-    $stats{item} = NetHack::Item::Spoiler->japanese_to_english->{$stats{item}}
+    my $spoiler = $self->spoiler_class;
+    Class::MOP::load_class($spoiler);
+
+    $stats{item} = $spoiler->japanese_to_english->{$stats{item}}
                 || $stats{item};
 
     # singularize the item if possible
-    $stats{item} = NetHack::Item::Spoiler->singularize($stats{item})
+    $stats{item} = $spoiler->singularize($stats{item})
                 || $stats{item};
 
-    $stats{type} = NetHack::Item::Spoiler->name_to_type($stats{item});
+    $stats{type} = $spoiler->name_to_type($stats{item});
 
     confess "Unknown item type for '$stats{item}' from $raw"
         if !$stats{type};
