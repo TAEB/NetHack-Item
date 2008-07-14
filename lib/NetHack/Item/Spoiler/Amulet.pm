@@ -20,6 +20,7 @@ sub _list {
         'Amulet of Yendor' => {
             price    => 30000,
             artifact => 1,
+            appearance => 'Amulet of Yendor',
         },
         'cheap plastic imitation of the Amulet of Yendor' => {
             price      => 0,
