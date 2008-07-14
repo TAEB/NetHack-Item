@@ -8,6 +8,7 @@ sub _list {
     my $weapons = {
             'Cleaver' => {
                 artifact => 1,
+                base     => 'battle-axe',
                 sdam     => 'd8+d6+d4',
                 ldam     => '2d6+2d4',
                 tohit    => 'd3',
@@ -18,6 +19,7 @@ sub _list {
             },
             'Demonbane' => {
                 artifact => 1,
+                base     => 'long sword',
                 sdam     => 'd8',
                 ldam     => 'd12',
                 tohit    => 'd5',
@@ -28,6 +30,7 @@ sub _list {
             },
             'Dragonbane' => {
                 artifact => 1,
+                base     => 'broadsword',
                 sdam     => '2d4',
                 ldam     => 'd6+1',
                 tohit    => 'd5',
@@ -38,6 +41,7 @@ sub _list {
             },
             'Excalibur' => {
                 artifact => 1,
+                base     => 'long sword',
                 sdam     => 'd8+d10',
                 ldam     => 'd12+d10',
                 tohit    => 'd5',
@@ -48,6 +52,7 @@ sub _list {
             },
             'Fire Brand' => {
                 artifact => 1,
+                base     => 'long sword',
                 sdam     => 'd8',
                 ldam     => 'd12',
                 tohit    => 'd5',
@@ -58,6 +63,7 @@ sub _list {
             },
             'Frost Brand' => {
                 artifact => 1,
+                base     => 'long sword',
                 sdam     => 'd8',
                 ldam     => 'd12',
                 tohit    => 'd5',
@@ -68,6 +74,7 @@ sub _list {
             },
             'Giantslayer' => {
                 artifact => 1,
+                base     => 'long sword',
                 sdam     => 'd8',
                 ldam     => 'd12',
                 tohit    => 'd5',
@@ -78,6 +85,7 @@ sub _list {
             },
             'Grayswandir' => {
                 artifact => 1,
+                base     => 'silver saber',
                 sdam     => 'd8',
                 ldam     => 'd8',
                 tohit    => 'd5',
@@ -88,6 +96,7 @@ sub _list {
             },
             'Grimtooth' => {
                 artifact => 1,
+                base     => 'orcish dagger',
                 sdam     => 'd6+d3',
                 ldam     => 'd6+d3',
                 tohit    => 'd2+2',
@@ -98,6 +107,7 @@ sub _list {
             },
             'Longbow of Diana' => {
                 artifact => 1,
+                base     => 'bow',
                 sdam     => 'd2',
                 ldam     => 'd2',
                 tohit    => 'd5',
@@ -108,6 +118,7 @@ sub _list {
             },
             'Magicbane' => {
                 artifact => 1,
+                base     => 'athame',
                 sdam     => '2d4',
                 ldam     => 'd4+d3',
                 tohit    => 'd5+2',
@@ -118,6 +129,7 @@ sub _list {
             },
             'Mjollnir' => {
                 artifact => 1,
+                base     => 'war hammer',
                 sdam     => 'd4+1',
                 ldam     => 'd4',
                 tohit    => 'd5',
@@ -128,6 +140,7 @@ sub _list {
             },
             'Ogresmasher' => {
                 artifact => 1,
+                base     => 'war hammer',
                 sdam     => 'd4+1',
                 ldam     => 'd4',
                 tohit    => 'd5',
@@ -138,6 +151,7 @@ sub _list {
             },
             'Orcrist' => {
                 artifact => 1,
+                base     => 'elven broadsword',
                 sdam     => 'd6+d4',
                 ldam     => 'd6+1',
                 tohit    => 'd5',
@@ -148,6 +162,7 @@ sub _list {
             },
             'Sceptre of Might' => {
                 artifact => 1,
+                base     => 'mace',
                 sdam     => 'd6+1',
                 ldam     => 'd6',
                 tohit    => 'd5',
@@ -158,6 +173,7 @@ sub _list {
             },
             'Snickersnee' => {
                 artifact => 1,
+                base     => 'katana',
                 sdam     => 'd10+d8',
                 ldam     => 'd12+d8',
                 tohit    => '1',
@@ -168,6 +184,7 @@ sub _list {
             },
             'Staff of Aesculapius' => {
                 artifact => 1,
+                base     => 'quarterstaff',
                 sdam     => 'd6',
                 ldam     => 'd6',
                 tohit    => '0',
@@ -178,6 +195,7 @@ sub _list {
             },
             'Sting' => {
                 artifact => 1,
+                base     => 'elven dagger',
                 sdam     => 'd5',
                 ldam     => 'd3',
                 tohit    => 'd5+2',
@@ -188,6 +206,7 @@ sub _list {
             },
             'Stormbringer' => {
                 artifact => 1,
+                base     => 'runesword',
                 sdam     => '2d4+d2',
                 ldam     => 'd6+d2+1',
                 tohit    => 'd5',
@@ -198,6 +217,7 @@ sub _list {
             },
             'Sunsword' => {
                 artifact => 1,
+                base     => 'long sword',
                 sdam     => 'd8',
                 ldam     => 'd12',
                 tohit    => 'd5',
@@ -208,6 +228,7 @@ sub _list {
             },
             'The Tsurugi of Muramasa' => {
                 artifact => 1,
+                base     => 'tsurugi',
                 sdam     => 'd16+d8',
                 ldam     => '2d8+2d6',
                 tohit    => '2',
@@ -218,6 +239,7 @@ sub _list {
             },
             'Trollsbane' => {
                 artifact => 1,
+                base     => 'morning star',
                 sdam     => '2d4',
                 ldam     => 'd6+1',
                 tohit    => 'd5',
@@ -228,6 +250,7 @@ sub _list {
             },
             'Vorpal Blade' => {
                 artifact => 1,
+                base     => 'long sword',
                 sdam     => 'd8+1',
                 ldam     => 'd12+1',
                 tohit    => 'd5',
@@ -238,6 +261,7 @@ sub _list {
             },
             'Werebane' => {
                 artifact => 1,
+                base     => 'silver saber',
                 sdam     => 'd8',
                 ldam     => 'd8',
                 tohit    => 'd2',
