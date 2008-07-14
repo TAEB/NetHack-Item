@@ -28,17 +28,17 @@ sub list {
         $stats->{weight}    ||= $defaults{weight};
         $stats->{plural}      = $defaults{plural}($name)
             if exists $defaults{plural};
-        my $need_appearance = !exists $stats->{appearance}
-                           && !exists $stats->{appearances};
-        my $has_appearance = exists $defaults{appearance}
-                          || exists $defaults{appearances};
-        if ($need_appearance) {
-            if ($has_appearance) {
-                $stats->{appearance}  = $defaults{appearance};
-                $stats->{appearances} = $defaults{appearances};
+
+        unless (exists $stats->{appearance} || exists $stats->{appearances}) {
+            my $appearance = ($stats->{artifact} ? $stats->{base} : '')
+                          || $defaults{appearance}
+                          || $defaults{appearances}
+                          || $name;
+            if (ref $appearance eq 'ARRAY') {
+                $stats->{appearances} = $appearance;
             }
             else {
-                $stats->{appearance}  = $name;
+                $stats->{appearance} = $appearance;
             }
         }
     }
