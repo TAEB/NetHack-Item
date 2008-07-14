@@ -26,6 +26,7 @@ sub list {
         $stats->{name}        = $name;
         $stats->{type}        = $type;
         $stats->{weight}    ||= $defaults{weight};
+        $stats->{price}     ||= $defaults{price};
         $stats->{plural}      = $defaults{plural}($name)
             if exists $defaults{plural};
 

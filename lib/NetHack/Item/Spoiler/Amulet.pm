@@ -27,42 +27,33 @@ sub _list {
         },
 
         'amulet of change' => {
-            price  => 150,
             edible => 1,
         },
         'amulet of ESP' => {
-            price  => 150,
             edible => 1,
         },
         'amulet of life saving' => {
-            price  => 150,
         },
         'amulet of magical breathing' => {
-            price  => 150,
             edible => 1,
         },
         'amulet of reflection' => {
-            price  => 150,
         },
         'amulet of restful sleep' => {
-            price  => 150,
             edible => 1,
         },
         'amulet of strangulation' => {
-            price  => 150,
             edible => 1,
         },
         'amulet of unchanging' => {
-            price  => 150,
             edible => 1,
         },
         'amulet versus poison' => {
-            price  => 150,
             edible => 1,
         },
     };
 
-    return $amulets, (weight => 20, appearances => \@amulets);
+    return $amulets, (weight => 20, price => 150, appearances => \@amulets);
 }
 
 1;
