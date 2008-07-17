@@ -417,7 +417,7 @@ sub is_artifact {
 
     my $spoiler = $self->spoilers
         or return 0;
-    return $spoiler->{artifact};
+    return $spoiler->{artifact} ? 1 : 0;
 }
 
 __PACKAGE__->meta->make_immutable;
