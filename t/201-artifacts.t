@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use Test::More tests => 68;
+use NetHack::Item;
 use NetHack::Item::Spoiler;
 
 my $spoiler = "NetHack::Item::Spoiler";
@@ -18,6 +19,9 @@ my @baseless = grep { !$_->{base} } @artifacts;
 is(@baseless, 4, "four base-less artifacts (invocation items + Amulet");
 
 for my $artifact (@artifacts) {
+    my $item = NetHack::Item->new($artifact->{name});
+    ok($item->spoilers, "got some spoiler data from the artifact");
+
     next if grep { $_ == $artifact } @baseless;
 
     my $base = $artifact->{base};
