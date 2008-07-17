@@ -345,9 +345,7 @@ sub spoilers {
     my $self = shift;
     my $identity = $self->identity
         or return undef;
-
-    my $spoiler = $self->spoiler_class;
-    return $spoiler->list->{$identity};
+    return $self->spoiler_class->spoiler_for($identity);
 }
 
 sub identity {
