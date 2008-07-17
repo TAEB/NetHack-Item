@@ -402,7 +402,7 @@ sub is_artifact {
         # if so, then we can know definitively whether this is the artifact
         # or not (see below)
         my $identity = $self->identity;
-        return $identity eq $artifact_spoiler->{base}
+        return $identity eq $artifact_spoiler->{base} ? 1 : 0
             if $identity;
 
         # otherwise, the best we can say is "maybe". consider the artifact
