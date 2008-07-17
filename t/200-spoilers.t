@@ -19,7 +19,7 @@ is($spoiler->name_to_type("scroll of mail"), "scroll");
 is($spoiler->name_to_type("stamped scroll"), "scroll");
 is($spoiler->name_to_type("scroll of charging"), "scroll");
 is($spoiler->name_to_type("scroll labeled KIRJE"), "scroll");
-is($spoiler->name_to_type("scrolls of mail"), undef);
+is($spoiler->name_to_type("scrolls of mail"), "scroll");
 
 is($spoiler->name_to_type("cloak of magic resistance"), "armor");
 is($spoiler->name_to_type("opera cloak"), "armor");
