@@ -136,10 +136,11 @@ sub possibilities_to_appearances {
     my %possibilities;
 
     for my $stats (values %$list) {
-            push @{ $possibilities{$_} }, $stats->{name}
-                for grep { defined }
-                         $stats->{appearance},
-                         @{ $stats->{appearances} };
+        next if $stats->{artifact}; # artifacts are always known immediately
+        push @{ $possibilities{$_} }, $stats->{name}
+            for grep { defined }
+                     $stats->{appearance},
+                     @{ $stats->{appearances} };
     }
 
     return \%possibilities;
