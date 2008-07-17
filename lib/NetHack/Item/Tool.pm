@@ -23,12 +23,18 @@ has candles_attached => (
     default => 0,
 );
 
+has figurine => (
+    is  => 'rw',
+    isa => 'Str',
+);
+
 after incorporate_stats => sub {
     my $self  = shift;
     my $stats = shift;
 
     $self->is_partly_used($stats->{used});
     $self->candles_attached($stats->{candles});
+    $self->figurine($stats->{figurine}) if exists $stats->{figurine};
 };
 
 __PACKAGE__->meta->make_immutable;
