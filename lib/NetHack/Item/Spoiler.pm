@@ -136,7 +136,9 @@ sub possibilities_to_appearances {
     my %possibilities;
 
     for my $stats (values %$list) {
-        next if $stats->{artifact}; # artifacts are always known immediately
+        next if $stats->{artifact} # artifacts are always known
+             && $stats->{base};    # ..but we still want the special artifacts
+
         push @{ $possibilities{$_} }, $stats->{name}
             for grep { defined }
                      $stats->{appearance},
