@@ -364,6 +364,17 @@ sub identity {
 
 sub appearance {
     my $self = shift;
+
+    # if we have a best match which is NOT in the spoiler table, then it's
+    # our appearance (because we only key by identity in spoiler table)
+    my $spoiler_class = $self->spoiler_class;
+    Class::MOP::load_class($spoiler_class);
+    if (!exists($spoiler_class->list->{$self->_best_match})) {
+        return $self->_best_match;
+    }
+
+    # otherwise, if we have an identity, check its spoilers for a constant
+    # appearance
     my $spoiler = $self->spoilers
         or return undef;
     return $spoiler->{appearance};
