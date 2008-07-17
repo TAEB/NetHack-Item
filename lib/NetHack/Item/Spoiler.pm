@@ -30,6 +30,8 @@ sub list {
     my $type = lc $self;
     $type =~ s/.*:://;
 
+    my @defer_appearance;
+
     # tag each item with its name, weight, appearances, etc
     for my $name (keys %$items) {
         my $stats = $items->{$name};
@@ -41,16 +43,14 @@ sub list {
             if exists $defaults{plural};
 
         unless (exists $stats->{appearance} || exists $stats->{appearances}) {
-            my $appearance;
+            # the base item may not be processed yet, so we need to defer
+            # checking this artifact's appearance for now..
+            push @defer_appearance, $stats
+                if $stats->{artifact} && $stats->{base};
 
-            # probably safe assumption: an artifact's base item is the same
-            # type as the artifact, so it'll show up in this same list
-            $appearance ||= $stats->{artifact} && $stats->{base}
-                        &&  $items->{ $stats->{base} }->{appearance};
-
-            $appearance ||= $defaults{appearance}
-                        ||  $defaults{appearances}
-                        ||  $name;
+            my $appearance = $defaults{appearance}
+                          || $defaults{appearances}
+                          || $name;
 
             if (ref $appearance eq 'ARRAY') {
                 $stats->{appearances} = $appearance;
@@ -59,6 +59,11 @@ sub list {
                 $stats->{appearance} = $appearance;
             }
         }
+    }
+
+    for my $stats (@defer_appearance) {
+        $stats->{appearance} = $items->{ $stats->{base} }->{appearance};
+        $stats->{appearances} = $items->{ $stats->{base} }->{appearances};
     }
 
     return $items;
