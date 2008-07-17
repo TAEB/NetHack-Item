@@ -4,10 +4,7 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
-use Memoize;
-memoize 'list';
-
-sub list {
+sub _list {
     my $tools = {
         'Bell of Opening' => {
             artifact => 1,

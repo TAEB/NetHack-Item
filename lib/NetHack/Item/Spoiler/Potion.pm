@@ -4,16 +4,13 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
-use Memoize;
-memoize 'list';
-
 my @potions = map { "$_ potion" } (
     qw/ruby pink orange yellow emerald cyan magenta purple-red puce milky
     swirly bubbly smoky cloudy effervescent black golden brown fizzy dark white
     murky/, 'dark green', 'sky blue', 'brilliant blue',
 );
 
-sub list {
+sub _list {
     my $potions = {
         'potion of booze' => {
             price => 50,
@@ -96,15 +93,12 @@ sub list {
         },
     };
 
-    return $potions, (
-        weight      => 20,
-        appearances => \@potions,
-        plural      => sub {
-            my $name = shift;
-            $name =~ s/\bpotion\b/potions/;
-            return $name;
-        },
-    );
+    return $potions, (weight => 20, appearances => \@potions,
+                      plural => sub {
+                        my $name = shift;
+                        $name =~ s/\bpotion\b/potions/;
+                        return $name;
+                      })
 }
 
 sub extra_plurals {
