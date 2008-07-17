@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 68;
+use Test::More tests => 105;
 use NetHack::Item;
 use NetHack::Item::Spoiler;
 
