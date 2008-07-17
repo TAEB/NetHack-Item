@@ -60,6 +60,8 @@ use Test::NetHack::Items (
         "a mace named the Scepter of Might",
 
         "a quarterstaff named The Orb of Fate",
+
+        "a quarterstaff named The The Staff of Aesculapius",
     ),
 
     (map { $_ => { is_artifact => undef } }
