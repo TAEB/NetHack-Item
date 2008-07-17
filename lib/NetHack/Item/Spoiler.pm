@@ -13,6 +13,8 @@ memoize 'plurals';
 memoize 'plural_of_list';
 memoize 'singular_of_list';
 
+my %artifact;
+
 # actual item lookups {{{
 sub spoiler_for {
     my $self = shift;
@@ -84,6 +86,9 @@ sub name_to_type_list {
                 for grep { defined }
                     $_->{appearance},
                     @{ $_->{appearances} || [] };
+
+            $artifact{$_->{name}} = $_
+                if $_->{artifact};
         }
 
         if ($class->can('extra_names')) {
@@ -230,6 +235,14 @@ sub japanese_to_english {
         "potion of sake"  => "potion of booze",
         "potions of sake" => "potions of booze",
     };
+}
+# }}}
+# artifacts {{{
+sub artifact_spoiler {
+    my $self = shift;
+    my $name = shift;
+
+    return $artifact{$name};
 }
 # }}}
 
