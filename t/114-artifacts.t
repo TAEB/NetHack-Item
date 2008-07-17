@@ -31,6 +31,9 @@ use Test::NetHack::Items (
 
         "orcish dagger named THE GRIMTOOTH",
         "crude dagger named THE GRIMTOOTH",
+
+        "the Sceptre of Might",
+        "a mace named the Sceptre of Might",
     ),
 
     (map { $_ => { is_artifact => 0 } }
@@ -54,6 +57,9 @@ use Test::NetHack::Items (
         "a helm of opposite alignment named Mitre of Holiness",
         "a loadstone named heart of ahriman",
 
+        "a mace named the Scepter of Might",
+
+        "a quarterstaff named The Orb of Fate",
     ),
 
     (map { $_ => { is_artifact => undef } }
