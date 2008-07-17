@@ -200,7 +200,8 @@ sub extract_stats {
                     recharges charges candles lit_candelabrum lit laid chained
                     quivered offhand offhand_wielded wielded worn cost/;
 
-    # this regex was written by Jesse Luehrs
+    # the \b in front of "item name" forbids "Amulet of Yendor" being parsed as
+    # "A mulet of Yendor"
     @stats{@fields} = $raw =~ m{
         ^                                                      # anchor
         (?:([\w\#\$])\s[+-]\s)?                           \s*  # slot
@@ -216,7 +217,7 @@ sub extract_stats {
         (diluted)?                                        \s*  # potions
         ([+-]\d+)?                                        \s*  # enchantment
         (?:(?:pair|set)\ of)?                             \s*  # gloves boots
-        (.*?)                                             \s*  # item name
+        \b(.*?)                                           \s*  # item name
         (?:called\ (.*?))?                                \s*  # generic name
         (?:named\ (.*?))?                                 \s*  # specific name
         (?:\((\d+):(-?\d+)\))?                            \s*  # charges
