@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 105;
+use Test::More tests => 146;
 use NetHack::Item;
 use NetHack::Item::Spoiler;
 
@@ -21,8 +21,12 @@ is(@baseless, 4, "four base-less artifacts (invocation items + Amulet");
 for my $artifact (@artifacts) {
     my $item = NetHack::Item->new($artifact->{name});
     ok($item->spoilers, "got some spoiler data from the artifact");
+    ok($item->is_artifact, "the item is an artifact!");
 
-    next if grep { $_ == $artifact } @baseless;
+    if (grep { $_ == $artifact } @baseless) {
+        ok(!exists($artifact->{base}), "no base for the special artifacts");
+        next;
+    }
 
     my $base = $artifact->{base};
     my $possibilities = $spoiler->possibilities_for_appearance($base);

@@ -366,6 +366,13 @@ sub appearance {
     return $spoiler->{appearance};
 }
 
+sub is_artifact {
+    my $self = shift;
+    my $spoiler = $self->spoilers
+        or return 0;
+    return $spoiler->{artifact};
+}
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
