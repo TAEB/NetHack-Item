@@ -379,6 +379,42 @@ sub appearance {
 
 sub is_artifact {
     my $self = shift;
+
+    # try to handle "a battle-axe named Cleaver"
+    if (my $name = $self->specific_name) {
+        my $artifact_spoiler = $self->spoiler_class->artifact_spoiler($name);
+
+        # any artifact with this name?
+        return 0 unless $artifact_spoiler;
+
+        # is it the same type as us?
+        return 0 unless $artifact_spoiler->{type} eq $self->type;
+
+        # if we know our appearance, is it a possible appearance for the
+        # artifact?
+        if (my $appearance = $self->appearance) {
+            return 0 unless grep { $appearance eq ($_||'') }
+                            $artifact_spoiler->{appearance},
+                            @{ $artifact_spoiler->{appearances} };
+        }
+
+        # if we know our identity, is the artifact's identity the same as ours?
+        # if so, then we can know definitively whether this is the artifact
+        # or not (see below)
+        my $identity = $self->identity;
+        return $identity eq $artifact_spoiler->{base}
+            if $identity;
+
+        # otherwise, the best we can say is "maybe". consider the artifact
+        # naming bug.  we may have a pyramidal amulet that is named The Eye of
+        # the Aethiopica. the naming bug exploits the fact that if pyramidal is
+        # NOT ESP, then it will correctly name the amulet. if pyramidal IS ESP
+        # then we cannot name it correctly -- the only pyramidal amulet that
+        # can have the name is the real Eye
+
+        return undef;
+    }
+
     my $spoiler = $self->spoilers
         or return 0;
     return $spoiler->{artifact};
