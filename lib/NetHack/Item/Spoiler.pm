@@ -242,6 +242,8 @@ sub artifact_spoiler {
     my $self = shift;
     my $name = shift;
 
+    $name =~ s/^the\s+//i;
+
     return $artifact{$name};
 }
 # }}}
