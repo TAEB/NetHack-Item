@@ -84,9 +84,26 @@ sub name_to_type {
             || $list->{ $self->singularize($name) || '' };
 
     # handle e.g. "potion called fruit juice"
-    $type ||= $name if (__PACKAGE__."::\u\L$name")->can('list');
+    $type ||= $name if $self->type_to_class($name)->can('list');
 
     return $type;
+}
+
+sub type_to_class {
+    my $self = shift;
+    my $type = shift;
+
+    return __PACKAGE__ . "::\u\L$type";
+}
+
+sub name_to_class {
+    my $self = shift;
+    my $name = shift;
+
+    my $type = $self->name_to_type($name);
+
+    return undef if !$type;
+    return $self->type_to_class($type);
 }
 # }}}
 # possibilities and appearances {{{
