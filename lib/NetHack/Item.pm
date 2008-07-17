@@ -173,9 +173,11 @@ sub spoiler_class {
     my $type = shift;
     $type ||= $self->type if $self->can('type');
 
-    return "NetHack::Item::Spoiler::" . ucfirst lc $type
-        if $type;
-    return "NetHack::Item::Spoiler";
+    my $class = $type
+              ? "NetHack::Item::Spoiler::" . ucfirst lc $type
+              : "NetHack::Item::Spoiler";
+    Class::MOP::load_class($class);
+    return $class;
 }
 
 sub _rebless_into {
@@ -250,7 +252,6 @@ sub extract_stats {
 
     # go from japanese to english if possible
     my $spoiler = $self->spoiler_class;
-    Class::MOP::load_class($spoiler);
 
     $stats{item} = $spoiler->japanese_to_english->{$stats{item}}
                 || $stats{item};
@@ -355,7 +356,6 @@ sub spoilers {
 sub identity {
     my $self = shift;
     my $spoiler = $self->spoiler_class;
-    Class::MOP::load_class($spoiler);
 
     my $possibilities = $spoiler->possibilities_for_appearance($self->_best_match);
     return $possibilities->[0] if @$possibilities == 1;
@@ -367,11 +367,8 @@ sub appearance {
 
     # if we have a best match which is NOT in the spoiler table, then it's
     # our appearance (because we only key by identity in spoiler table)
-    my $spoiler_class = $self->spoiler_class;
-    Class::MOP::load_class($spoiler_class);
-    if (!exists($spoiler_class->list->{$self->_best_match})) {
-        return $self->_best_match;
-    }
+    return $self->_best_match
+        unless exists $self->spoiler_class->list->{$self->_best_match};
 
     # otherwise, if we have an identity, check its spoilers for a constant
     # appearance
