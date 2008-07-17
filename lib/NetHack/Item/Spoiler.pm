@@ -41,10 +41,17 @@ sub list {
             if exists $defaults{plural};
 
         unless (exists $stats->{appearance} || exists $stats->{appearances}) {
-            my $appearance = ($stats->{artifact} ? $stats->{base} : '')
-                          || $defaults{appearance}
-                          || $defaults{appearances}
-                          || $name;
+            my $appearance;
+
+            # probably safe assumption: an artifact's base item is the same
+            # type as the artifact, so it'll show up in this same list
+            $appearance ||= $stats->{artifact} && $stats->{base}
+                        &&  $items->{ $stats->{base} }->{appearance};
+
+            $appearance ||= $defaults{appearance}
+                        ||  $defaults{appearances}
+                        ||  $name;
+
             if (ref $appearance eq 'ARRAY') {
                 $stats->{appearances} = $appearance;
             }
