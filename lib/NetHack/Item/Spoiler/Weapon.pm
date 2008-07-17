@@ -226,7 +226,7 @@ sub _list {
                 price    => 1500,
                 material => 'iron',
             },
-            'The Tsurugi of Muramasa' => {
+            'Tsurugi of Muramasa' => {
                 artifact => 1,
                 base     => 'tsurugi',
                 sdam     => 'd16+d8',
