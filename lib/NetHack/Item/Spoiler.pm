@@ -14,6 +14,16 @@ memoize 'plural_of_list';
 memoize 'singular_of_list';
 
 # actual item lookups {{{
+sub spoiler_for {
+    my $self = shift;
+    my $name = shift;
+
+    my $subspoiler = $self->name_to_class($name)
+        or return;
+
+    return $subspoiler->list->{$name};
+}
+
 sub list {
     my $self = shift;
     my ($items, %defaults) = $self->_list;
