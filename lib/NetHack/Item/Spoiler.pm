@@ -128,8 +128,11 @@ sub possibilities_for_appearance {
     my $appearance = shift;
     my $possibilities;
 
-    $possibilities = [$appearance] if $self->list->{$appearance};
-    $possibilities ||= $self->possibilities_to_appearances->{$appearance};
+    my $subspoiler = $self->name_to_class($appearance)
+        or return;
+
+    $possibilities = [$appearance] if $subspoiler->list->{$appearance};
+    $possibilities ||= $subspoiler->possibilities_to_appearances->{$appearance};
     $possibilities ||= [];
 
     return $possibilities;
