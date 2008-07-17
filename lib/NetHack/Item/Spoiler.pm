@@ -87,7 +87,7 @@ sub name_to_type_list {
                     $_->{appearance},
                     @{ $_->{appearances} || [] };
 
-            $artifact{$_->{name}} = $_
+            $artifact{lc $_->{name}} = $_
                 if $_->{artifact};
         }
 
@@ -240,9 +240,9 @@ sub japanese_to_english {
 # artifacts {{{
 sub artifact_spoiler {
     my $self = shift;
-    my $name = shift;
+    my $name = lc(shift);
 
-    $name =~ s/^the\s+//i;
+    $name =~ s/^the\s+//;
 
     return $artifact{$name};
 }
