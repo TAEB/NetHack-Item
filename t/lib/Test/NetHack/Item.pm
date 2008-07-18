@@ -19,7 +19,13 @@ sub test_items {
     my @all_checks = @_;
 
     while (my ($raw, $checks) = splice @_, 0, 2) {
-        my $item = NetHack::Item->new($raw);
+        my $item = eval { NetHack::Item->new($raw) };
+        if (!defined($item)) {
+            Test::More::diag($@);
+            Test::More::fail("Unable to parse '$raw'")
+                for keys %$checks;
+            next;
+        }
 
         for my $check (sort keys %$checks) {
             if ($item->can($check)) {
