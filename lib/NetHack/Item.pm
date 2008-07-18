@@ -365,7 +365,11 @@ sub identity {
     return $item if $ignore_arti;
 
     # if it's an artifact, then the identity is the base item
-    my $spoiler = $spoiler_class->spoiler_for($item);
+    my $artifact_name = $self->artifact;
+
+    my $spoiler = $artifact_name
+                ? $spoiler_class->spoiler_for($artifact_name)
+                : $spoiler_class->spoiler_for($item);
     if ($spoiler->{artifact} && $spoiler->{base}) {
         return $spoiler->{base};
     }
@@ -383,7 +387,7 @@ sub appearance {
                     : $self->_best_match;
 }
 
-sub is_artifact {
+sub artifact {
     my $self = shift;
 
     # try to handle "a battle-axe named Cleaver"
@@ -413,9 +417,11 @@ sub is_artifact {
         # if we know our identity, is the artifact's identity the same as ours?
         # if so, then we can know definitively whether this is the artifact
         # or not (see below)
-        my $identity = $self->identity;
-        return $identity eq $artifact_spoiler->{base} ? 1 : 0
-            if $identity;
+        my $identity = $self->identity(1);
+        return $identity eq $artifact_spoiler->{base}
+            ? $artifact_spoiler->{name}
+            : 0
+                if $identity;
 
         # otherwise, the best we can say is "maybe". consider the artifact
         # naming bug.  we may have a pyramidal amulet that is named The Eye of
@@ -429,7 +435,12 @@ sub is_artifact {
 
     my $spoiler = $self->spoilers
         or return 0;
-    return $spoiler->{artifact} ? 1 : 0;
+    return $spoiler->{artifact} ? $spoiler->{name} : 0;
+}
+
+sub is_artifact {
+    my $artifact = shift->artifact;
+    return $artifact ? 1 : $artifact;
 }
 
 __PACKAGE__->meta->make_immutable;
