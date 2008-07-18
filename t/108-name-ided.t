@@ -57,7 +57,7 @@ use Test::NetHack::Items (
     "W - a blessed magic lamp (lit)",
     {appearance => "lamp", identity => "magic lamp"},
     "m - the Master Key of Thievery",
-    {appearance => "key", identity => "Master Key of Thievery"},
+    {appearance => "key", identity => "skeleton key"},
     "G - a cursed partly used wax candle (lit)",
     {appearance => "candle", identity => "wax candle"},
     "u - a figurine of a lichen",
@@ -68,7 +68,7 @@ use Test::NetHack::Items (
     "u - 53 rocks",
     {appearance => "rock", identity => "rock"},
     "n - the Heart of Ahriman",
-    {appearance => "gray stone", identity => "Heart of Ahriman"},
+    {appearance => "gray stone", identity => "luckstone"},
     "v - a statue of a lichen",
     {appearance => "statue", identity => "statue", statue => "lichen"},
 );

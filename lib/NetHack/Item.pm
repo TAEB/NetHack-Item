@@ -348,18 +348,29 @@ sub can_drop { 1 }
 
 sub spoilers {
     my $self = shift;
-    my $identity = $self->identity
+    my $identity = $self->identity(1)
         or return undef;
     return $self->spoiler_class->spoiler_for($identity);
 }
 
 sub identity {
     my $self = shift;
-    my $spoiler = $self->spoiler_class;
+    my $ignore_arti = shift;
 
-    my $possibilities = $spoiler->possibilities_for_appearance($self->_best_match);
-    return $possibilities->[0] if @$possibilities == 1;
-    return undef;
+    my $spoiler_class = $self->spoiler_class;
+    my $possibilities = $spoiler_class->possibilities_for_appearance($self->_best_match);
+    return undef unless @$possibilities == 1;
+
+    my $item = $possibilities->[0];
+    return $item if $ignore_arti;
+
+    # if it's an artifact, then the identity is the base item
+    my $spoiler = $spoiler_class->spoiler_for($item);
+    if ($spoiler->{artifact} && $spoiler->{base}) {
+        return $spoiler->{base};
+    }
+
+    return $item;
 }
 
 sub appearance {
