@@ -373,19 +373,14 @@ sub identity {
     return $item;
 }
 
+# this exploits the fact that appearances are not in the spoiler table
 sub appearance {
     my $self = shift;
 
-    # if we have a best match which is NOT in the spoiler table, then it's
-    # our appearance (because we only key by identity in spoiler table)
-    return $self->_best_match
-        unless exists $self->spoiler_class->list->{$self->_best_match};
+    my $spoiler = $self->spoiler_class->list->{$self->_best_match};
 
-    # otherwise, if we have an identity, check its spoilers for a constant
-    # appearance
-    my $spoiler = $self->spoilers
-        or return undef;
-    return $spoiler->{appearance};
+    return $spoiler ? $spoiler->{appearance}
+                    : $self->_best_match;
 }
 
 sub is_artifact {
