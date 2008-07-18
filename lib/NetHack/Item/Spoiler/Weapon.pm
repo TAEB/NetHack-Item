@@ -274,6 +274,7 @@ sub _list {
                 price    => 1500,
                 material => 'silver',
             },
+
             'aklys' => {
                 sdam     => 'd6',
                 ldam     => 'd3',

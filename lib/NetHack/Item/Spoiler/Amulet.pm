@@ -11,6 +11,13 @@ my @amulets = map { "$_ amulet" } (
 
 sub _list {
     my $amulets = {
+        'Amulet of Yendor' => {
+            price    => 30000,
+            artifact => 1,
+            fullname => 'The Amulet of Yendor',
+            appearance => 'Amulet of Yendor',
+        },
+
         'Eye of the Aethiopica' => {
             price    => 4000,
             edible   => 1,
@@ -18,12 +25,7 @@ sub _list {
             fullname => 'The Eye of the Aethiopica',
             base     => 'amulet of ESP',
         },
-        'Amulet of Yendor' => {
-            price    => 30000,
-            artifact => 1,
-            fullname => 'The Amulet of Yendor',
-            appearance => 'Amulet of Yendor',
-        },
+
         'cheap plastic imitation of the Amulet of Yendor' => {
             price      => 0,
             appearance => 'Amulet of Yendor',

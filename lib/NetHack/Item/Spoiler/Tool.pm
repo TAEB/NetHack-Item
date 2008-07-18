@@ -22,6 +22,7 @@ sub _list {
             fullname => 'The Candelabrum of Invocation',
             appearance => 'candelabrum',
         },
+
         'Eyes of the Overworld' => {
             artifact => 1,
             base => 'lenses',
