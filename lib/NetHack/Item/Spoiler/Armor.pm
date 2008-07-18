@@ -17,6 +17,7 @@ sub _list {
             value      => 2000,
             weight     => 50,
             ac         => 1,
+            fullname   => 'The Mitre of Holiness',
             material   => 'iron',
         },
 

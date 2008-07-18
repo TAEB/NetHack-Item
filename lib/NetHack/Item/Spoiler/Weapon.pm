@@ -114,6 +114,7 @@ sub _list {
                 hands    => 1,
                 weight   => 30,
                 price    => 4000,
+                fullname => 'The Longbow of Diana',
                 material => 'wood',
             },
             'Magicbane' => {
@@ -169,6 +170,7 @@ sub _list {
                 hands    => 1,
                 weight   => 30,
                 price    => 2500,
+                fullname => 'The Sceptre of Might',
                 material => 'iron',
             },
             'Snickersnee' => {
@@ -191,6 +193,7 @@ sub _list {
                 hands    => 2,
                 weight   => 40,
                 price    => 5000,
+                fullname => 'The Staff of Aesculapius',
                 material => 'wood',
             },
             'Sting' => {
@@ -235,6 +238,7 @@ sub _list {
                 hands    => 2,
                 weight   => 60,
                 price    => 4500,
+                fullname => 'The Tsurugi of Muramasa',
                 material => 'metal',
             },
             'Trollsbane' => {

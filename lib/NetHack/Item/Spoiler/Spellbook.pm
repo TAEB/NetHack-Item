@@ -21,6 +21,7 @@ sub _list {
             level      => 7,
             read       => 0,
             marker     => 0,
+            fullname   => 'The Book of the Dead',
             appearance => 'papyrus spellbook',
         },
 

@@ -15,11 +15,13 @@ sub _list {
             price    => 4000,
             edible   => 1,
             artifact => 1,
+            fullname => 'The Eye of the Aethiopica',
             base     => 'amulet of ESP',
         },
         'Amulet of Yendor' => {
             price    => 30000,
             artifact => 1,
+            fullname => 'The Amulet of Yendor',
             appearance => 'Amulet of Yendor',
         },
         'cheap plastic imitation of the Amulet of Yendor' => {

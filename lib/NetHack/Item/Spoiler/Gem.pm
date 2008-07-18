@@ -12,6 +12,7 @@ sub _list {
             price      => 2500,
             weight     => 10,
             engrave    => 'soft',
+            fullname   => 'The Heart of Ahriman',
             appearance => 'gray stone',
         },
         'dilithium crystal' => {

@@ -11,6 +11,7 @@ sub _list {
             price => 5000,
             weight => 10,
             charge => 3,
+            fullname => 'The Bell of Opening',
             appearance => 'silver bell',
         },
         'Candelabrum of Invocation' => {
@@ -18,6 +19,7 @@ sub _list {
             price => 5000,
             weight => 10,
             charge => '',
+            fullname => 'The Candelabrum of Invocation',
             appearance => 'candelabrum',
         },
         'Eyes of the Overworld' => {
@@ -26,6 +28,7 @@ sub _list {
             price => 80,
             weight => 3,
             charge => '',
+            fullname => 'The Eyes of the Overworld',
         },
         'Magic Mirror of Merlin' => {
             artifact => 1,
@@ -33,6 +36,7 @@ sub _list {
             price => 10,
             weight => 13,
             charge => '',
+            fullname => 'The Magic Mirror of Merlin',
         },
         'Master Key of Thievery' => {
             artifact => 1,
@@ -40,6 +44,7 @@ sub _list {
             price => 10,
             weight => 3,
             charge => '',
+            fullname => 'The Master Key of Thievery',
         },
         'Orb of Detection' => {
             artifact => 1,
@@ -47,6 +52,7 @@ sub _list {
             price => 60,
             weight => 150,
             charge => 5,
+            fullname => 'The Orb of Detection',
         },
         'Orb of Fate' => {
             artifact => 1,
@@ -54,6 +60,7 @@ sub _list {
             price => 60,
             weight => 150,
             charge => 5,
+            fullname => 'The Orb of Fate',
         },
         'Platinum Yendorian Express Card' => {
             artifact => 1,
@@ -61,6 +68,7 @@ sub _list {
             price => 10,
             weight => 1,
             charge => '',
+            fullname => 'The Platinum Yendorian Express Card',
         },
 
         'large box' => {
