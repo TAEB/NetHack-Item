@@ -5,11 +5,9 @@ use Test::NetHack::Items (
         "Cleaver",
         "battle-axe named Cleaver",
         "double-headed axe named Cleaver",
-        "battle-axe named cleaver",
 
         "the Master Key of Thievery",
-        "key named Master Key of Thievery",
-        "key named the Master Key of Thievery",
+        "key named The Master Key of Thievery",
 
         "silver bell",
         "candelabrum",
@@ -18,26 +16,31 @@ use Test::NetHack::Items (
         "the Candelabrum of Invocation",
         "the Book of the Dead",
 
-        "the Heart of Ahriman",
+        "The Heart of Ahriman",
         "The Orb of Fate",
-        "the Mitre of Holiness",
+        "The Mitre of Holiness",
 
         "an amulet of ESP named The Eye of the Aethiopica",
-        "a helm of brilliance named Mitre of Holiness",
-        "a luckstone named heart of ahriman",
+        "a helm of brilliance named The Mitre of Holiness",
+        "a luckstone named The Heart of Ahriman",
 
         "a quarterstaff named The Staff of Aesculapius",
         "a crystal ball named The Orb of Fate",
 
-        "orcish dagger named THE GRIMTOOTH",
-        "crude dagger named THE GRIMTOOTH",
+        "orcish dagger named Grimtooth",
+        "crude dagger named Grimtooth",
 
-        "the Sceptre of Might",
-        "a mace named the Sceptre of Might",
+        "elven dagger named Sting",
+
+        "The Sceptre of Might",
+        "a mace named The Sceptre of Might",
     ),
 
     (map { $_ => { is_artifact => 0 } }
         "battle-axe",
+        "battle-axe named cleaver",
+        "battle-axe named the Cleaver",
+        "battle-axe named The Cleaver",
         "battle-axe called Cleaver",
         "double-headed axe called Cleaver",
         "angled poleaxe named Cleaver",
@@ -46,6 +49,8 @@ use Test::NetHack::Items (
         "halberd called Cleaver",
 
         "skeleton key",
+        "key named Master Key of Thievery",
+        "key named the Master Key of Thievery",
         "key named foo Master Key of Thievery",
         "key named Master Key of the Thievery",
         "key called Master Key of Thievery",
@@ -62,12 +67,25 @@ use Test::NetHack::Items (
         "a quarterstaff named The Orb of Fate",
 
         "a quarterstaff named The The Staff of Aesculapius",
+
+        # not the exact names! case or lack of "The"
+        "a visored helmet named the mitre of holiness",
+        "a visored helmet named Mitre of Holiness",
+        "a gray stone named the heart of ahriman",
+        "a gray stone named Heart of Ahriman",
+        "a pyramidal amulet named the eye of the aethiopica",
+        "a pyramidal amulet named the Eye of the Aethiopica",
+        "a pyramidal amulet named Eye of the Aethiopica",
+
+        # naming an elven dagger "THE STING" names it "Sting"
+        "elven dagger named THE STING",
+        "elven broadsword named orcrist",
     ),
 
     (map { $_ => { is_artifact => undef } }
-        "a gray stone named the Heart of Ahriman",
-        "a pyramidal amulet named the Eye of the Aethiopica",
-        "a visored helmet named the Mitre of Holiness",
+        "a gray stone named The Heart of Ahriman",
+        "a pyramidal amulet named The Eye of the Aethiopica",
+        "a visored helmet named The Mitre of Holiness",
     ),
 );
 

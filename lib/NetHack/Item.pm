@@ -390,6 +390,12 @@ sub is_artifact {
         # is it the same type as us?
         return 0 unless $artifact_spoiler->{type} eq $self->type;
 
+        # is it the exact name? (e.g. "gray stone named heart of ahriman" fails
+        # because it's not properly capitalized and doesn't have "The"
+        my $arti_name = $artifact_spoiler->{fullname}
+                     || $artifact_spoiler->{name};
+        return 0 unless $arti_name eq $name;
+
         # if we know our appearance, is it a possible appearance for the
         # artifact?
         if (my $appearance = $self->appearance) {
