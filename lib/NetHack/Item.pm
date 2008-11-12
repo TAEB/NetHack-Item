@@ -352,7 +352,14 @@ sub incorporate_stats {
 
     # exploit the fact that appearances don't show up in the spoiler table as
     # keys
-    if (my $spoiler = $self->spoiler_class->spoiler_for($stats->{item})) {
+    $self->_set_appearance_and_identity($stats->{item});
+}
+
+sub _set_appearance_and_identity {
+    my $self       = shift;
+    my $best_match = shift;
+
+    if (my $spoiler = $self->spoiler_class->spoiler_for($best_match)) {
         if ($spoiler->{artifact}) {
             $self->artifact($spoiler->{name});
             $spoiler = $self->spoiler_class->spoiler_for($spoiler->{base})
@@ -365,7 +372,7 @@ sub incorporate_stats {
         }
     }
     else {
-        $self->appearance($stats->{item});
+        $self->appearance($best_match);
     }
 }
 
