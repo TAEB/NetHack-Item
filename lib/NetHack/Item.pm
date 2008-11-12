@@ -373,6 +373,10 @@ sub _set_appearance_and_identity {
     }
     else {
         $self->appearance($best_match);
+        my @possibilities = $self->possibilities;
+        if (@possibilities == 1 && $best_match ne $possibilities[0]) {
+            $self->_set_appearance_and_identity($possibilities[0]);
+        }
     }
 }
 
