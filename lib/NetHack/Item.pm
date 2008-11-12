@@ -344,114 +344,18 @@ sub incorporate_stats {
     $self->specific_name($stats->{specific}) if defined $stats->{specific};
     $self->cost($stats->{cost});
 
-    $self->_best_match($stats->{item});
+    if (my $spoiler = $self->spoiler_class->list->{$stats->{item}}) {
+        $self->identity($spoiler->{name});
+        if (defined(my $appearance = $spoiler->{appearance})) {
+            $self->appearance($appearance);
+        }
+    }
+    else {
+        $self->appearance($stats->{item});
+    }
 }
 
 sub can_drop { 1 }
-
-sub spoilers {
-    my $self = shift;
-    my $identity = $self->identity(1)
-        or return undef;
-    return $self->spoiler_class->spoiler_for($identity);
-}
-
-sub identity {
-    my $self = shift;
-    my $ignore_arti = shift;
-
-    my $spoiler_class = $self->spoiler_class;
-    my $possibilities = $spoiler_class->possibilities_for_appearance($self->_best_match);
-    return undef unless @$possibilities == 1;
-
-    my $item = $possibilities->[0];
-    return $item if $ignore_arti;
-
-    # if it's an artifact, then the identity is the base item
-    my $artifact_name = $self->artifact;
-
-    my $spoiler = $artifact_name
-                ? $spoiler_class->spoiler_for($artifact_name)
-                : $spoiler_class->spoiler_for($item);
-    if ($spoiler->{artifact} && $spoiler->{base}) {
-        return $spoiler->{base};
-    }
-
-    return $item;
-}
-
-# this exploits the fact that appearances are not in the spoiler table
-sub appearance {
-    my $self = shift;
-
-    my $spoiler = $self->spoiler_class->list->{$self->_best_match};
-
-    return $spoiler ? $spoiler->{appearance}
-                    : $self->_best_match;
-}
-
-sub possibilities {
-    my $self = shift;
-    my $spoiler_class = $self->spoiler_class;
-    my $possibilities = $spoiler_class->possibilities_for_appearance($self->appearance);
-    return @$possibilities;
-}
-
-sub artifact {
-    my $self = shift;
-
-    # try to handle "a battle-axe named Cleaver"
-    if (my $name = $self->specific_name) {
-        my $artifact_spoiler = $self->spoiler_class->artifact_spoiler($name);
-
-        # any artifact with this name?
-        return 0 unless $artifact_spoiler;
-
-        # is it the same type as us?
-        return 0 unless $artifact_spoiler->{type} eq $self->type;
-
-        # is it the exact name? (e.g. "gray stone named heart of ahriman" fails
-        # because it's not properly capitalized and doesn't have "The"
-        my $arti_name = $artifact_spoiler->{fullname}
-                     || $artifact_spoiler->{name};
-        return 0 unless $arti_name eq $name;
-
-        # if we know our appearance, is it a possible appearance for the
-        # artifact?
-        if (my $appearance = $self->appearance) {
-            return 0 unless grep { $appearance eq ($_||'') }
-                            $artifact_spoiler->{appearance},
-                            @{ $artifact_spoiler->{appearances} };
-        }
-
-        # if we know our identity, is the artifact's identity the same as ours?
-        # if so, then we can know definitively whether this is the artifact
-        # or not (see below)
-        my $identity = $self->identity(1);
-        return $identity eq $artifact_spoiler->{base}
-            ? $artifact_spoiler->{name}
-            : 0
-                if $identity;
-
-        # otherwise, the best we can say is "maybe". consider the artifact
-        # naming bug.  we may have a pyramidal amulet that is named The Eye of
-        # the Aethiopica. the naming bug exploits the fact that if pyramidal is
-        # NOT ESP, then it will correctly name the amulet. if pyramidal IS ESP
-        # then we cannot name it correctly -- the only pyramidal amulet that
-        # can have the name is the real Eye
-
-        return undef;
-    }
-
-    my $spoiler = $self->spoilers
-        or return 0;
-    return $spoiler->{artifact} ? $spoiler->{name} : 0;
-}
-
-sub is_artifact {
-    my $artifact = shift->artifact;
-    return $artifact ? 1 : $artifact;
-}
 
 __PACKAGE__->meta->make_immutable;
 no Moose;
