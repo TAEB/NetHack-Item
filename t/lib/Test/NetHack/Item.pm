@@ -29,7 +29,11 @@ sub test_items {
 
         for my $check (sort keys %$checks) {
             if ($item->can($check)) {
-                Test::More::is_deeply($item->$check, $checks->{$check}, "'$raw' $check");
+                my @values = $item->$check;
+                my $value = ref($checks->{$check}) eq 'ARRAY'
+                          ? \@values
+                          : $values[0];
+                Test::More::is_deeply($value, $checks->{$check}, "'$raw' $check");
             }
             else {
                 Test::More::fail("'$raw' leaves us without a $check method");
