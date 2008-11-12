@@ -105,10 +105,8 @@ for my $buc (qw/is_blessed is_uncursed is_cursed/) {
     );
 }
 
-for ([holy => 'blessed'], [unholy => 'cursed']) {
-    my ($holiness, $buc) = @$_;
-    __PACKAGE__->meta->alias_method("is_$holiness" => __PACKAGE__->meta->find_method_by_name("is_$buc"));
-}
+sub is_holy   { shift->is_blessed(@_) }
+sub is_unholy { shift->is_cursed(@_)  }
 
 sub buc {
     my $self = shift;
