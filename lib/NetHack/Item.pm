@@ -527,17 +527,77 @@ NetHack::Item - parse and interact with a NetHack item
 NetHack's items are complex beasts. This library attempts to control that
 complexity.
 
-More doc soon.. in the meantime, use
-C<< NetHack::Item->new("...")->meta->compute_all_applicable_methods >> to see
-what you can do with items. Note that items are automatically blessed into
-whichever subclass the item is (e.g. L<NetHack::Item::Weapon>).
+=head1 ATTRIBUTES
 
-This library provides spoilers for all the items. However, they are not
-well-integrated into the rest of the code, since we need to add possibility
-tracking before that is useful. This is also why you can't see the identity
-of items just yet..
+These are the attributes common to every NetHack item. Subclasses (e.g. Wand)
+may have additional attributes.
 
-The code is a slight redesign of TAEB's item code.
+=over 4
+
+=item raw
+
+The raw string passed in to L</new>, to be parsed. This is the only required
+attribute.
+
+=item identity
+
+The identity of the item (a string). For example, "clear potion" will be
+"potion of water". For artifacts, the base item is used for identity, so for
+"the Eye of the Aethiopica" you'll have "amulet of ESP".
+
+=item appearance
+
+The appearance of the item (a string). For example, "potion of water" will be
+"clear potion". For artifacts, the base item is used for appearance, so for
+"the Eye of the Aethiopica" you'll have "pyramidal amulet" (or any of the
+random appearances for amulets of ESP).
+
+=item artifact
+
+The name of the artifact, if applicable. The leading "The" is stripped (so
+you'll have "Eye of the Aethiopica").
+
+=item slot
+
+The inventory or container slot in which this item resides. Obviously not
+applicable to items on the ground.
+
+=item quantity
+
+The item stack's quantity. Usually 1.
+
+=item cost
+
+The amount of zorkmids that a shopkeeper is demanding for this item.
+
+=item specific_name
+
+A name for this specific item, as opposed to a name for all items of this
+class. Artifacts use specific name.
+
+=item generic_name
+
+A name for all items of this class, as opposed to a name for a specific item.
+Identification uses generic name.
+
+=item is_wielded, is_quivered, is_greased, is_offhand
+
+Interesting boolean states of an item.
+
+=item is_blessed, is_cursed, is_uncursed
+
+Boolean states about the BUC status of an item. If one returns true, the others
+will return false.
+
+=item buc
+
+Returns "blessed", "cursed", "uncursed", or C<undef>.
+
+=item is_holy, is_unholy
+
+Synonyms for L</is_blessed> and L</is_cursed>.
+
+=back
 
 =head1 SEE ALSO
 
