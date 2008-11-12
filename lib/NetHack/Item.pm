@@ -369,6 +369,12 @@ sub incorporate_stats {
     }
 }
 
+sub possibilities {
+    my $self = shift;
+    return $self->identity if $self->has_identity;
+    return @{ $self->spoiler_class->possibilities_for_appearance($self->appearance) };
+}
+
 sub can_drop { 1 }
 
 __PACKAGE__->meta->make_immutable;
