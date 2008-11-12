@@ -20,7 +20,7 @@ is(@baseless, 4, "four base-less artifacts (invocation items + Amulet");
 
 for my $artifact (@artifacts) {
     my $item = NetHack::Item->new($artifact->{name});
-    ok($item->spoilers, "got some spoiler data from the artifact");
+    ok($item->spoiler, "got some spoiler data from the artifact");
     ok($item->is_artifact, "the item is an artifact!");
 
     if (grep { $_ == $artifact } @baseless) {

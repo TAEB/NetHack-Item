@@ -441,6 +441,12 @@ sub possibilities {
     return @{ $self->spoiler_class->possibilities_for_appearance($self->appearance) };
 }
 
+sub spoiler {
+    my $self = shift;
+    return unless $self->has_identity;
+    return $self->spoiler_class->spoiler_for($self->identity);
+}
+
 sub can_drop { 1 }
 
 __PACKAGE__->meta->make_immutable;
