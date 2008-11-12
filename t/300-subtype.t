@@ -16,8 +16,13 @@ use Test::NetHack::Items (
     },
     "bag of holding" => {
         type          => 'tool',
-        subtype       => undef,
+        subtype       => 'container',
         possibilities => ['bag of holding'],
+    },
+    "bag of tricks" => {
+        type          => 'tool',
+        subtype       => undef,
+        possibilities => ['bag of tricks'],
     },
 );
 
