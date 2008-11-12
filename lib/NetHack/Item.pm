@@ -23,6 +23,12 @@ has appearance => (
     predicate => 'has_appearance',
 );
 
+has artifact => (
+    is        => 'rw',
+    isa       => 'Str',
+    predicate => 'is_artifact',
+);
+
 has slot => (
     is        => 'rw',
     isa       => 'Str',
@@ -344,7 +350,15 @@ sub incorporate_stats {
     $self->specific_name($stats->{specific}) if defined $stats->{specific};
     $self->cost($stats->{cost});
 
-    if (my $spoiler = $self->spoiler_class->list->{$stats->{item}}) {
+    # exploit the fact that appearances don't show up in the spoiler table as
+    # keys
+    if (my $spoiler = $self->spoiler_class->spoiler_for($stats->{item})) {
+        if ($spoiler->{artifact}) {
+            $self->artifact($spoiler->{name});
+            $spoiler = $self->spoiler_class->spoiler_for($spoiler->{base})
+                if $spoiler->{base};
+        }
+
         $self->identity($spoiler->{name});
         if (defined(my $appearance = $spoiler->{appearance})) {
             $self->appearance($appearance);
