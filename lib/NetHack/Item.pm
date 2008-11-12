@@ -460,14 +460,23 @@ sub spoiler_values {
     return map { $_->{$key} } $self->all_spoilers;
 }
 
+sub collapse_spoiler_value {
+    my $self = shift;
+    my $key  = shift;
+
+    my @values = $self->spoiler_values($key);
+    my $value = shift @values;
+
+    for (@values) {
+        return undef if $_ ne $value;
+    }
+
+    return $value;
+}
+
 sub subtype {
     my $self = shift;
-    my @subtypes = $self->spoiler_values('subtype');
-    my $subtype = shift @subtypes;
-
-    return (grep { $_ ne $subtype } @subtypes)
-         ? undef
-         : $subtype;
+    $self->collapse_spoiler_value('subtype');
 }
 
 sub can_drop { 1 }
