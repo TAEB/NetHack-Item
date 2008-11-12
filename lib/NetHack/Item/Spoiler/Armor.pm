@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
+use constant type => 'armor';
+
 my @cloaks  = ('tattered cape', 'opera cloak', 'ornamental cope', 'piece of cloth');
 my @helmets = map { "$_ helmet" } qw/plumed etched crested visored/;
 my @gloves  = map { "$_ gloves" } qw/old padded riding fencing/;

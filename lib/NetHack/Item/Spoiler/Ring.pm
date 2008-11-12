@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
+use constant type => 'ring';
+
 my @rings = map { "$_ ring" } (
     qw/wooden granite opal clay coral moonstone jade bronze agate topaz
     sapphire ruby diamond pearl iron brass copper twisted steel silver gold

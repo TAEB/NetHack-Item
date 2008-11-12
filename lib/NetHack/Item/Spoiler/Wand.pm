@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
+use constant type => 'wand';
+
 my @wands = map { "$_ wand" }
     qw/glass balsa crystal maple pine oak ebony marble tin brass copper silver
     platinum iridium zinc aluminum uranium iron steel hexagonal short runed

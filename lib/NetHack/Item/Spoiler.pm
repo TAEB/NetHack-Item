@@ -77,7 +77,7 @@ sub name_to_type_list {
     my %all_types;
 
     for my $class ($self->plugins) {
-        my ($type) = map { lc } $class =~ /.*::(.*)$/;
+        my $type = $class->type;
 
         my $list = $class->list;
         for (values %$list) {

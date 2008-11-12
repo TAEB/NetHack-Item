@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
+use constant type => 'gem';
+
 sub _list {
     my $gems = {
         'Heart of Ahriman' => {

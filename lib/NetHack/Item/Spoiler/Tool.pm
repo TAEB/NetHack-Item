@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
+use constant type => 'tool';
+
 sub _list {
     my $tools = {
         'Bell of Opening' => {

@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
+use constant type => 'spellbook';
+
 my @spellbooks = map { "$_ spellbook" } (
     qw/parchment vellum ragged mottled stained cloth leather white pink red
     orange yellow velvet turquoise cyan indigo magenta purple violet tan plaid

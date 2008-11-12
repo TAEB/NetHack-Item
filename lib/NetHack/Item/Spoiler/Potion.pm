@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
+use constant type => 'potion';
+
 my @potions = map { "$_ potion" } (
     qw/ruby pink orange yellow emerald cyan magenta purple-red puce milky
     swirly bubbly smoky cloudy effervescent black golden brown fizzy dark white

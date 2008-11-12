@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
+use constant type => 'amulet';
+
 my @amulets = map { "$_ amulet" } (
     qw/circular spherical oval triangular pyramidal square concave hexagonal
     octagonal/

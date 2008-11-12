@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
+use constant type => 'weapon';
+
 sub _list {
     my $weapons = {
             'Cleaver' => {

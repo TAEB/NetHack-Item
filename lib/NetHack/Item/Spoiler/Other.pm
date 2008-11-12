@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
 
+use constant type => 'other';
+
 sub _list {
     my $others = {
         'gold piece' => {
