@@ -50,6 +50,10 @@ has specific_name => (
     is        => 'rw',
     isa       => 'Str',
     predicate => 'has_specific_name',
+    trigger   => sub {
+        # recalculate whether this item is an artifact or not (e.g. Sting)
+        shift->is_artifact;
+    },
 );
 
 has generic_name => (
