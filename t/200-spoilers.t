@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 15;
+use Test::More tests => 18;
 use NetHack::Item::Spoiler;
 
 my $spoiler = "NetHack::Item::Spoiler";
@@ -25,4 +25,9 @@ is($spoiler->name_to_type("opera cloaks"), undef);
 
 is($spoiler->name_to_type("bag of holding"), "tool");
 is($spoiler->name_to_type("bag"), "tool");
+
+my $heart = $spoiler->spoiler_for("Heart of Ahriman");
+ok($heart, "Heart spoiler");
+ok($heart->{artifact}, "Heart is an artifact");
+is($heart->{base}, "luckstone", "Heart's base item is a luckstone");
 
