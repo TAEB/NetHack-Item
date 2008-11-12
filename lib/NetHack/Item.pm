@@ -328,7 +328,11 @@ sub parse_raw {
 
     my $stats = $self->extract_stats($raw);
 
-    $self->_rebless_into($stats->{type});
+    # exploit the fact that appearances don't show up in the spoiler table as
+    # keys
+    $self->_set_appearance_and_identity($stats->{item});
+
+    $self->_rebless_into($stats->{type}, $self->subtype);
 
     $self->incorporate_stats($stats);
 }
@@ -348,10 +352,6 @@ sub incorporate_stats {
     $self->generic_name($stats->{generic}) if defined $stats->{generic};
     $self->specific_name($stats->{specific}) if defined $stats->{specific};
     $self->cost($stats->{cost});
-
-    # exploit the fact that appearances don't show up in the spoiler table as
-    # keys
-    $self->_set_appearance_and_identity($stats->{item});
 }
 
 sub is_artifact {
