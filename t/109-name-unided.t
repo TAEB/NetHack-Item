@@ -61,7 +61,7 @@ use Test::NetHack::Items (
     "s - a pair of riding gloves" => {
         appearance    => "riding gloves",
         identity      => undef,
-        possibilities => ["gauntlets of power", "gauntlets of dexterity", "gauntlets of fumbling", "leather gloves"],
+        possibilities => ["gauntlets of dexterity", "gauntlets of fumbling", "gauntlets of power", "leather gloves"],
     },
     "i - an egg" => {
         appearance    => "egg",
@@ -169,7 +169,7 @@ use Test::NetHack::Items (
     "Q - a gray stone" => {
         appearance    => "gray stone",
         identity      => undef,
-        possibilities => ["flint stone", "touchstone", "loadstone", "luckstone"],
+        possibilities => ["flint stone", "loadstone", "luckstone", "touchstone"],
     },
 );
 

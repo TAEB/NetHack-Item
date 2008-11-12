@@ -448,7 +448,7 @@ sub _set_appearance_and_identity {
 sub possibilities {
     my $self = shift;
     return $self->identity if $self->has_identity;
-    return @{ $self->spoiler_class->possibilities_for_appearance($self->appearance) };
+    return sort @{ $self->spoiler_class->possibilities_for_appearance($self->appearance) };
 }
 
 sub spoiler {
