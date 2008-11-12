@@ -29,10 +29,16 @@ has cost => (
     default => 0,
 );
 
-has [qw/generic_name specific_name/] => (
-    is      => 'rw',
-    isa     => 'Str',
-    default => '',
+has specific_name => (
+    is        => 'rw',
+    isa       => 'Str',
+    predicate => 'has_specific_name',
+);
+
+has generic_name => (
+    is        => 'rw',
+    isa       => 'Str',
+    predicate => 'has_generic_name',
 );
 
 has _best_match => (
@@ -330,8 +336,8 @@ sub incorporate_stats {
     $self->is_greased($stats->{greased});
     $self->is_quivered($stats->{quivered});
     $self->is_offhand($stats->{offhand});
-    $self->generic_name($stats->{generic});
-    $self->specific_name($stats->{specific});
+    $self->generic_name($stats->{generic}) if defined $stats->{generic};
+    $self->specific_name($stats->{specific}) if defined $stats->{specific};
     $self->cost($stats->{cost});
 
     $self->_best_match($stats->{item});
