@@ -19,6 +19,11 @@ sub test_items {
     my @all_checks = @_;
 
     while (my ($raw, $checks) = splice @_, 0, 2) {
+        # simplification if a lot of tests check exactly the same one thing
+        if (main->can('testing_method') && !ref($checks)) {
+            $checks = { scalar(main->testing_method) => $checks };
+        }
+
         my $item = eval { NetHack::Item->new($raw) };
         if (!defined($item)) {
             Test::More::diag($@);
@@ -47,7 +52,7 @@ sub plan_items {
 
     my $tests = 0;
     while (my ($item, $checks) = splice @_, 0, 2) {
-        $tests += keys %$checks;
+        $tests += ref($checks) eq 'HASH' ? keys %$checks : 1;
     }
 
     return $tests if defined wantarray;
