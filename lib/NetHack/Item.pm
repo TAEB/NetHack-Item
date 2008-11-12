@@ -460,6 +460,16 @@ sub spoiler_values {
     return map { $_->{$key} } $self->all_spoilers;
 }
 
+sub subtype {
+    my $self = shift;
+    my @subtypes = $self->spoiler_values('subtype');
+    my $subtype = shift @subtypes;
+
+    return (grep { $_ ne $subtype } @subtypes)
+         ? undef
+         : $subtype;
+}
+
 sub can_drop { 1 }
 
 __PACKAGE__->meta->make_immutable;
