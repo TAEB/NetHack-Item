@@ -384,6 +384,13 @@ sub appearance {
                     : $self->_best_match;
 }
 
+sub possibilities {
+    my $self = shift;
+    my $spoiler_class = $self->spoiler_class;
+    my $possibilities = $spoiler_class->possibilities_for_appearance($self->appearance);
+    return @$possibilities;
+}
+
 sub artifact {
     my $self = shift;
 
