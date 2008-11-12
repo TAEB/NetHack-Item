@@ -121,24 +121,17 @@ sub buc {
     return undef;
 }
 
-sub BUILDARGS {
-    my $class = shift;
-
-    if (@_ == 1) {
-        return $_[0] if ref($_[0]) eq 'HASH';
-        return { raw => $_[0] } if !ref($_[0]);
-    }
-    else {
-        return { @_ };
-    }
-
-    confess "I don't know how to handle $class->new(@_)";
-}
-
 around BUILDARGS => sub {
     my $orig = shift;
     my $class = shift;
-    my $args = $class->$orig(@_);
+
+    my $args;
+    if (@_ == 1 && !ref($_[0])) {
+        $args = { raw => $_[0] };
+    }
+    else {
+        $args = $orig->($class, @_);
+    }
 
     if ($args->{buc}) {
         $args->{"is_$args->{buc}"} = 1;
