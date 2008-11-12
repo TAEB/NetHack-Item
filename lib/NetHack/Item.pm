@@ -472,9 +472,10 @@ sub collapse_spoiler_value {
 
     my @values = $self->spoiler_values($key);
     my $value = shift @values;
+    return undef if !defined($value);
 
     for (@values) {
-        return undef if $_ ne $value;
+        return undef if !defined($_) || $_ ne $value;
     }
 
     return $value;
