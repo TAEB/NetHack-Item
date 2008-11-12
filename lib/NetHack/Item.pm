@@ -11,6 +11,18 @@ has raw => (
     required => 1,
 );
 
+has identity => (
+    is        => 'rw',
+    isa       => 'Str',
+    predicate => 'has_identity',
+);
+
+has appearance => (
+    is        => 'rw',
+    isa       => 'Str',
+    predicate => 'has_appearance',
+);
+
 has slot => (
     is        => 'rw',
     isa       => 'Str',
@@ -39,12 +51,6 @@ has generic_name => (
     is        => 'rw',
     isa       => 'Str',
     predicate => 'has_generic_name',
-);
-
-has _best_match => (
-    is            => 'rw',
-    isa           => 'Str',
-    documentation => "This is the item's identity if available, otherwise its appearance. This attribute is temporary, until we get possibility tracking.",
 );
 
 for my $type (qw/wield quiver grease offhand/) {
