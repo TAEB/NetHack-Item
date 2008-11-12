@@ -6,6 +6,7 @@ with 'NetHack::Item::Role::Wearable';
 with 'NetHack::Item::Role::Enchantable';
 with 'NetHack::Item::Role::Damageable';
 
+use constant subtypes => qw(helmet shirt bodyarmor cloak gloves shield boots);
 use constant type => "armor";
 
 __PACKAGE__->meta->make_immutable;
