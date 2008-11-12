@@ -1,7 +1,8 @@
 #!/usr/bin/env perl
 use lib 't/lib';
+use constant testing_method => 'is_artifact';
 use Test::NetHack::Items (
-    (map { $_ => { is_artifact => 1 } }
+    (map { $_ => 1 }
         "Cleaver",
         "battle-axe named Cleaver",
         "double-headed axe named Cleaver",
@@ -36,7 +37,7 @@ use Test::NetHack::Items (
         "a mace named The Sceptre of Might",
     ),
 
-    (map { $_ => { is_artifact => 0 } }
+    (map { $_ => 0 }
         "battle-axe",
         "battle-axe named cleaver",
         "battle-axe named the Cleaver",
@@ -82,7 +83,7 @@ use Test::NetHack::Items (
         "elven broadsword named orcrist",
     ),
 
-    (map { $_ => { is_artifact => undef } }
+    (map { $_ => undef }
         "a gray stone named The Heart of Ahriman",
         "a pyramidal amulet named The Eye of the Aethiopica",
         "a visored helmet named The Mitre of Holiness",
