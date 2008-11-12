@@ -4,8 +4,6 @@ use Moose;
 extends 'NetHack::Item';
 with 'NetHack::Item::Role::Chargeable';  # bags of tricks
 with 'NetHack::Item::Role::Damageable';  # pick-axe
-with 'NetHack::Item::Role::Enchantable'; # unicorn horn
-with 'NetHack::Item::Role::EnchantBUC';
 
 use constant type => "tool";
 
