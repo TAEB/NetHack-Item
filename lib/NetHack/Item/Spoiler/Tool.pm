@@ -22,7 +22,7 @@ sub _list {
             charge => '',
             fullname => 'The Candelabrum of Invocation',
             appearance => 'candelabrum',
-            subtype => 'light',
+            subtype => 'candelabrum',
         },
 
         'Eyes of the Overworld' => {
@@ -395,6 +395,7 @@ sub _list {
             price => 80,
             weight => 50,
             charge => '',
+            subtype => 'figurine',
         },
         'magic marker' => {
             price => 50,
