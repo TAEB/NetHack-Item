@@ -170,10 +170,15 @@ sub BUILD {
 }
 
 sub choose_item_class {
-    my $self = shift;
-    my $type = shift;
+    my $self    = shift;
+    my $type    = shift;
+    my $subtype = shift;
 
-    return "NetHack::Item::" . ucfirst lc $type;
+    my $class = "NetHack::Item::" . ucfirst lc $type;
+    $class .= '::' . ucfirst lc $subtype
+        if $subtype;
+
+    return $class;
 }
 
 sub spoiler_class {
@@ -189,12 +194,13 @@ sub spoiler_class {
 }
 
 sub _rebless_into {
-    my $self = shift;
-    my $type = shift;
+    my $self    = shift;
+    my $type    = shift;
+    my $subtype = shift;
 
     return if !blessed($self);
 
-    my $class = $self->choose_item_class($type);
+    my $class = $self->choose_item_class($type, $subtype);
     my $meta = Class::MOP::load_class($class);
     $meta->rebless_instance($self);
 }
