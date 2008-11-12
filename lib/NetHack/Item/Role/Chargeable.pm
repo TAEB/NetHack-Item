@@ -32,7 +32,11 @@ has charges_spent_this_recharge => (
     default   => 0,
     provides  => {
         add   => 'add_charges_spent_this_recharge',
-        reset => 'reset_charges_spent_this_recharge',
+    },
+    curries => {
+        set => {
+            reset_charges_spent_this_recharge => [ 0 ],
+        },
     },
 );
 
