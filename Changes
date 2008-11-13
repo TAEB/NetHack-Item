@@ -1,6 +1,8 @@
 Revision history for NetHack-Item
 
-0.02
+0.03
+
+0.02    Wed Nov 12 22:54:18 2008
         Too much to list, biggest is addition of subtypes and plenty of
             internals cleanup
 
