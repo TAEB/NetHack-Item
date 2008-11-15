@@ -501,7 +501,7 @@ sub incorporate_stats_from {
 
     my @stats = (qw/slot quantity cost specific_name generic_name is_wielded
                     is_quivered is_greased is_offhand is_blessed is_uncursed
-                    is_cursed/);
+                    is_cursed artifact/);
 
     for my $stat (@stats) {
         my $old_value = $self->$stat;
