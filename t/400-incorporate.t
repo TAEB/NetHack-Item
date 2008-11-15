@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Item tests => 1;
+use Test::NetHack::Item tests => 2;
 sub check;
 
 check "a +1 long sword" => "a +3 long sword" => {
@@ -12,11 +12,12 @@ sub check {
     my $after  = shift;
     my $stats  = shift;
 
-    my $item = NetHack::Item->new($before);
-    my $new  = NetHack::Item->new($after);
-    $item->incorporate_stats_from($new);
+    for my $other ($after, NetHack::Item->new($after)) {
+        my $item = NetHack::Item->new($before);
+        $item->incorporate_stats_from($other);
 
-    local $Test::Builder::Level = $Test::Builder::Level + 1;
-    test_items($item, $stats);
+        local $Test::Builder::Level = $Test::Builder::Level + 1;
+        test_items($item, $stats);
+    }
 }
 
