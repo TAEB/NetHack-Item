@@ -1,10 +1,21 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Item tests => 2;
+use Test::NetHack::Item tests => 12;
 sub check;
 
 check "a +1 long sword" => "a blessed +1 long sword" => {
     buc => 'blessed',
+};
+
+check "a cursed +1 long sword" => "a long sword" => {
+    buc         => 'cursed',
+    enchantment => '+1',
+};
+
+check "a +1 long sword" => "the blessed +3 Excalibur" => {
+    buc         => 'blessed',
+    artifact    => 'Excalibur',
+    enchantment => '+3',
 };
 
 sub check {
