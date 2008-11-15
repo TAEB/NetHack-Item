@@ -495,6 +495,9 @@ sub can_drop { 1 }
 sub incorporate_stats_from {
     my $self  = shift;
     my $other = shift;
+
+    $other = NetHack::Item->new($other)
+        if !ref($other);
 }
 
 __PACKAGE__->meta->make_immutable;
