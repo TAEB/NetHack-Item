@@ -498,6 +498,22 @@ sub incorporate_stats_from {
 
     $other = NetHack::Item->new($other)
         if !ref($other);
+
+    my @stats = (qw/slot quantity cost specific_name generic_name is_wielded
+                    is_quivered is_greased is_offhand is_blessed is_uncursed
+                    is_cursed/);
+
+    for my $stat (@stats) {
+        my $old_value = $self->$stat;
+        my $new_value = $other->$stat;
+
+        next if !defined($new_value);
+
+        next if defined($old_value)
+             && $old_value eq $new_value;
+
+        $self->$stat($new_value);
+    }
 }
 
 __PACKAGE__->meta->make_immutable;
