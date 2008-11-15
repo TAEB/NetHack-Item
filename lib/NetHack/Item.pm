@@ -492,6 +492,11 @@ sub subtype {
 
 sub can_drop { 1 }
 
+sub incorporate_stats_from {
+    my $self  = shift;
+    my $other = shift;
+}
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
