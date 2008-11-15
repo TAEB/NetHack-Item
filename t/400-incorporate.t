@@ -3,8 +3,8 @@ use lib 't/lib';
 use Test::NetHack::Item tests => 2;
 sub check;
 
-check "a +1 long sword" => "a +3 long sword" => {
-    enchantment => '+3',
+check "a +1 long sword" => "a blessed +1 long sword" => {
+    buc => 'blessed',
 };
 
 sub check {
