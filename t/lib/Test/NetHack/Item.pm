@@ -24,7 +24,7 @@ sub test_items {
             $checks = { scalar(main->testing_method) => $checks };
         }
 
-        my $item = eval { NetHack::Item->new($raw) };
+        my $item = ref($raw) ? $raw : eval { NetHack::Item->new($raw) };
         if (!defined($item)) {
             Test::More::diag($@);
             Test::More::fail("Unable to parse '$raw'")
