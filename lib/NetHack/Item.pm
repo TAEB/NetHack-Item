@@ -509,6 +509,10 @@ sub is_evolution_of {
              && $old->has_appearance
              && $new->appearance ne $old->appearance;
 
+    # items can become artifacts but they cannot unbecome artifacts
+    return 0 if $old->is_artifact
+             && !$new->is_artifact;
+
     return 1;
 }
 

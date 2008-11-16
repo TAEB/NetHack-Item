@@ -116,6 +116,21 @@ after incorporate_stats_from => sub {
     $self->incorporate_stat($other => 'recharges');
 };
 
+around is_evolution_of => sub {
+    my $orig = shift;
+    my $new = shift;
+    my $old = shift;
+
+    # lost recharges?
+    return 0 if $old->recharges > $new->recharges;
+
+    # gained charges without a recharge?
+    return 0 if $old->recharges == $new->recharges
+             && $old->charges < $new->charges;
+
+    return $orig->($new, $old);
+};
+
 no Moose::Role;
 
 1;
