@@ -505,6 +505,10 @@ sub is_evolution_of {
              && $old->has_identity
              && $new->identity ne $old->identity;
 
+    return 0 if $new->has_appearance
+             && $old->has_appearance
+             && $new->appearance ne $old->appearance;
+
     return 1;
 }
 
