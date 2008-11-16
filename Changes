@@ -1,5 +1,7 @@
 Revision history for NetHack-Item
 
+0.04
+
 0.03    Sun Nov 16 03:00:00 2008
         Item->incorporate_stats_from(Item) and Item->is_evolution_of(Item)
             These are used to update items with obvious stats from newer copies
