@@ -12,7 +12,7 @@ has contents => (
     isa       => 'ArrayRef[NetHack::Item]',
     default   => sub { [] },
     provides  => {
-        push => 'add_item',
+        push   => 'add_item',
     },
 );
 
@@ -34,6 +34,22 @@ around add_item => sub {
     $item->container($self);
 };
 
+sub remove_item {
+    my $self = shift;
+    my $item = shift;
+
+    my $contents = $self->contents;
+
+    for (my $i = 0; $i < @$contents; ) {
+        if ($contents->[$i] == $item) {
+            splice @$contents, $i, 1;
+            $item->clear_container;
+        }
+        else {
+            ++$i;
+        }
+    }
+}
 
 __PACKAGE__->meta->make_immutable;
 no Moose;
