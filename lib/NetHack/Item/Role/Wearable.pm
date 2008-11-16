@@ -7,6 +7,7 @@ has is_worn => (
     metaclass => 'Bool',
     is        => 'rw',
     isa       => 'Bool',
+    default   => 0,
     provides  => {
         set   => 'wear',
         unset => 'remove',
