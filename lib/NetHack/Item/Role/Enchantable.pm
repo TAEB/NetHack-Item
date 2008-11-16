@@ -15,6 +15,13 @@ after incorporate_stats => sub {
         if defined $stats->{enchantment};
 };
 
+after incorporate_stats_from => sub {
+    my $self  = shift;
+    my $other = shift;
+
+    $self->incorporate_stat($other => 'enchantment');
+};
+
 no Moose::Role;
 
 1;
