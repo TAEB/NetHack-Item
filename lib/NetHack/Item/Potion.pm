@@ -7,6 +7,7 @@ with 'NetHack::Item::Role::Lightable';
 use constant type => "potion";
 
 has is_diluted => (
+    traits  => [qw/IncorporatesUndef/],
     is      => 'rw',
     isa     => 'Bool',
     default => 0,

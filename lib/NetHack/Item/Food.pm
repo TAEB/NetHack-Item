@@ -7,9 +7,9 @@ use constant subtypes => "corpse";
 use constant type => "food";
 
 has is_partly_eaten => (
+    traits  => [qw/IncorporatesUndef/],
     is      => 'rw',
     isa     => 'Bool',
-    default => 0,
 );
 
 has is_laid_by_you => (

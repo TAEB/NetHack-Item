@@ -9,8 +9,9 @@ with 'NetHack::Item::Role::EnchantBUC';
 use constant type => "weapon";
 
 has is_poisoned => (
-    is  => 'rw',
-    isa => 'Bool',
+    traits => [qw/IncorporatesUndef/],
+    is     => 'rw',
+    isa    => 'Bool',
 );
 
 after incorporate_stats => sub {
