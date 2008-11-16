@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Item tests => 34;
+use Test::NetHack::Item tests => 46;
 sub check;
 
 check "a +1 long sword" => "a blessed +1 long sword" => {
@@ -51,6 +51,21 @@ check "a heavy iron ball" => "a heavy iron ball (chained to you)" => {
 
 check "a heavy iron ball (chained to you)" => "a heavy iron ball" => {
     is_chained_to_you => 0,
+};
+
+check "a wand of wishing (0:3)" => "a wand of wishing (0:2)" => {
+    charges   => 2,
+    recharges => 0,
+};
+
+check "a wand of wishing (0:0)" => "a wand of wishing (1:3)" => {
+    charges   => 3,
+    recharges => 1,
+};
+
+check "a wand of wishing (1:3)" => "a wand of wishing" => {
+    charges   => 3,
+    recharges => 1,
 };
 
 sub check {

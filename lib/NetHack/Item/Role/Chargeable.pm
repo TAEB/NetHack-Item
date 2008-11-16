@@ -100,6 +100,14 @@ after incorporate_stats => sub {
     $self->recharges($stats->{recharges}) if defined($stats->{recharges});
 };
 
+after incorporate_stats_from => sub {
+    my $self  = shift;
+    my $other = shift;
+
+    $self->incorporate_stat($other => 'charges');
+    $self->incorporate_stat($other => 'recharges');
+};
+
 no Moose::Role;
 
 1;
