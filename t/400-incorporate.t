@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Item tests => 46;
+use Test::NetHack::Item tests => 58;
 sub check;
 
 check "a +1 long sword" => "a blessed +1 long sword" => {
@@ -66,6 +66,30 @@ check "a wand of wishing (0:0)" => "a wand of wishing (1:3)" => {
 check "a wand of wishing (1:3)" => "a wand of wishing" => {
     charges   => 3,
     recharges => 1,
+};
+
+check "a long sword" => "a rusty long sword" => {
+    rusty => 1,
+};
+
+check "a long sword" => "a very rusty long sword" => {
+    rusty => 2,
+};
+
+check "a long sword" => "a thoroughly rusty long sword" => {
+    rusty => 3,
+};
+
+check "a rusty long sword" => "a long sword" => {
+    rusty => 0,
+};
+
+check "a long sword" => "a rustproof long sword" => {
+    proofed => 1,
+};
+
+check "a rustproof long sword" => "a long sword" => {
+    proofed => undef,
 };
 
 sub check {

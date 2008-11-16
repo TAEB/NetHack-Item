@@ -11,6 +11,7 @@ has [qw/burnt corroded rotted rusty/]=> (
 
 has proofed => (
     metaclass => 'Bool',
+    traits    => [qw/IncorporatesUndef/],
     is        => 'rw',
     isa       => 'Bool',
     provides  => {
@@ -29,6 +30,14 @@ after incorporate_stats => sub {
 
     $self->proofed($stats->{proofed})
         if defined $stats->{proofed};
+};
+
+after incorporate_stats_from => sub {
+    my $self  = shift;
+    my $other = shift;
+
+    $self->incorporate_stat($other => $_)
+        for qw/burnt corroded rotted rusty proofed/;
 };
 
 no Moose::Role;
