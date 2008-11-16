@@ -25,6 +25,13 @@ after incorporate_stats => sub {
     $self->is_laid_by_you($stats->{laid});
 };
 
+after incorporate_stats_from => sub {
+    my $self  = shift;
+    my $other = shift;
+
+    $self->incorporate_stat($other => 'is_partly_eaten');
+};
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 

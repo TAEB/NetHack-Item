@@ -25,6 +25,10 @@ check "a blessed dagger" => "a poisoned dagger" => {
     is_poisoned => 1,
 };
 
+check "a black dragon corpse" => "a partly eaten black dragon corpse" => {
+    is_partly_eaten => 1,
+};
+
 sub check {
     my $before = shift;
     my $after  = shift;
