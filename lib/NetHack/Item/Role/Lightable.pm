@@ -21,6 +21,13 @@ after incorporate_stats => sub {
     $self->is_lit($stats->{lit} ? 1 : 0);
 };
 
+after incorporate_stats_from => sub {
+    my $self  = shift;
+    my $other = shift;
+
+    $self->incorporate_stat($other => 'is_lit');
+};
+
 no Moose::Role;
 
 1;

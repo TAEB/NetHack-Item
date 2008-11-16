@@ -92,6 +92,14 @@ check "a rustproof long sword" => "a long sword" => {
     proofed => undef,
 };
 
+check "a magic lamp" => "a magic lamp (lit)" => {
+    is_lit => 1,
+};
+
+check "a magic lamp (lit)" => "a magic lamp" => {
+    is_lit => 0,
+};
+
 sub check {
     my $before = shift;
     my $after  = shift;
