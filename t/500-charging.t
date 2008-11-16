@@ -4,16 +4,12 @@ use warnings;
 use Test::More tests => 8;
 use NetHack::Item;
 
-my $bot = NetHack::Item->new("a bag of tricks");
-
-# first set it because this is a fresh item
-#ok($bot->recharges(0), "Reset to zero recharges");
-$bot->recharges(0);
+my $bot = NetHack::Item->new("a bag of tricks (0:1)");
 
 is($bot->chance_to_recharge, 100, "Chance to recharge new bag of tricks");
 
 # use it once..
-ok($bot->spend_charge, "Can spend a charge");
+is($bot->spend_charge, 0, "Spent a charge");
 
 # recharge a few times
 ok($bot->recharge, "Can recharge bag of tricks");
