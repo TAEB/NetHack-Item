@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Item tests => 78;
+use Test::NetHack::Item tests => 80;
 sub check;
 
 check "a +1 long sword" => "a blessed +1 long sword" => {
@@ -116,6 +116,10 @@ check "a candelabrum (no candles attached)" => "a candelabrum (1 candle, lit)" =
 check "a candelabrum (7 candles attached)" => "a candelabrum (7 candles, lit)" => {
     candles_attached => 7,
     is_lit           => 1,
+};
+
+check "a candle" => "a partly used candle" => {
+    is_partly_used => 1,
 };
 
 check "an uncursed +1 ring mail" => "an uncursed +1 ring mail (being worn)" => {

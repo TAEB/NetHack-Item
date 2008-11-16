@@ -19,6 +19,13 @@ after incorporate_stats => sub {
     $self->is_partly_used($stats->{used});
 };
 
+after incorporate_stats_from => sub {
+    my $self  = shift;
+    my $other = shift;
+
+    $self->incorporate_stat($other => 'is_partly_used');
+};
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
