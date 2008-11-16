@@ -68,6 +68,15 @@ sub remove_quantity {
     return $new_item;
 }
 
+around weight => sub {
+    my $orig = shift;
+    my $self = shift;
+
+    return undef unless $self->contents_known;
+
+    return $self->$orig;
+};
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 

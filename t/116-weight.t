@@ -18,5 +18,6 @@ use Test::NetHack::Items (
     "a gray stone"           => undef,
     "a luckstone"            => 10,
     "a loadstone"            => 500,
+    "a bag of holding"       => undef,
 );
 
