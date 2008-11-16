@@ -496,10 +496,8 @@ sub collapse_spoiler_value {
     return $value;
 }
 
-sub subtype {
-    my $self = shift;
-    $self->collapse_spoiler_value('subtype');
-}
+sub subtype { shift->collapse_spoiler_value('subtype') }
+sub weight  { shift->collapse_spoiler_value('weight') }
 
 sub can_drop { 1 }
 
