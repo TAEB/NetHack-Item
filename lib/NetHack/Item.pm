@@ -64,6 +64,14 @@ has generic_name => (
     predicate => 'has_generic_name',
 );
 
+has container => (
+    is        => 'rw',
+    isa       => 'NetHack::Item',
+    clearer   => 'clear_container',
+    predicate => 'is_in_container',
+    weak_ref  => 1,
+);
+
 for my $type (qw/wield quiver grease offhand/) {
     my $is = "is_$type";
 
