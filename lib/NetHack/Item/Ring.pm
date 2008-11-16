@@ -14,8 +14,9 @@ subtype 'NetHack::Item::Hand'
      => where { !defined($_) || $_ eq 'left' || $_ eq 'right' };
 
 has hand => (
-    is  => 'rw',
-    isa => 'NetHack::Item::Hand',
+    traits => [qw/IncorporatesUndef/],
+    is     => 'rw',
+    isa    => 'NetHack::Item::Hand',
 );
 
 after incorporate_stats => sub {

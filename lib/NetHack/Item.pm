@@ -3,6 +3,8 @@ package NetHack::Item;
 use Moose;
 use MooseX::AttributeHelpers;
 
+use NetHack::Item::Meta::Trait::IncorporatesUndef;
+
 our $VERSION = '0.03';
 
 has raw => (
@@ -29,9 +31,9 @@ has artifact => (
 );
 
 has slot => (
+    traits    => [qw/IncorporatesUndef/],
     is        => 'rw',
-    isa       => 'Str',
-    predicate => 'has_slot',
+    isa       => 'Maybe[Str]',
 );
 
 has quantity => (
@@ -72,6 +74,7 @@ for my $type (qw/wield quiver grease offhand/) {
 
     has $is => (
         metaclass => 'Bool',
+        traits    => [qw/IncorporatesUndef/],
         is        => 'rw',
         isa       => 'Bool',
         default   => 0,
@@ -522,10 +525,8 @@ sub incorporate_stat {
     my $new_value = $new_attr->get_value($other);
 
     if (!defined($new_value)) {
-        # if the stat can accept undef as a valid value, then the new item's
-        # value being undef is OK
-        return if $old_attr->has_type_constraint
-               && !$old_attr->type_constraint->check(undef);
+        # if the stat incorporates undef, then incorporate it!
+        return unless $old_attr->does('IncorporatesUndef');
     }
 
     return if defined($old_value)
