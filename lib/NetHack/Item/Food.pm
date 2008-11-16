@@ -3,6 +3,7 @@ package NetHack::Item::Food;
 use Moose;
 extends 'NetHack::Item';
 
+use constant subtypes => "corpse";
 use constant type => "food";
 
 has is_partly_eaten => (
