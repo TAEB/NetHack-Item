@@ -13,11 +13,11 @@ use Test::NetHack::Items (
         candles_attached => 7,
         is_lit           => 0,
     },
-    "a candelabrum (1 candle attached, lit)" => {
+    "a candelabrum (1 candle, lit)" => {
         candles_attached => 1,
         is_lit           => 1,
     },
-    "a candelabrum (7 candles attached, lit)" => {
+    "a candelabrum (7 candles, lit)" => {
         candles_attached => 7,
         is_lit           => 1,
     },
