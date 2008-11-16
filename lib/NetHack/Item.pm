@@ -495,9 +495,23 @@ sub subtype {
 
 sub can_drop { 1 }
 
+sub is_evolution_of {
+    my $new = shift;
+    my $old = shift;
+
+    return 0 if $new->type ne $old->type;
+
+    return 1;
+}
+
 sub incorporate_stats_from {
     my $self  = shift;
     my $other = shift;
+
+    $other = NetHack::Item->new($other)
+        if !ref($other);
+
+    confess "New item (" . $other->raw . ") does not appear to be an evolution of the old item (" . $self->raw . ")" unless $other->is_evolution_of($self);
 
     my @stats = (qw/slot quantity cost specific_name generic_name is_wielded
                     is_quivered is_greased is_offhand is_blessed is_uncursed
