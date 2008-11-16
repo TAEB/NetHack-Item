@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use base 'Test::More';
 
-our @EXPORT = qw/test_items plan_items/;
+our @EXPORT = qw/test_items plan_items incorporate_ok/;
 
 use NetHack::Item;
 
@@ -58,6 +58,20 @@ sub plan_items {
     return $tests if defined wantarray;
 
     Test::More::plan(tests => $tests);
+}
+
+sub incorporate_ok {
+    my $before = shift;
+    my $after  = shift;
+    my $stats  = shift;
+
+    for my $other ($after, NetHack::Item->new($after)) {
+        my $item = NetHack::Item->new($before);
+        $item->incorporate_stats_from($other);
+
+        local $Test::Builder::Level = $Test::Builder::Level + 1;
+        test_items($item, $stats);
+    }
 }
 
 1;
