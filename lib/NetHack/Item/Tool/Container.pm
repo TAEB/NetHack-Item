@@ -44,11 +44,26 @@ sub remove_item {
         if ($contents->[$i] == $item) {
             splice @$contents, $i, 1;
             $item->clear_container;
+            last;
         }
         else {
             ++$i;
         }
     }
+
+    return $item;
+}
+
+sub remove_quantity {
+    my $self          = shift;
+    my $item          = shift;
+    my $quantity      = shift;
+    my $item_quantity = $item->quantity;
+
+    return $self->remove_item($item)
+        if $item_quantity == $quantity;
+
+    $item->fork_quantity($quantity);
 }
 
 __PACKAGE__->meta->make_immutable;
