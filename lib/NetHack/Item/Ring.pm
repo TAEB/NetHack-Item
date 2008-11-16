@@ -5,7 +5,7 @@ extends 'NetHack::Item';
 with 'NetHack::Item::Role::Wearable';
 with 'NetHack::Item::Role::Enchantable';
 
-use Moose::Util::TypeConstraints;
+use Moose::Util::TypeConstraints qw/subtype as where/;
 
 use constant type => "ring";
 

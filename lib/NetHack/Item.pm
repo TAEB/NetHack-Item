@@ -529,6 +529,7 @@ sub incorporate_stat {
     }
 
     return if defined($old_value)
+           && defined($new_value)
            && $old_value eq $new_value;
 
     $old_attr->set_value($self, $new_value);
