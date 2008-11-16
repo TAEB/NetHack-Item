@@ -665,7 +665,7 @@ Synonyms for L</is_blessed> and L</is_cursed>.
 
 L<http://sartak.org/code/TAEB/>
 
-=head1 AUTHOR
+=head1 AUTHORS
 
 Shawn M Moore, C<< <sartak@gmail.com> >>
 
