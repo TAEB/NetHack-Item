@@ -69,13 +69,13 @@ sub recharge {
     $self->set_charges_unknown;
     $self->inc_times_recharged;
     $self->reset_charges_spent_this_recharge;
-    $self->inc_recharges if $self->has_recharges;
+    $self->inc_recharges if $self->recharges_known;
 }
 
 sub chance_to_recharge {
     my $self = shift;
 
-    return undef if !$self->has_recharges;
+    return undef if !$self->recharges_known;
 
     my $n = $self->recharges;
 
