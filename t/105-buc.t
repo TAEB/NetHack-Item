@@ -14,6 +14,8 @@ use Test::NetHack::Items (
     "n - a clear potion"                    => undef,
     "n - a potion of holy water"            => 'blessed',
     "o - a potion of unholy water"          => 'cursed',
+    "n - 3 potions of holy water"           => 'blessed',
+    "o - 3 potions of unholy water"         => 'cursed',
     "p - a unicorn horn"                    => undef,
     "p - a +2 unicorn horn"                 => 'uncursed',
 );

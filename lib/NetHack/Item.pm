@@ -266,7 +266,7 @@ sub extract_stats {
     }x;
 
     # this canonicalization must come early
-    if ($stats{item} =~ /^potion of ((?:un)?holy) water$/) {
+    if ($stats{item} =~ /^potions? of ((?:un)?holy) water$/) {
         $stats{item} = 'potion of water';
         $stats{buc}  = $1;
     }
