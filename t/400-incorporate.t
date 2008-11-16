@@ -20,6 +20,11 @@ check "a +1 long sword" => "the blessed greased +3 Excalibur (weapon in hand)" =
     is_greased  => 1,
 };
 
+check "a blessed dagger" => "a poisoned dagger" => {
+    buc         => 'blessed',
+    is_poisoned => 1,
+};
+
 sub check {
     my $before = shift;
     my $after  = shift;

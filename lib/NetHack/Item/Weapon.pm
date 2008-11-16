@@ -20,6 +20,13 @@ after incorporate_stats => sub {
     $self->is_poisoned($stats->{poisoned});
 };
 
+after incorporate_stats_from => sub {
+    my $self  = shift;
+    my $other = shift;
+
+    $self->incorporate_stat($other => 'is_poisoned');
+};
+
 around can_drop => sub {
     my $orig = shift;
     my $self = shift;
