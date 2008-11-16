@@ -501,6 +501,10 @@ sub is_evolution_of {
 
     return 0 if $new->type ne $old->type;
 
+    return 0 if $new->has_identity
+             && $old->has_identity
+             && $new->identity ne $old->identity;
+
     return 1;
 }
 
