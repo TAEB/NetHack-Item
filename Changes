@@ -1,6 +1,12 @@
 Revision history for NetHack-Item
 
-0.03
+0.03    Sun Nov 16 03:00:00 2008
+        Item->incorporate_stats_from(Item) and Item->is_evolution_of(Item)
+            These are used to update items with obvious stats from newer copies
+            of the same item. Such as when you look at your inventory again and
+            notice your sword has increased in enchantment.
+        Tests for charging (thanks arcanehl) and fixes
+        Corpses are now a subtype of food
 
 0.02    Wed Nov 12 22:54:18 2008
         Too much to list, biggest is addition of subtypes and plenty of
