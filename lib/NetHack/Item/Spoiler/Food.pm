@@ -2061,9 +2061,10 @@ sub _list {
     # Collect monster corpses, tins, and eggs
     for my $name (keys %monsterlist) {
         my $stats = $monsterlist{$name};
-        $food->{"$name corpse"}         = $stats;
-        $food->{"$name corpse"}{corpse} = 1;
-        $food->{"$name corpse"}{plural} = "$name corpses";
+        $food->{"$name corpse"}          = $stats;
+        $food->{"$name corpse"}{corpse}  = 1;
+        $food->{"$name corpse"}{subtype} = 'corpse';
+        $food->{"$name corpse"}{plural}  = "$name corpses";
 
         my $tin_name = $name;
         $tin_name .= " meat"

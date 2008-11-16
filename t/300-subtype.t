@@ -24,5 +24,13 @@ use Test::NetHack::Items (
         subtype       => undef,
         possibilities => ['bag of tricks'],
     },
+    "a lichen corpse" => {
+        type    => 'food',
+        subtype => 'corpse',
+    },
+    "a food ration" => {
+        type    => 'food',
+        subtype => undef,
+    },
 );
 
