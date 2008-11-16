@@ -89,6 +89,10 @@ sub chance_to_recharge {
     return 0 if $self->has_identity
              && $self->identity eq 'wand of wishing';
 
+    # can recharge all tools except magic marker indefinitely
+    return 100 if $self->type eq 'tool'
+               && $self->identity ne 'magic marker';
+
     # (n/7)^3
     return 100 - int(100 * (($n/7) ** 3));
 }
