@@ -513,15 +513,25 @@ sub incorporate_stat {
     $other = NetHack::Item->new($other)
         if !ref($other);
 
-    my $old_value = $self->$stat;
-    my $new_value = $other->$stat;
+    my ($old_attr, $new_attr) = map {
+        $_->meta->find_attribute_by_name($stat)
+            or confess "No attribute named ($stat)";
+    } $self, $other;
 
-    return if !defined($new_value);
+    my $old_value = $old_attr->get_value($self);
+    my $new_value = $new_attr->get_value($other);
+
+    if (!defined($new_value)) {
+        # if the stat can accept undef as a valid value, then the new item's
+        # value being undef is OK
+        return if $old_attr->has_type_constraint
+               && !$old_attr->type_constraint->check(undef);
+    }
 
     return if defined($old_value)
            && $old_value eq $new_value;
 
-    $self->$stat($new_value);
+    $old_attr->set_value($self, $new_value);
 }
 
 __PACKAGE__->meta->make_immutable;
