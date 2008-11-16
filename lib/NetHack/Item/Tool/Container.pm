@@ -63,7 +63,9 @@ sub remove_quantity {
     return $self->remove_item($item)
         if $item_quantity == $quantity;
 
-    $item->fork_quantity($quantity);
+    my $new_item = $item->fork_quantity($quantity);
+    $new_item->clear_container;
+    return $new_item;
 }
 
 __PACKAGE__->meta->make_immutable;
