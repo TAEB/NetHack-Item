@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Item tests => 30;
+use Test::NetHack::Item tests => 34;
 sub check;
 
 check "a +1 long sword" => "a blessed +1 long sword" => {
@@ -43,6 +43,14 @@ check "a ring of see invisible (on left hand)" => "a ring of see invisible (on r
 
 check "a ring of see invisible (on right hand)" => "a ring of see invisible" => {
     hand => undef,
+};
+
+check "a heavy iron ball" => "a heavy iron ball (chained to you)" => {
+    is_chained_to_you => 1,
+};
+
+check "a heavy iron ball (chained to you)" => "a heavy iron ball" => {
+    is_chained_to_you => 0,
 };
 
 sub check {
