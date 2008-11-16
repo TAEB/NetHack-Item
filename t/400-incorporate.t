@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Item tests => 24;
+use Test::NetHack::Item tests => 30;
 sub check;
 
 check "a +1 long sword" => "a blessed +1 long sword" => {
@@ -31,6 +31,18 @@ check "a black dragon corpse" => "a partly eaten black dragon corpse" => {
 
 check "a potion of see invisible" => "a diluted potion of see invisible" => {
     is_diluted => 1,
+};
+
+check "a ring of see invisible" => "a ring of see invisible (on left hand)" => {
+    hand => 'left',
+};
+
+check "a ring of see invisible (on left hand)" => "a ring of see invisible (on right hand)" => {
+    hand => 'right',
+};
+
+check "a ring of see invisible (on right hand)" => "a ring of see invisible" => {
+    hand => undef,
 };
 
 sub check {
