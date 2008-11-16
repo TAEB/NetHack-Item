@@ -19,6 +19,13 @@ after incorporate_stats => sub {
     $self->is_diluted($stats->{diluted});
 };
 
+after incorporate_stats_from => sub {
+    my $self  = shift;
+    my $other = shift;
+
+    $self->incorporate_stat($other => 'is_diluted');
+};
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
