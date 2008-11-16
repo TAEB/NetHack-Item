@@ -11,6 +11,7 @@ use NetHack::Item;
 
 sub import_extra {
     Test::More->export_to_level(2);
+    Test::Exception->export_to_level(2);
     strict->import;
     warnings->import;
 }

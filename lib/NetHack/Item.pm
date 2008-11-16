@@ -570,6 +570,23 @@ sub incorporate_stat {
     $old_attr->set_value($self, $new_value);
 }
 
+sub fork_quantity {
+    my $self     = shift;
+    my $quantity = shift;
+
+    confess "Unable to fork more ($quantity) than the entire quantity (" . $self->quantity . ") of item ($self)"
+        if $quantity > $self->quantity;
+
+    confess "Unable to fork the entire quantity ($quantity) of item ($self)"
+        if $quantity == $self->quantity;
+
+    my $new_item = $self->meta->clone_instance($self);
+    $new_item->quantity($quantity);
+    $self->quantity($self->quantity - $quantity);
+
+    return $new_item;
+}
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
