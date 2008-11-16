@@ -5,13 +5,17 @@ extends 'NetHack::Item';
 with 'NetHack::Item::Role::Wearable';
 with 'NetHack::Item::Role::Enchantable';
 
-use Moose::Util::TypeConstraints 'enum';
+use Moose::Util::TypeConstraints;
 
 use constant type => "ring";
 
+subtype 'NetHack::Item::Hand'
+     => as 'Item'
+     => where { !defined($_) || $_ eq 'left' || $_ eq 'right' };
+
 has hand => (
-    is => 'rw',
-    isa => enum [qw/left right/],
+    is  => 'rw',
+    isa => 'NetHack::Item::Hand',
 );
 
 after incorporate_stats => sub {
