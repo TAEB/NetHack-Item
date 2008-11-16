@@ -121,12 +121,16 @@ around is_evolution_of => sub {
     my $new = shift;
     my $old = shift;
 
-    # lost recharges?
-    return 0 if $old->recharges > $new->recharges;
+    if ($old->recharges_known && $new->recharges_known) {
+        # lost recharges?
+        return 0 if $old->recharges > $new->recharges;
 
-    # gained charges without a recharge?
-    return 0 if $old->recharges == $new->recharges
-             && $old->charges < $new->charges;
+        # gained charges without a recharge?
+        if ($old->charges_known && $new->charges_known) {
+            return 0 if $old->recharges == $new->recharges
+                     && $old->charges < $new->charges;
+        }
+    }
 
     return $orig->($new, $old);
 };
