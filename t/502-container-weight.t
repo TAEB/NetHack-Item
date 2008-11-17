@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Item tests => 7;
+use Test::NetHack::Item tests => 8;
 
 my $sack = NetHack::Item->new("a sack");
 is($sack->weight, undef, "don't know the weight yet, because we don't know the contents");
@@ -21,3 +21,5 @@ is($boh->weight, 15, "boh weighs 15");
 $boh->add_item(NetHack::Item->new("a pearl ring"));
 is($boh->weight, undef, "we don't know the BUC of the boh so we don't know the weight");
 
+$boh->is_cursed(1);
+is($boh->weight, 21, "weight is 15 + ring(3)*2");

@@ -87,6 +87,7 @@ around weight => sub {
 
     if ($contents_weight && $self->identity eq 'bag of holding') {
         return undef if !defined($self->buc);
+        $contents_weight *= 2 if $self->is_cursed;
     }
 
     return $container_weight + $contents_weight;
