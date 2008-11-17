@@ -78,16 +78,23 @@ around weight => sub {
     my $container_weight = $self->$orig;
     my $contents_weight = 0;
 
+    my $modifier = sub { $_[0] };
+    if ($self->identity eq 'bag of holding') {
+        use integer;
+        $modifier = sub { $_[0] * 2 }       if $self->is_cursed;
+        $modifier = sub { 1 + ($_[0] / 2) } if $self->is_uncursed;
+        $modifier = sub { 1 + ($_[0] / 4) } if $self->is_blessed;
+    }
+
     for my $item ($self->items) {
         my $item_weight = $item->weight;
         return undef if !defined($item_weight);
 
-        $contents_weight += $item_weight;
+        $contents_weight += $modifier->($item_weight);
     }
 
     if ($contents_weight && $self->identity eq 'bag of holding') {
         return undef if !defined($self->buc);
-        $contents_weight *= 2 if $self->is_cursed;
     }
 
     return $container_weight + $contents_weight;
