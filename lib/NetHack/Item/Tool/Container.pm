@@ -12,7 +12,8 @@ has contents => (
     isa       => 'ArrayRef[NetHack::Item]',
     default   => sub { [] },
     provides  => {
-        push   => 'add_item',
+        push     => 'add_item',
+        elements => 'items',
     },
 );
 
@@ -74,7 +75,17 @@ around weight => sub {
 
     return undef unless $self->contents_known;
 
-    return $self->$orig;
+    my $container_weight = $self->$orig;
+    my $contents_weight = 0;
+
+    for my $item ($self->items) {
+        my $item_weight = $item->weight;
+        return undef if !defined($item_weight);
+
+        $contents_weight += $item_weight;
+    }
+
+    return $container_weight + $contents_weight;
 };
 
 __PACKAGE__->meta->make_immutable;
