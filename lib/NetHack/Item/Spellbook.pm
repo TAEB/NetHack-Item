@@ -8,12 +8,9 @@ use constant type => "spellbook";
 sub spell {
     my $self = shift;
 
-    return;
-
-    # XXX: this needs possibility tracking
-
     return unless $self->has_identity;
     return unless $self->identity =~ m{^spellbook of (.*)$};
+    return if $1 eq "blank paper";
     return $1;
 }
 
