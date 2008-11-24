@@ -61,10 +61,10 @@ sub _list {
             plural     => 'emeralds',
         },
         'turquoise stone' => {
-            price      => 2000,
-            engrave    => 'soft',
-            appearance => [qw/green blue/],
-            plural     => 'turquoise stones',
+            price       => 2000,
+            engrave     => 'soft',
+            appearances => [qw/green blue/],
+            plural      => 'turquoise stones',
         },
         'aquamarine stone' => {
             price       => 1500,
