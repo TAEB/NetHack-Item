@@ -64,6 +64,17 @@ sub identify_as {
     $self->rule_out(grep { $_ ne $identity } $self->possibilities);
 }
 
+after rule_out => sub {
+    my $self = shift;
+    for my $possibility (@_) {
+        $self->trackers->ruled_out($self => $possibility);
+    }
+
+    if ($self->possibilities == 1) {
+        $self->trackers->identified($self => $self->possibilities);
+    }
+};
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 

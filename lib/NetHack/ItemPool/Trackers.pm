@@ -96,6 +96,19 @@ sub tracker_for {
     return $self->get_tracker($item->appearance);
 }
 
+sub identified {
+    my $self     = shift;
+    my $tracker  = shift;
+    my $identity = shift;
+
+    for my $foo ($self->trackers) {
+        next if $tracker == $foo;
+        $foo->rule_out($identity) if $foo->includes_possibility($identity);
+    }
+}
+
+sub ruled_out {}
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
