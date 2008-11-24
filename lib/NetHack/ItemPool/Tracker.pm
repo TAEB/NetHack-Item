@@ -27,7 +27,8 @@ has _possibilities => (
     init_arg => 'possibilities',
     required => 1,
     handles => {
-        rule_out => 'remove',
+        rule_out             => 'remove',
+        includes_possibility => 'includes',
     },
 );
 
