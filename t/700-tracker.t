@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 12;
+use Test::More tests => 13;
 use NetHack::ItemPool;
 
 my $pool = NetHack::ItemPool->new;
@@ -23,4 +23,5 @@ ok(!$tracker->includes_possibility('scroll of fire'), "KIRJE is not fire");
 ok(!$tracker->includes_possibility('scroll of punishment'), "KIRJE is not punishment");
 ok($tracker->includes_possibility('scroll of genocide'), "KIRJE is genocide!");
 is(scalar($kirje->possibilities), 1, "1 possibility");
+is($kirje->identity, 'scroll of genocide', 'identity is "set by possibility tracker" or at least, appears like it is');
 

@@ -591,6 +591,16 @@ sub fork_quantity {
     return $new_item;
 }
 
+# if we have only one possibility, then that is our identity
+before 'identity', 'has_identity' => sub {
+    my $self = shift;
+    return if @_;
+    return unless $self->has_tracker;
+    return if $self->tracker->possibilities > 1;
+
+    $self->identity($self->tracker->possibilities);
+};
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
