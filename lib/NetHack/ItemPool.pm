@@ -50,6 +50,10 @@ sub new_item {
         $self->inventory->update($item);
     }
 
+    if ($item->has_appearance && (my $tracker = $self->tracker_for($item))) {
+        $item->_set_tracker($tracker);
+    }
+
     return $item;
 }
 

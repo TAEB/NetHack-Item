@@ -14,6 +14,13 @@ has pool => (
     weak_ref  => 1,
 );
 
+has tracker => (
+    is        => 'ro',
+    writer    => '_set_tracker',
+    isa       => 'NetHack::ItemPool::Tracker',
+    predicate => 'has_tracker',
+);
+
 has raw => (
     is       => 'ro',
     isa      => 'Str',
