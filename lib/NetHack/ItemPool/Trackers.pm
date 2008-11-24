@@ -60,6 +60,7 @@ sub _build_trackers {
 
     my $tracker_class = $self->tracker_class;
     my $spoiler_class = $self->spoiler_class;
+    my $pool = $self->pool;
 
     my $possibility_mapping = $self->_appearances_to_possibilities;
     for my $appearance (keys %$possibility_mapping) {
@@ -72,6 +73,7 @@ sub _build_trackers {
             type          => $type,
             possibilities => $possibilities,
             (defined $subtype ? (subtype => $subtype) : ()),
+            pool          => $pool,
         );
 
         $trackers->{$appearance} = $tracker;
