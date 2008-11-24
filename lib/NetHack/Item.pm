@@ -472,7 +472,14 @@ sub _set_appearance_and_identity {
 
 sub possibilities {
     my $self = shift;
-    return $self->identity if $self->has_identity;
+
+    if ($self->has_identity) {
+        return $self->identity if wantarray;
+        return 1;
+    }
+
+    return $self->tracker->possibilities if $self->has_tracker;
+
     return sort @{ $self->spoiler_class->possibilities_for_appearance($self->appearance) };
 }
 
