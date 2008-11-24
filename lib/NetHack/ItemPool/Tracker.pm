@@ -48,6 +48,16 @@ sub possibilities {
     return sort @possibilities;
 }
 
+sub identify_as {
+    my $self     = shift;
+    my $identity = shift;
+
+    confess "$identity is not a possibility for " . $self->appearance
+        unless $self->includes_possibility($identity);
+
+    $self->rule_out(grep { $_ ne $identity } $self->possibilities);
+}
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
