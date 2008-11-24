@@ -21,6 +21,11 @@ has appearance => (
     required => 1,
 );
 
+has '+pool' => (
+    required => 1,
+    handles  => [qw/trackers/],
+);
+
 has _possibilities => (
     is       => 'ro',
     isa      => 'Set::Object',

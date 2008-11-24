@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 package NetHack::ItemPool::Trackers;
 use Moose;
+with 'NetHack::ItemPool::Role::HasPool';
 
 use NetHack::ItemPool::Tracker;
 use NetHack::Item::Spoiler;
@@ -13,6 +14,10 @@ has trackers => (
     isa     => 'HashRef[NetHack::ItemPool::Tracker]',
     lazy    => 1,
     builder => '_build_trackers',
+);
+
+has '+pool' => (
+    required => 1,
 );
 
 sub _appearances_to_possibilities {
