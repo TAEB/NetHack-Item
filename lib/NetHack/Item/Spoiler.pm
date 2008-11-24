@@ -251,6 +251,22 @@ sub artifact_spoiler {
     return $artifact{$name};
 }
 # }}}
+# collapsing values {{{
+sub collapse_value {
+    my $self = shift;
+    my $key  = shift;
+
+    my @values = map { $self->spoiler_for($_)->{$key} } @_;
+    my $value = shift @values;
+    return undef if !defined($value);
+
+    for (@values) {
+        return undef if !defined($_) || $_ ne $value;
+    }
+
+    return $value;
+}
+# }}}
 
 1;
 

@@ -475,32 +475,11 @@ sub spoiler {
     return $self->spoiler_class->spoiler_for($self->identity);
 }
 
-sub all_spoilers {
-    my $self = shift;
-
-    return map { $self->spoiler_class->spoiler_for($_) } $self->possibilities;
-}
-
-sub spoiler_values {
-    my $self = shift;
-    my $key  = shift;
-
-    return map { $_->{$key} } $self->all_spoilers;
-}
-
 sub collapse_spoiler_value {
     my $self = shift;
     my $key  = shift;
 
-    my @values = $self->spoiler_values($key);
-    my $value = shift @values;
-    return undef if !defined($value);
-
-    for (@values) {
-        return undef if !defined($_) || $_ ne $value;
-    }
-
-    return $value;
+    return $self->spoiler_class->collapse_value($key, $self->possibilities);
 }
 
 sub subtype { shift->collapse_spoiler_value('subtype') }
