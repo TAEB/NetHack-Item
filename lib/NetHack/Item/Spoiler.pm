@@ -3,7 +3,11 @@ package NetHack::Item::Spoiler;
 use strict;
 use warnings;
 
-use Module::Pluggable search_path => __PACKAGE__, require => 1;
+use Module::Pluggable (
+    search_path => __PACKAGE__,
+    require     => 1,
+    sub_name    => 'spoiler_types',
+);
 
 use Memoize;
 memoize 'list';
@@ -76,7 +80,7 @@ sub name_to_type_list {
     my $self = shift;
     my %all_types;
 
-    for my $class ($self->plugins) {
+    for my $class ($self->spoiler_types) {
         my $type = $class->type;
 
         my $list = $class->list;
@@ -191,7 +195,7 @@ sub plural_of_list {
     my $self = shift;
     my %all_plurals;
 
-    for my $class ($self->plugins) {
+    for my $class ($self->spoiler_types) {
         my $plurals = $class->plurals;
         @all_plurals{keys %$plurals} = values %$plurals;
     }

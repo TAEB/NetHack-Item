@@ -8,7 +8,7 @@ use NetHack::Item::Spoiler;
 my $spoiler = "NetHack::Item::Spoiler";
 my @artifacts;
 
-for my $type ($spoiler->plugins) {
+for my $type ($spoiler->spoiler_types) {
     my $list = $type->list;
     push @artifacts, grep { $_->{artifact} } values %$list;
 }
