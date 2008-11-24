@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 package NetHack::ItemPool::Tracker;
 use Moose;
+use Set::Object;
 
 has type => (
     is       => 'ro',
@@ -20,11 +21,31 @@ has appearance => (
     required => 1,
 );
 
-has possibilities => (
+has _possibilities => (
     is       => 'ro',
-    isa      => 'ArrayRef[Str]',
+    isa      => 'Set::Object',
+    init_arg => 'possibilities',
     required => 1,
+    handles => {
+        rule_out => 'remove',
+    },
 );
+
+around BUILDARGS => sub {
+    my $orig = shift;
+    my $args = $orig->(@_);
+
+    $args->{possibilities} = Set::Object->new(@{ $args->{possibilities} })
+        if exists $args->{possibilities};
+
+    return $args;
+};
+
+sub possibilities {
+    my @possibilities = shift->_possibilities->members;
+    return @possibilities if !wantarray;
+    return sort @possibilities;
+}
 
 __PACKAGE__->meta->make_immutable;
 no Moose;
