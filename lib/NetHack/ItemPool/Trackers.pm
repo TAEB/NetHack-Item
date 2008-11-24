@@ -53,6 +53,18 @@ sub _build_trackers {
     my $self = shift;
     my $trackers = {};
 
+    my $class = $self->tracker_class;
+
+    my $possibility_mapping = $self->_appearances_to_possibilities;
+    for my $appearance (keys %$possibility_mapping) {
+        my $tracker = $class->new(
+            appearance    => $appearance,
+            possibilities => $possibility_mapping->{$appearance},
+        );
+
+        $trackers->{$appearance} = $tracker;
+    }
+
     return $trackers;
 }
 
