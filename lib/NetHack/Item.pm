@@ -3,7 +3,16 @@ package NetHack::Item;
 use Moose;
 use MooseX::AttributeHelpers;
 
+use NetHack::ItemPool;
+
 use NetHack::Item::Meta::Trait::IncorporatesUndef;
+
+has pool => (
+    is        => 'ro',
+    isa       => 'NetHack::ItemPool',
+    predicate => 'has_pool',
+    weak_ref  => 1,
+);
 
 has raw => (
     is       => 'ro',
