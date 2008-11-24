@@ -39,7 +39,7 @@ sub _appearances_to_possibilities {
     # now delete the obvious ones, and sort the others
     for my $appearance (keys %$mapping) {
         if (@{ $mapping->{$appearance} } == 1) {
-            delete $mapping->{$appearance}
+            delete $mapping->{$appearance};
         }
         else {
             @{ $mapping->{$appearance} } = sort @{ $mapping->{$appearance} };
