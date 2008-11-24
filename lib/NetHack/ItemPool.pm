@@ -19,14 +19,24 @@ has inventory => (
     is      => 'ro',
     isa     => 'NetHack::Inventory',
     lazy    => 1,
-    default => sub { shift->inventory_class->new },
+    default => sub {
+        my $self = shift;
+        $self->inventory_class->new(
+            pool => $self,
+        )
+    },
 );
 
 has trackers => (
     is      => 'ro',
     isa     => 'NetHack::ItemPool::Trackers',
     lazy    => 1,
-    default => sub { shift->trackers_class->new },
+    default => sub {
+        my $self = shift;
+        $self->trackers_class->new(
+            pool => $self,
+        )
+    },
     handles => [qw/tracker_for/],
 );
 

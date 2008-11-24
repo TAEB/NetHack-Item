@@ -2,6 +2,7 @@
 package NetHack::Inventory;
 use Moose;
 use MooseX::AttributeHelpers;
+with 'NetHack::ItemPool::Role::HasPool';
 
 use NetHack::Inventory::Equipment;
 
@@ -26,8 +27,17 @@ has equipment => (
     is      => 'ro',
     isa     => 'NetHack::Inventory::Equipment',
     lazy    => 1,
-    default => sub { shift->equipment_class->new },
-    handles => qr/^(?!update|remove)\w/,
+    handles => qr/^(?!update|remove|(has_)?pool)\w/,
+    default => sub {
+        my $self = shift;
+        $self->equipment_class->new(
+            pool => $self->pool,
+        )
+    },
+);
+
+has '+pool' => (
+    required => 1,
 );
 
 sub _extract_slot {

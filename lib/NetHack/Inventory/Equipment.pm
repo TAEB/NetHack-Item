@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 package NetHack::Inventory::Equipment;
 use Moose;
+with 'NetHack::ItemPool::Role::HasPool';
 
 my @weapon_slots = (qw/weapon offhand quiver/);
 my @armor_slots = (qw/helmet gloves boots bodyarmor cloak shirt shield/);
@@ -15,6 +16,10 @@ for my $slot (@eq_slots) {
         predicate => "has_$slot",
     );
 }
+
+has '+pool' => (
+    required => 1,
+);
 
 my %weapon_slots = (
     weapon  => 'is_wielded',
