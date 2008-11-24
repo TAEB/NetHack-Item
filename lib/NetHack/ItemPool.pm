@@ -7,8 +7,8 @@ use NetHack::ItemPool::Inventory;
 
 our $VERSION = '0.02';
 
-use constant inventory_class => 'NetHack::ItemPool::Inventory',
-use constant trackers_class  => 'NetHack::ItemPool::Trackers',
+use constant inventory_class => 'NetHack::ItemPool::Inventory';
+use constant trackers_class  => 'NetHack::ItemPool::Trackers';
 
 has artifacts => (
     is      => 'ro',
