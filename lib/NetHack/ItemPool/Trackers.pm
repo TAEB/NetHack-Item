@@ -53,13 +53,20 @@ sub _build_trackers {
     my $self = shift;
     my $trackers = {};
 
-    my $class = $self->tracker_class;
+    my $tracker_class = $self->tracker_class;
+    my $spoiler_class = $self->spoiler_class;
 
     my $possibility_mapping = $self->_appearances_to_possibilities;
     for my $appearance (keys %$possibility_mapping) {
-        my $tracker = $class->new(
+        my $possibilities = $possibility_mapping->{$appearance};
+        my $type    = $spoiler_class->collapse_value('type', @$possibilities);
+        my $subtype = $spoiler_class->collapse_value('subtype', @$possibilities);
+
+        my $tracker = $tracker_class->new(
             appearance    => $appearance,
-            possibilities => $possibility_mapping->{$appearance},
+            type          => $type,
+            possibilities => $possibilities,
+            (defined $subtype ? (subtype => $subtype) : ()),
         );
 
         $trackers->{$appearance} = $tracker;

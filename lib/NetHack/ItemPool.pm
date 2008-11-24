@@ -4,6 +4,7 @@ use Moose;
 use NetHack::Item;
 
 use NetHack::Inventory;
+use NetHack::ItemPool::Trackers;
 
 use constant inventory_class => 'NetHack::Inventory';
 use constant trackers_class  => 'NetHack::ItemPool::Trackers';
