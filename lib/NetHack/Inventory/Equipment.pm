@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-package NetHack::ItemPool::Equipment;
+package NetHack::Inventory::Equipment;
 use Moose;
 
 my @weapon_slots = (qw/weapon offhand quiver/);
@@ -141,7 +141,7 @@ __END__
 
 =head1 NAME
 
-NetHack::ItemPool::Equipment - the player's equipment
+NetHack::Inventory::Equipment - the player's equipment
 
 =head1 SYNOPSIS
 
