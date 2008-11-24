@@ -5,8 +5,6 @@ use NetHack::Item;
 
 use NetHack::Inventory;
 
-our $VERSION = '0.02';
-
 use constant inventory_class => 'NetHack::Inventory';
 use constant trackers_class  => 'NetHack::ItemPool::Trackers';
 
@@ -96,25 +94,6 @@ equipment (L<NetHack::Inventory::Equipment>) for you.
 
 More documentation to come. For now, the best resource is this module's test
 suite.
-
-=head1 AUTHOR
-
-Shawn M Moore, C<< <sartak@gmail.com> >>
-
-=head1 BUGS
-
-No known bugs.
-
-Please report any bugs through RT: email
-C<bug-nethack-itempool at rt.cpan.org>, or browse
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=NetHack-ItemPool>.
-
-=head1 COPYRIGHT AND LICENSE
-
-Copyright 2008 Shawn M Moore.
-
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
 
 =cut
 

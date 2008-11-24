@@ -3,9 +3,9 @@ package NetHack::Inventory;
 use Moose;
 use MooseX::AttributeHelpers;
 
-use NetHack::Equipment;
+use NetHack::Inventory::Equipment;
 
-use constant equipment_class => 'NetHack::Equipment';
+use constant equipment_class => 'NetHack::Inventory::Equipment';
 
 has inventory => (
     metaclass => 'Collection::Hash',
@@ -24,7 +24,7 @@ has inventory => (
 
 has equipment => (
     is      => 'ro',
-    isa     => 'NetHack::Equipment',
+    isa     => 'NetHack::Inventory::Equipment',
     lazy    => 1,
     default => sub { shift->equipment_class->new },
     handles => qr/^(?!update|remove)\w/,
