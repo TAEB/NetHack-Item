@@ -5,6 +5,8 @@ use MooseX::AttributeHelpers;
 
 use NetHack::ItemPool::Equipment;
 
+use constant equipment_class => 'NetHack::ItemPool::Equipment';
+
 has inventory => (
     metaclass => 'Collection::Hash',
     is        => 'ro',
@@ -24,7 +26,7 @@ has equipment => (
     is      => 'ro',
     isa     => 'NetHack::ItemPool::Equipment',
     lazy    => 1,
-    default => sub { NetHack::ItemPool::Equipment->new },
+    default => sub { shift->equipment_class->new },
     handles => qr/^(?!update|remove)\w/,
 );
 

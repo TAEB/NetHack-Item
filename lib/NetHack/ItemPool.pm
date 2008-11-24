@@ -7,6 +7,9 @@ use NetHack::ItemPool::Inventory;
 
 our $VERSION = '0.02';
 
+use constant inventory_class => 'NetHack::ItemPool::Inventory',
+use constant trackers_class  => 'NetHack::ItemPool::Trackers',
+
 has artifacts => (
     is      => 'ro',
     isa     => 'HashRef',
@@ -17,14 +20,14 @@ has inventory => (
     is      => 'ro',
     isa     => 'NetHack::ItemPool::Inventory',
     lazy    => 1,
-    default => sub { NetHack::ItemPool::Inventory->new },
+    default => sub { shift->inventory_class->new },
 );
 
 has trackers => (
     is      => 'ro',
     isa     => 'NetHack::ItemPool::Trackers',
     lazy    => 1,
-    default => sub { NetHack::ItemPool::Trackers->new },
+    default => sub { shift->trackers_class->new },
 );
 
 sub new_item {
