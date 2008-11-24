@@ -68,6 +68,14 @@ sub _build_trackers {
     return $trackers;
 }
 
+sub tracker_for {
+    my $self = shift;
+    my $item = shift;
+
+    return if !$item->has_appearance;
+    return $self->trackers->{ $item->appearance };
+}
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 

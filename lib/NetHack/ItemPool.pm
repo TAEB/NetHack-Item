@@ -26,6 +26,7 @@ has trackers => (
     isa     => 'NetHack::ItemPool::Trackers',
     lazy    => 1,
     default => sub { shift->trackers_class->new },
+    handles => [qw/tracker_for/],
 );
 
 sub new_item {
