@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 package NetHack::ItemPool::Trackers;
 use Moose;
+use MooseX::AttributeHelpers;
 with 'NetHack::ItemPool::Role::HasPool';
 
 use NetHack::ItemPool::Tracker;
@@ -9,11 +10,16 @@ use NetHack::Item::Spoiler;
 use constant tracker_class => 'NetHack::ItemPool::Tracker';
 use constant spoiler_class => 'NetHack::Item::Spoiler';
 
-has trackers => (
-    is      => 'ro',
-    isa     => 'HashRef[NetHack::ItemPool::Tracker]',
-    lazy    => 1,
-    builder => '_build_trackers',
+has _trackers => (
+    metaclass  => 'Collection::Hash',
+    is         => 'ro',
+    isa        => 'HashRef[NetHack::ItemPool::Tracker]',
+    lazy       => 1,
+    builder    => '_build_trackers',
+    provides   => {
+        values => 'trackers',
+        get    => 'get_tracker',
+    },
 );
 
 has '+pool' => (
@@ -87,7 +93,7 @@ sub tracker_for {
     my $item = shift;
 
     return if !$item->has_appearance;
-    return $self->trackers->{ $item->appearance };
+    return $self->get_tracker($item->appearance);
 }
 
 __PACKAGE__->meta->make_immutable;
