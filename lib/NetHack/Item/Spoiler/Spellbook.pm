@@ -10,8 +10,8 @@ my @spellbooks = map { "$_ spellbook" } (
     qw/parchment vellum ragged mottled stained cloth leather white pink red
     orange yellow velvet turquoise cyan indigo magenta purple violet tan plaid
     gray wrinkled dusty bronze copper silver gold glittering shining dull thin
-    thick/, 'dog eared', 'light green', 'dark green', 'light blue', 'dark
-    blue', 'light brown', 'dark brown',
+    thick/, 'dog eared', 'light green', 'dark green', 'light blue',
+    'dark blue', 'light brown', 'dark brown',
 );
 
 sub _list {
