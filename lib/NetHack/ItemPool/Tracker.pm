@@ -2,6 +2,7 @@
 package NetHack::ItemPool::Tracker;
 use Moose;
 use Set::Object;
+with 'NetHack::ItemPool::Role::HasPool';
 
 has type => (
     is       => 'ro',
