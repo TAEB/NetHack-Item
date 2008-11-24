@@ -3,11 +3,11 @@ package NetHack::ItemPool;
 use Moose;
 use NetHack::Item;
 
-use NetHack::ItemPool::Inventory;
+use NetHack::Inventory;
 
 our $VERSION = '0.02';
 
-use constant inventory_class => 'NetHack::ItemPool::Inventory';
+use constant inventory_class => 'NetHack::Inventory';
 use constant trackers_class  => 'NetHack::ItemPool::Trackers';
 
 has artifacts => (
@@ -18,7 +18,7 @@ has artifacts => (
 
 has inventory => (
     is      => 'ro',
-    isa     => 'NetHack::ItemPool::Inventory',
+    isa     => 'NetHack::Inventory',
     lazy    => 1,
     default => sub { shift->inventory_class->new },
 );
@@ -91,8 +91,8 @@ Objects of this class represent a universe of NetHack items. For example, each
 instance of this class gets exactly one Magicbane, because each NetHack game
 gets exactly one Magicbane.
 
-An ItemPool also manages inventory (L<NetHack::ItemPool::Inventory>) and
-equipment (L<NetHack::ItemPool::Equipment>) for you.
+An ItemPool also manages inventory (L<NetHack::Inventory>) and
+equipment (L<NetHack::Inventory::Equipment>) for you.
 
 More documentation to come. For now, the best resource is this module's test
 suite.
