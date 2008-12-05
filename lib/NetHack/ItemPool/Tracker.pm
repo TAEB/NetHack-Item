@@ -64,6 +64,15 @@ sub identify_as {
     $self->rule_out(grep { $_ ne $identity } $self->possibilities);
 }
 
+sub rule_out_all_but {
+    my $self = shift;
+    my %include = map { $_ => 1 } @_;
+
+    for ($self->possibilities) {
+        $self->rule_out($_) unless $include{$_};
+    }
+}
+
 after rule_out => sub {
     my $self = shift;
     for my $possibility (@_) {
