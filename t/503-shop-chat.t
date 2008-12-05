@@ -26,5 +26,29 @@ use Test::NetHack::Items (
         quantity         => 1,
         cost             => 106,
     },
+    "an uncursed scroll of destroy armor, price 150 zorkmids" => {
+        identity => 'scroll of destroy armor',
+        quantity => 1,
+        cost     => 150,
+        buc      => 'uncursed',
+    },
+    "an uncursed +0 cloak of magic resistance, no charge" => {
+        identity    => 'cloak of magic resistance',
+        quantity    => 1,
+        cost        => 0,
+        buc         => 'uncursed',
+        enchantment => '+0',
+    },
+    "a wand of cold (0:7), no charge" => {
+        identity  => 'wand of cold',
+        charges   => 7,
+        recharges => 0,
+        buc       => 'uncursed',
+        cost      => 0,
+    },
+    "a candelabrum (no candles attached), no charge" => {
+        identity         => 'Candelabrum of Invocation',
+        candles_attached => 0,
+    },
 );
 
