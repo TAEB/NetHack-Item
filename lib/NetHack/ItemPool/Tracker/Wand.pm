@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 package NetHack::ItemPool::Tracker::Wand;
-use TAEB::OO;
+use Moose;
 extends 'NetHack::ItemPool::Tracker';
 
 use constant type => 'wand';
