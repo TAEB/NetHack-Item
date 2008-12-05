@@ -3,6 +3,8 @@ package NetHack::ItemPool::Tracker::Wand;
 use TAEB::OO;
 extends 'NetHack::ItemPool::Tracker';
 
+use constant type => 'wand';
+
 my @_groups = (
     [ 'cold'          ],
     [ 'polymorph'     ],
