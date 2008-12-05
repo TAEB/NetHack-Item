@@ -51,7 +51,7 @@ has quantity => (
     default => 1,
 );
 
-has cost => (
+has cost_each => (
     is      => 'rw',
     isa     => 'Int',
     default => 0,
@@ -393,7 +393,7 @@ sub incorporate_stats {
     $self->is_offhand($stats->{offhand});
     $self->generic_name($stats->{generic}) if defined $stats->{generic};
     $self->specific_name($stats->{specific}) if defined $stats->{specific};
-    $self->cost($stats->{cost});
+    $self->cost_each($stats->{cost});
 }
 
 sub is_artifact {
@@ -544,9 +544,9 @@ sub incorporate_stats_from {
 
     confess "New item (" . $other->raw . ") does not appear to be an evolution of the old item (" . $self->raw . ")" unless $other->is_evolution_of($self);
 
-    my @stats = (qw/slot quantity cost specific_name generic_name is_wielded
-                    is_quivered is_greased is_offhand is_blessed is_uncursed
-                    is_cursed artifact identity appearance/);
+    my @stats = (qw/slot quantity cost_each specific_name generic_name
+                    is_wielded is_quivered is_greased is_offhand is_blessed
+                    is_uncursed is_cursed artifact identity appearance/);
 
     for my $stat (@stats) {
         $self->incorporate_stat($other => $stat);
@@ -607,6 +607,12 @@ before 'identity', 'has_identity' => sub {
 
     $self->identity($self->tracker->possibilities);
 };
+
+sub cost {
+    my $self = shift;
+    confess "Set cost_each instead." if @_;
+    return $self->cost_each * $self->quantity;
+}
 
 __PACKAGE__->meta->make_immutable;
 no Moose;

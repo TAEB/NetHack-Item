@@ -4,7 +4,7 @@ use constant testing_method => 'cost';
 use Test::NetHack::Items (
     "a - a blessed +1 quarterstaff (weapon in hands) (unpaid, 15 zorkmids)" => 15,
     "p - a +0 studded leather armor (being worn) (unpaid, 15 zorkmids)" => 15,
-    "x - 11 arrows (in quiver) (unpaid, 22 zorkmids)" => 22,
+    "x - 11 arrows (in quiver) (unpaid, 22 zorkmids)" => 242,
     "B - a tin (unpaid, 5 zorkmids)" => 5,
     "o - an uncursed triangular amulet (being worn) (unpaid, 150 zorkmids)" => 150,
     "d - an uncursed brass ring (on right hand) (unpaid, 100 zorkmids)" => 100,
