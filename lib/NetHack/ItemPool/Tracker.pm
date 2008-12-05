@@ -88,8 +88,17 @@ sub rule_out_all_but {
     }
 }
 
-after rule_out => sub {
+around rule_out => sub {
+    my $orig = shift;
     my $self = shift;
+
+    for my $possibility (@_) {
+        next if $self->all_possibilities->includes($possibility);
+        confess "$possibility is not included in " . $self->appearance . "'s set of all possibilities.";
+    }
+
+    $self->$orig(@_);
+
     for my $possibility (@_) {
         $self->trackers->ruled_out($self => $possibility);
     }
