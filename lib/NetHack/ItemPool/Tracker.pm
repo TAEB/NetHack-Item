@@ -38,6 +38,15 @@ has _possibilities => (
     },
 );
 
+sub BUILD {
+    my $self = shift;
+
+    my $class = __PACKAGE__ . '::' . ucfirst($self->type);
+    if (my $meta = Class::MOP::is_class_loaded($class)) {
+        $meta->rebless_instance($self);
+    }
+}
+
 around BUILDARGS => sub {
     my $orig = shift;
     my $args = $orig->(@_);
