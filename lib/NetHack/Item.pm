@@ -238,7 +238,7 @@ sub extract_stats {
     my @fields = qw/slot quantity buc greased poisoned erosion1 erosion2 proofed
                     used eaten diluted enchantment item generic specific
                     recharges charges candles lit_candelabrum lit laid chained
-                    quivered offhand offhand_wielded wielded worn cost/;
+                    quivered offhand offhand_wielded wielded worn cost altcost/;
 
     # the \b in front of "item name" forbids "Amulet of Yendor" being parsed as
     # "A mulet of Yendor"
@@ -270,7 +270,16 @@ sub extract_stats {
         (\(wielded\ in\ other.*?\))?                      \s*  # offhand wield
         (\(weapon.*?\))?                                  \s*  # wielding
         (\((?:being|embedded|on).*?\))?                   \s*  # worn
-        (?:\(unpaid,\ (\d+)\ zorkmids?\))?                \s*  # shops
+
+        # shop cost! there are two forms, with an optional quality comment
+        (?:
+            \( unpaid, \  (\d+) \  zorkmids? \)
+            |
+            ,\ no\ charge (?:,\ .*)?
+            |
+            ,\ (?:price\ )? (\d+) \  zorkmids (\ each)? (?:,\ .*)?
+        )? \s*
+
         $                                                      # anchor
     }x;
 
@@ -338,6 +347,9 @@ sub extract_stats {
     for (qw/proofed/) {
         $stats{$_} = defined($stats{$_}) ? 1 : undef;
     }
+
+    my $altcost = delete $stats{altcost};
+    $stats{cost} ||= $altcost;
 
     # numeric, undef = 0 stats
     for (qw/candles cost/) {
