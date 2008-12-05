@@ -39,10 +39,9 @@ has _possibilities => (
 );
 
 has all_possibilities => (
-    is         => 'ro',
-    isa        => 'ArrayRef[Str]',
-    auto_deref => 1,
-    required   => 1,
+    is       => 'ro',
+    isa      => 'Set::Object',
+    required => 1,
 );
 
 sub BUILD {
@@ -58,6 +57,7 @@ around BUILDARGS => sub {
     my $orig = shift;
     my $args = $orig->(@_);
 
+    $args->{all_possibilities} = Set::Object->new(@{ $args->{all_possibilities} });
     $args->{possibilities} = Set::Object->new(@{ $args->{all_possibilities} });
 
     return $args;
