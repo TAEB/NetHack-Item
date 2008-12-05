@@ -2,7 +2,6 @@
 package NetHack::Item::Weapon;
 use Moose;
 extends 'NetHack::Item';
-with 'NetHack::Item::Role::Enchantable';
 with 'NetHack::Item::Role::Damageable';
 with 'NetHack::Item::Role::EnchantBUC';
 
