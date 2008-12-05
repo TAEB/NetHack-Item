@@ -38,6 +38,13 @@ has _possibilities => (
     },
 );
 
+has all_possibilities => (
+    is         => 'ro',
+    isa        => 'ArrayRef[Str]',
+    auto_deref => 1,
+    required   => 1,
+);
+
 sub BUILD {
     my $self = shift;
 
@@ -51,8 +58,7 @@ around BUILDARGS => sub {
     my $orig = shift;
     my $args = $orig->(@_);
 
-    $args->{possibilities} = Set::Object->new(@{ $args->{possibilities} })
-        if exists $args->{possibilities};
+    $args->{possibilities} = Set::Object->new(@{ $args->{all_possibilities} });
 
     return $args;
 };
@@ -90,6 +96,9 @@ after rule_out => sub {
 
     if ($self->possibilities == 1) {
         $self->trackers->identified($self => $self->possibilities);
+    }
+    elsif ($self->possibilities == 0) {
+        confess "Ruled out all possibilities for " . $self->appearance . "!";
     }
 };
 

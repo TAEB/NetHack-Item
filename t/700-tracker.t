@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 16;
+use Test::More tests => 17;
 use NetHack::ItemPool;
 
 my $pool = NetHack::ItemPool->new;
@@ -31,3 +31,4 @@ is($tharr_tracker->possibilities, 20, "20 possibilities");
 ok($tharr_tracker->includes_possibility('scroll of fire'), "THARR can be fire");
 ok(!$tharr_tracker->includes_possibility('scroll of genocide'), "THARR cannot be genocide");
 
+is(@{ $tharr->tracker->all_possibilities }, 21, "all possibilities is immutable");
