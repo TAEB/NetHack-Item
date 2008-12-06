@@ -1,8 +1,9 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 2;
+use Test::More tests => 3;
 use NetHack::ItemPool;
+use Test::Exception;
 
 my $pool = NetHack::ItemPool->new;
 
@@ -16,4 +17,10 @@ $glass->tracker->rule_out('wand of nothing');
 
 is($glass->identity, 'wand of light');
 is($steel->identity, 'wand of nothing');
+
+my $short = $pool->new_item("a short wand");
+
+throws_ok {
+    $short->tracker->identify_as('wand of light');
+} qr/^wand of light is not a possibility for short wand/;
 
