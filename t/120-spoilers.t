@@ -84,5 +84,15 @@ use Test::NetHack::Items (
         emergency => 0,
         role      => 'Arc',
     },
+    "c - a spetum" => {
+        sdam  => 'd6+1',
+        ldam  => '2d6',
+        tohit => 0,
+    },
+    "c - a long sword" => {
+        sdam  => 'd8',
+        ldam  => 'd12',
+        tohit => 0,
+    },
 );
 
