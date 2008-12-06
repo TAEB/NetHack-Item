@@ -35,9 +35,15 @@ use Test::NetHack::Items (
     },
     "i - a wand of wishing" => {
         maxcharges => 3,
+        zaptype    => 'nodir',
     },
     "h - a wand of death" => {
         maxcharges => 8,
+        zaptype    => 'ray',
+    },
+    "g - a wand of striking" => {
+        maxcharges => 8,
+        zaptype    => 'beam',
     },
 );
 
