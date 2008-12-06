@@ -35,7 +35,7 @@ around can_drop => sub {
     $self->$orig(@_);
 };
 
-__PACKAGE__->meta->install_spoilers(qw/sdam ldam tohit/);
+__PACKAGE__->meta->install_spoilers(qw/sdam ldam tohit hands/);
 
 __PACKAGE__->meta->make_immutable;
 no Moose;

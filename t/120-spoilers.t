@@ -88,11 +88,13 @@ use Test::NetHack::Items (
         sdam  => 'd6+1',
         ldam  => '2d6',
         tohit => 0,
+        hands => 2,
     },
     "c - a long sword" => {
         sdam  => 'd8',
         ldam  => 'd12',
         tohit => 0,
+        hands => 1,
     },
 );
 
