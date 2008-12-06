@@ -64,10 +64,14 @@ use Test::NetHack::Items (
         ink => 0,
     },
     "d - a spellbook of finger of death" => {
-        ink => 70,
+        ink   => 70,
+        level => 7,
+        time  => 80,
     },
     "d - a spellbook of jumping" => {
-        ink => 10,
+        ink   => 10,
+        level => 1,
+        time  => 3,
     },
 );
 
