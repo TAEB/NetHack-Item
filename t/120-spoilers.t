@@ -45,5 +45,14 @@ use Test::NetHack::Items (
         maxcharges => 8,
         zaptype    => 'beam',
     },
+    "f - a ring of adornment" => {
+        chargeable => 1,
+    },
+    "f - a ring of slow digestion" => {
+        chargeable => 0,
+    },
+    "f - an opal ring" => {
+        chargeable => undef,
+    },
 );
 

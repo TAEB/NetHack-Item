@@ -35,6 +35,8 @@ after incorporate_stats_from => sub {
     $self->incorporate_stat($other => 'hand');
 };
 
+__PACKAGE__->meta->install_spoilers('chargeable');
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 no Moose::Util::TypeConstraints;
