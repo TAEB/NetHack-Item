@@ -3,8 +3,9 @@ package NetHack::Item::Role::Enchantable;
 use Moose::Role;
 
 has enchantment => (
-    is  => 'rw',
-    isa => 'Str',
+    is        => 'rw',
+    isa       => 'Str',
+    predicate => 'enchantment_known',
 );
 
 after incorporate_stats => sub {
