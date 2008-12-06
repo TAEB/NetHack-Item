@@ -54,5 +54,14 @@ use Test::NetHack::Items (
     "f - an opal ring" => {
         chargeable => undef,
     },
+    "e - a scroll of genocide" => {
+        ink => 30,
+    },
+    "e - a scroll of mail" => {
+        ink => 2,,
+    },
+    "e - an unlabeled scroll" => {
+        ink => 0,
+    },
 );
 
