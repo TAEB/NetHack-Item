@@ -9,5 +9,13 @@ use Test::NetHack::Items (
         ac => 7,
         mc => 3,
     },
+    "m - a cornuthaum" => {
+        ac => 0,
+        mc => 2,
+    },
+    "l - a mummy wrapping" => {
+        ac => 0,
+        mc => 1,
+    },
 );
 
