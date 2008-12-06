@@ -58,10 +58,16 @@ use Test::NetHack::Items (
         ink => 30,
     },
     "e - a scroll of mail" => {
-        ink => 2,,
+        ink => 2,
     },
     "e - an unlabeled scroll" => {
         ink => 0,
+    },
+    "d - a spellbook of finger of death" => {
+        ink => 70,
+    },
+    "d - a spellbook of jumping" => {
+        ink => 10,
     },
 );
 

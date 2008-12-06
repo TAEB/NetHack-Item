@@ -14,6 +14,8 @@ sub spell {
     return $1;
 }
 
+__PACKAGE__->meta->install_spoilers('ink');
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
