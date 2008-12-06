@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 4;
+use Test::More tests => 6;
 use NetHack::ItemPool;
 
 my $pool = NetHack::ItemPool->new;
@@ -14,4 +14,9 @@ ok(!$balsa->tracker->engrave_useful, 'engrave is no longer useful');
 
 my $other_balsa = $pool->new_item("a blessed balsa wand");
 is($balsa->tracker, $other_balsa->tracker, "same tracker for two items");
+
+$other_balsa->tracker->rule_out('wand of sleep');
+
+is($other_balsa->identity, 'wand of death');
+is($balsa->identity, 'wand of death');
 
