@@ -33,5 +33,11 @@ use Test::NetHack::Items (
         hardness => 'hard',
         softness => 'hard',
     },
+    "i - a wand of wishing" => {
+        maxcharges => 3,
+    },
+    "h - a wand of death" => {
+        maxcharges => 8,
+    },
 );
 
