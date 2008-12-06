@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 package NetHack::Item;
-use Moose;
+use Moose -traits => 'NetHack::Item::Meta::Trait::InstallsSpoilers';
 use MooseX::AttributeHelpers;
 
 use NetHack::ItemPool;
@@ -503,8 +503,6 @@ sub collapse_spoiler_value {
     return $self->spoiler_class->collapse_value($key, $self->possibilities);
 }
 
-sub subtype { shift->collapse_spoiler_value('subtype') }
-
 sub weight {
     my $self   = shift;
     my $weight = $self->collapse_spoiler_value('weight');
@@ -613,6 +611,8 @@ sub cost {
     confess "Set cost_each instead." if @_;
     return $self->cost_each * $self->quantity;
 }
+
+__PACKAGE__->meta->install_spoilers(qw/subtype/);
 
 __PACKAGE__->meta->make_immutable;
 no Moose;
