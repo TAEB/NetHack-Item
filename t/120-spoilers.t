@@ -21,5 +21,17 @@ use Test::NetHack::Items (
         nutrition => 800,
         time      => 5,
     },
+    "j - a violet gem" => {
+        hardness => 'soft',
+        softness => 'soft',
+    },
+    "j - a green gem" => {
+        hardness => undef,
+        softness => undef,
+    },
+    "j - an emerald" => {
+        hardness => 'hard',
+        softness => 'hard',
+    },
 );
 
