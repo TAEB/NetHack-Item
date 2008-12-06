@@ -102,5 +102,17 @@ use Test::NetHack::Items (
     "b - a bag of holding" => {
         charge => 0,
     },
+    "a - a pick-axe" => {
+        sdam  => 'd6',
+        ldam  => 'd3',
+        tohit => 0,
+        hands => 1,
+    },
+    "z - a unicorn horn" => {
+        sdam  => 'd12',
+        ldam  => 'd12',
+        tohit => '1',
+        hands => 2,
+    },
 );
 
