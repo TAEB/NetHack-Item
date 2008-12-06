@@ -614,6 +614,9 @@ sub cost {
 
 __PACKAGE__->meta->install_spoilers(qw/subtype/);
 
+# anything can be used as a weapon
+__PACKAGE__->meta->install_spoilers(qw/sdam ldam tohit hands/);
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
