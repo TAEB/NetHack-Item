@@ -19,104 +19,104 @@ sub _list {
     my $scrolls = {
         'scroll of mail' => {
             price      => 0,
-            marker     => 2,
+            ink        => 2,
             appearance => 'stamped scroll',
         },
         'scroll of blank paper' => {
             price      => 60,
-            marker     => 0,
+            ink        => 0,
             appearance => 'unlabeled scroll',
         },
 
         'scroll of identify' => {
             price  => 20,
-            marker => 14,
+            ink    => 14,
         },
 
         'scroll of light' => {
             price  => 50,
-            marker => 8,
+            ink    => 8,
         },
 
         'scroll of enchant weapon' => {
             price  => 60,
-            marker => 16,
+            ink    => 16,
         },
 
         'scroll of enchant armor' => {
             price  => 80,
-            marker => 16,
+            ink    => 16,
         },
         'scroll of remove curse' => {
             price  => 80,
-            marker => 16,
+            ink    => 16,
         },
 
         'scroll of confuse monster' => {
             price  => 100,
-            marker => 12,
+            ink    => 12,
         },
         'scroll of destroy armor' => {
             price  => 100,
-            marker => 10,
+            ink    => 10,
         },
         'scroll of fire' => {
             price  => 100,
-            marker => 8,
+            ink    => 8,
         },
         'scroll of food detection' => {
             price  => 100,
-            marker => 8,
+            ink    => 8,
         },
         'scroll of gold detection' => {
             price  => 100,
-            marker => 8,
+            ink    => 8,
         },
         'scroll of magic mapping' => {
             price  => 100,
-            marker => 8,
+            ink    => 8,
         },
         'scroll of scare monster' => {
             price  => 100,
-            marker => 20,
+            ink    => 20,
         },
         'scroll of teleportation' => {
             price  => 100,
-            marker => 20,
+            ink    => 20,
         },
 
         'scroll of amnesia' => {
             price  => 200,
-            marker => 8,
+            ink    => 8,
         },
         'scroll of create monster' => {
             price  => 200,
-            marker => 10,
+            ink    => 10,
         },
         'scroll of earth' => {
             price  => 200,
-            marker => 8,
+            ink    => 8,
         },
         'scroll of taming' => {
             price  => 200,
-            marker => 20,
+            ink    => 20,
         },
 
         'scroll of charging' => {
             price  => 300,
-            marker => 16,
+            ink    => 16,
         },
         'scroll of genocide' => {
             price  => 300,
-            marker => 30,
+            ink    => 30,
         },
         'scroll of punishment' => {
             price  => 300,
-            marker => 10,
+            ink    => 10,
         },
         'scroll of stinking cloud' => {
             price  => 300,
-            marker => 20,
+            ink    => 20,
         },
     };
 
