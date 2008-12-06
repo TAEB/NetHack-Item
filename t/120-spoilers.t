@@ -96,5 +96,11 @@ use Test::NetHack::Items (
         tohit => 0,
         hands => 1,
     },
+    "b - a bag of tricks" => {
+        charge => 20,
+    },
+    "b - a bag of holding" => {
+        charge => 0,
+    },
 );
 
