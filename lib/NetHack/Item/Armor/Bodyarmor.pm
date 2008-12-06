@@ -5,8 +5,6 @@ extends 'NetHack::Item::Armor';
 
 use constant subtype => 'bodyarmor';
 
-__PACKAGE__->meta->install_spoilers('mc');
-
 __PACKAGE__->meta->make_immutable;
 no Moose;
 

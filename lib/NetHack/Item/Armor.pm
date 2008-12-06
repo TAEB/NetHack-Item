@@ -18,6 +18,8 @@ sub ac {
     return $base + $enchantment;
 }
 
+__PACKAGE__->meta->install_spoilers('mc');
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
