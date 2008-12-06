@@ -17,5 +17,9 @@ use Test::NetHack::Items (
         ac => 0,
         mc => 1,
     },
+    "k - a food ration" => {
+        nutrition => 800,
+        time      => 5,
+    },
 );
 
