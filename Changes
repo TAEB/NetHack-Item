@@ -1,6 +1,8 @@
 Revision history for NetHack-Item
 
-0.04
+0.04    Sat Dec 6 01:12:36 2008
+        Implementation of all the features I need is done!
+        NetHack::ItemPool and its modules are now part of this dist
 
 0.03    Sun Nov 16 03:00:00 2008
         Item->incorporate_stats_from(Item) and Item->is_evolution_of(Item)
