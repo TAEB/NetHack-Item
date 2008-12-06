@@ -14,7 +14,7 @@ sub spell {
     return $1;
 }
 
-__PACKAGE__->meta->install_spoilers(qw/ink level time/);
+__PACKAGE__->meta->install_spoilers(qw/ink level time emergency role/);
 
 __PACKAGE__->meta->make_immutable;
 no Moose;
