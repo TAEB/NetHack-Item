@@ -1,5 +1,8 @@
 Revision history for NetHack-Item
 
+0.05    Tue Dec 9 00:46:18 2008
+        Depend on Set::Object. Oops.
+
 0.04    Sat Dec 6 01:12:36 2008
         Implementation of all the features I need is done!
         NetHack::ItemPool and its modules are now part of this dist
