@@ -143,7 +143,7 @@ sub decrease_quantity {
     my $orig_quantity = $item->quantity;
 
     if ($by >= $orig_quantity) {
-        $self->delete($slot);
+        $self->remove($slot);
         return 0;
     }
 
