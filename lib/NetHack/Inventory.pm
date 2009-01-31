@@ -133,6 +133,23 @@ sub weight {
     return ($total_min, $total_max);
 }
 
+sub decrease_quantity {
+    my $self = shift;
+    my $slot = shift;
+    my $by   = shift || 1;
+
+    my $item = $self->get($slot);
+    my $orig_quantity = $item->quantity;
+
+    if ($by >= $orig_quantity) {
+        $self->delete($slot);
+        return 0;
+    }
+
+    $item->quantity($orig_quantity - $by);
+    return $item->quantity;
+}
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
