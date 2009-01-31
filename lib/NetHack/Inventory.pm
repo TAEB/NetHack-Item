@@ -98,6 +98,18 @@ before remove => sub {
     $self->equipment->remove($item);
 };
 
+sub exact_weight {
+    my $self = shift;
+
+    my $weight = 0;
+    for my $item ($self->items) {
+        return undef if !defined($item->weight);
+        $weight += $item->weight;
+    }
+
+    return $weight;
+}
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
