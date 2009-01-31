@@ -82,6 +82,7 @@ sub update {
             $old->incorporate_stats_from($item);
         }
         else {
+            warn "Displacing $old in slot $slot with $item.";
             $self->set($slot => $item);
         }
 
