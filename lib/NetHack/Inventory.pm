@@ -110,6 +110,20 @@ sub exact_weight {
     return $weight;
 }
 
+sub weight {
+    my $self = shift;
+
+    my ($total_min, $total_max) = (0, 0);
+    for my $item ($self->items) {
+        my ($min, $max) = (sort $item->spoiler_values('weight'))[0, -1];
+        $total_min += $min;
+        $total_max += $max;
+    }
+
+    return ($total_max + $total_min) / 2 if !wantarray;
+    return ($total_min, $total_max);
+}
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
