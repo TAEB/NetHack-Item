@@ -496,6 +496,14 @@ sub spoiler {
     return $self->spoiler_class->spoiler_for($self->identity);
 }
 
+sub spoiler_values {
+    my $self = shift;
+    my $key  = shift;
+
+    return map { $self->spoiler_class->spoiler_for($_)->{$key} }
+           $self->possibilities;
+}
+
 sub collapse_spoiler_value {
     my $self = shift;
     my $key  = shift;
