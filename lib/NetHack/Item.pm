@@ -541,6 +541,13 @@ sub is_evolution_of {
     return 1;
 }
 
+sub maybe_is {
+    my $self = shift;
+    my $other = shift;
+
+    return $self->is_evolution_of($other) || $other->is_evolution_of($self);
+}
+
 sub incorporate_stats_from {
     my $self  = shift;
     my $other = shift;
