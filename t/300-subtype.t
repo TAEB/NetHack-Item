@@ -27,6 +27,7 @@ use Test::NetHack::Items (
     "a lichen corpse" => {
         type    => 'food',
         subtype => 'corpse',
+        monster => 'lichen',
     },
     "a food ration" => {
         type    => 'food',

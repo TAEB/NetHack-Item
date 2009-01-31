@@ -2064,6 +2064,7 @@ sub _list {
         $food->{"$name corpse"}          = $stats;
         $food->{"$name corpse"}{corpse}  = 1;
         $food->{"$name corpse"}{subtype} = 'corpse';
+        $food->{"$name corpse"}{monster} = $name;
         $food->{"$name corpse"}{plural}  = "$name corpses";
 
         my $tin_name = $name;

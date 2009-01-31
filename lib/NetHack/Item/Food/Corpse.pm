@@ -5,6 +5,8 @@ extends 'NetHack::Item::Food';
 
 use constant subtype => 'corpse';
 
+__PACKAGE__->meta->install_spoilers('monster');
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
