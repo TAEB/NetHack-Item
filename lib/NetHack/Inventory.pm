@@ -80,6 +80,7 @@ sub update {
     if (my $old = $self->get($slot)) {
         if ($item->is_evolution_of($old)) {
             $old->incorporate_stats_from($item);
+            $old->slot($slot);
         }
         else {
             warn "Displacing $old in slot $slot with $item.";
