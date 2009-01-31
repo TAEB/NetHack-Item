@@ -62,12 +62,20 @@ around set => sub {
 
     my ($slot, $item) = _extract_slot(@_);
 
+    # gold pieces don't belong in inventory
+    return if $item->has_identity
+           && $item->identity eq 'gold piece';
+
     $self->$orig($slot => $item);
 };
 
 sub update {
     my $self = shift;
     my ($slot, $item) = _extract_slot(@_);
+
+    # gold pieces don't belong in inventory
+    return if $item->has_identity
+           && $item->identity eq 'gold piece';
 
     if (my $old = $self->get($slot)) {
         if ($item->is_evolution_of($old)) {
