@@ -52,7 +52,7 @@ sub new_item {
             $item = $existing_arti;
         }
         else {
-            $self->_incorporate_artifact($item);
+            $self->incorporate_artifact($item);
         }
     }
 
@@ -74,7 +74,7 @@ sub get_artifact {
     return $self->artifacts->{$name};
 }
 
-sub _incorporate_artifact {
+sub incorporate_artifact {
     my $self = shift;
     my $item = shift;
 
