@@ -40,6 +40,11 @@ after incorporate_stats_from => sub {
         for qw/burnt corroded rotted rusty proofed/;
 };
 
+sub remove_damage {
+    my $self = shift;
+    $self->$_(0) for qw/burnt corroded rotted rusty/;
+}
+
 no Moose::Role;
 
 1;
