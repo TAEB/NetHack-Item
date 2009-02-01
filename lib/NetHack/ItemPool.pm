@@ -78,6 +78,7 @@ sub incorporate_artifact {
     my $self = shift;
     my $item = shift;
 
+    return if $self->artifacts->{ $item->artifact };
     $self->artifacts->{ $item->artifact } = $item;
 }
 
