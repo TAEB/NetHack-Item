@@ -399,54 +399,62 @@ sub incorporate_stats {
 sub is_artifact {
     my $self = shift;
 
-    return 1 if $self->artifact;
+    my $is_artifact = sub {
+        return 1 if $self->artifact;
 
-    my $name = $self->specific_name
-        or return 0;
+        my $name = $self->specific_name
+            or return 0;
 
-    my $spoiler = $self->spoiler_class->artifact_spoiler($name);
+        my $spoiler = $self->spoiler_class->artifact_spoiler($name);
 
-    # is there even an artifact with this name?
-    return 0 unless $spoiler;
+        # is there even an artifact with this name?
+        return 0 unless $spoiler;
 
-    # is it the same type as us?
-    return 0 unless $spoiler->{type} eq $self->type;
+        # is it the same type as us?
+        return 0 unless $spoiler->{type} eq $self->type;
 
-    # is it the EXACT name? (e.g. "gray stone named heart of ahriman" fails
-    # because it's not properly capitalized and doesn't have "The"
-    my $arti_name = $spoiler->{fullname}
-                 || $spoiler->{name};
-    return 0 unless $arti_name eq $name;
+        # is it the EXACT name? (e.g. "gray stone named heart of ahriman" fails
+        # because it's not properly capitalized and doesn't have "The"
+        my $arti_name = $spoiler->{fullname}
+                    || $spoiler->{name};
+        return 0 unless $arti_name eq $name;
 
-    # if we know our appearance, is it a possible appearance for the
-    # artifact?
-    if (my $appearance = $self->appearance) {
-        return 0 unless grep { $appearance eq ($_||'') }
-                        $spoiler->{appearance},
-                        @{ $spoiler->{appearances} };
+        # if we know our appearance, is it a possible appearance for the
+        # artifact?
+        if (my $appearance = $self->appearance) {
+            return 0 unless grep { $appearance eq ($_||'') }
+                            $spoiler->{appearance},
+                            @{ $spoiler->{appearances} };
+        }
+
+        # if we know our identity, is the artifact's identity the same as ours?
+        # if so, then we can know definitively whether this is the artifact
+        # or not (see below)
+        if (my $identity = $self->identity) {
+            if ($identity eq $spoiler->{base}) {
+                $self->artifact($spoiler->{name});
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        }
+
+        # otherwise, the best we can say is "maybe". consider the artifact
+        # naming bug.  we may have a pyramidal amulet that is named The Eye of
+        # the Aethiopica. the naming bug exploits the fact that if pyramidal is
+        # NOT ESP, then it will correctly name the amulet. if pyramidal IS ESP
+        # then we cannot name it correctly -- the only pyramidal amulet that
+        # can have the name is the real Eye
+
+        return undef;
+    }->();
+
+    if ($is_artifact && $self->has_pool) {
+        $self->pool->incorporate_artifact($self);
     }
 
-    # if we know our identity, is the artifact's identity the same as ours?
-    # if so, then we can know definitively whether this is the artifact
-    # or not (see below)
-    if (my $identity = $self->identity) {
-        if ($identity eq $spoiler->{base}) {
-            $self->artifact($spoiler->{name});
-            return 1;
-        }
-        else {
-            return 0;
-        }
-    }
-
-    # otherwise, the best we can say is "maybe". consider the artifact
-    # naming bug.  we may have a pyramidal amulet that is named The Eye of
-    # the Aethiopica. the naming bug exploits the fact that if pyramidal is
-    # NOT ESP, then it will correctly name the amulet. if pyramidal IS ESP
-    # then we cannot name it correctly -- the only pyramidal amulet that
-    # can have the name is the real Eye
-
-    return undef;
+    return $is_artifact;
 }
 
 sub _set_appearance_and_identity {
