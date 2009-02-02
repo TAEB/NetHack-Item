@@ -54,12 +54,12 @@ sub _update_weapon {
 
     for my $slot (keys %weapon_slots) {
         my $check = $weapon_slots{$slot};
+        next unless $item->$check;
+        next if $self->$slot && $self->$slot == $item;
 
-        if ($item->$check) {
-            my $clearer = "clear_$slot";
-            $self->$clearer;
-            $self->$slot($item);
-        }
+        my $clearer = "clear_$slot";
+        $self->$clearer;
+        $self->$slot($item);
     }
 }
 
