@@ -674,6 +674,11 @@ sub throw_range {
     return $range;
 }
 
+sub name {
+    my $self = shift;
+    $self->artifact || $self->identity || $self->appearance
+}
+
 __PACKAGE__->meta->install_spoilers(qw/subtype/);
 
 # anything can be used as a weapon
