@@ -636,6 +636,45 @@ sub cost {
     return $self->cost_each * $self->quantity;
 }
 
+sub throw_range {
+    my $self = shift;
+    my %args = @_;
+
+    my $range = int($args{strength} / 2);
+
+    if ($self->match(identity => 'heavy iron ball')) {
+        $range -= int($self->weight / 100);
+    }
+    else {
+        $range -= int($self->weight / 40);
+    }
+
+    $range = 1 if $range < 1;
+
+    if ($self->match(identity => qr/\b(?:arrow|crossbow bolt)\b/)
+        || $self->match(class => 'gem')) {
+        if (0 && "Wielding a bow for arrows or crossbow for bolts or sling for gems") {
+            ++$range;
+        }
+        elsif ($self->match('!class' => 'gem')) {
+            $range = int($range / 2);
+        }
+    }
+
+    # are we on Air? are we levitating?
+
+    if ($self->match(identity => 'boulder')) {
+        $range = 20;
+    }
+    elsif ($self->match(identity => 'Mjollnir')) {
+        $range = int(($range + 1) / 2);
+    }
+
+    # are we underwater?
+
+    return $range;
+}
+
 __PACKAGE__->meta->install_spoilers(qw/subtype/);
 
 # anything can be used as a weapon
