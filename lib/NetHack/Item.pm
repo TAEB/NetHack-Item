@@ -642,7 +642,7 @@ sub throw_range {
 
     my $range = int($args{strength} / 2);
 
-    if ($self->match(identity => 'heavy iron ball')) {
+    if (($self->identity||'') eq 'heavy iron ball') {
         $range -= int($self->weight / 100);
     }
     else {
@@ -651,22 +651,21 @@ sub throw_range {
 
     $range = 1 if $range < 1;
 
-    if ($self->match(identity => qr/\b(?:arrow|crossbow bolt)\b/)
-        || $self->match(class => 'gem')) {
+    if ($self->type eq 'gem' || ($self->identity||'') =~ /\b(?:arrow|crossbow bolt)\b/) {
         if (0 && "Wielding a bow for arrows or crossbow for bolts or sling for gems") {
             ++$range;
         }
-        elsif ($self->match('!class' => 'gem')) {
+        elsif ($self->type ne 'gem') {
             $range = int($range / 2);
         }
     }
 
     # are we on Air? are we levitating?
 
-    if ($self->match(identity => 'boulder')) {
+    if (($self->identity||'') eq 'boulder') {
         $range = 20;
     }
-    elsif ($self->match(identity => 'Mjollnir')) {
+    elsif (($self->identity||'') eq 'Mjollnir') {
         $range = int(($range + 1) / 2);
     }
 
