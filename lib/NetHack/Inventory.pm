@@ -36,6 +36,14 @@ has equipment => (
     },
 );
 
+has weight => (
+    is      => 'ro',
+    isa     => 'Int',
+    lazy    => 1,
+    builder => '_calculate_weight',
+    clearer => 'invalidate_weight',
+);
+
 has '+pool' => (
     required => 1,
 );
@@ -94,11 +102,12 @@ sub update {
     return $item;
 }
 
-after update => sub {
+after 'set', 'update', => sub {
     my $self = shift;
     my (undef, $item) = _extract_slot(@_);
 
     $self->equipment->update($item);
+    $self->invalidate_weight;
 };
 
 before remove => sub {
@@ -120,7 +129,7 @@ sub exact_weight {
     return $weight;
 }
 
-sub weight {
+sub _calculate_weight {
     my $self = shift;
 
     my ($total_min, $total_max) = (0, 0);
@@ -130,8 +139,7 @@ sub weight {
         $total_max += $max;
     }
 
-    return ($total_max + $total_min) / 2 if !wantarray;
-    return ($total_min, $total_max);
+    return ($total_max + $total_min) / 2;
 }
 
 sub decrease_quantity {
