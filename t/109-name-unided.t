@@ -67,6 +67,10 @@ use Test::NetHack::Items (
         appearance    => "egg",
         identity      => undef,
     },
+    "b - 3 uncursed eggs" => {
+        appearance    => "egg",
+        identity      => undef,
+    },
     "D - a tin" => {
         appearance    => "tin",
         identity      => undef,
