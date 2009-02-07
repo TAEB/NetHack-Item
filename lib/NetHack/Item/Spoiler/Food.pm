@@ -2094,6 +2094,7 @@ sub _list {
 sub extra_plurals {
     return {
         tin => 'tins',
+        egg => 'eggs',
     };
 }
 
