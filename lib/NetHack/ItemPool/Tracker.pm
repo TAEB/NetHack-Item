@@ -4,6 +4,13 @@ use Moose;
 use Set::Object;
 with 'NetHack::ItemPool::Role::HasPool';
 
+use Module::Pluggable (
+    search_path => __PACKAGE__,
+    require     => 1,
+    sub_name    => 'tracker_types',
+);
+__PACKAGE__->tracker_types; # load all
+
 has type => (
     is       => 'ro',
     isa      => 'Str',
