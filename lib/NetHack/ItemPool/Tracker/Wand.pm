@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::ItemPool::Tracker::Wand;
 use Moose;
 extends 'NetHack::ItemPool::Tracker';
