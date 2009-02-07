@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 16;
+use Test::More tests => 19;
 use NetHack::ItemPool;
 
 my $pool = NetHack::ItemPool->new;
@@ -36,4 +36,9 @@ is($other_game_excalibur->buc, 'cursed');
 
 is($excalibur->enchantment, '+3', "new game's Excalibur doesn't affect ours");
 is($excalibur->buc, 'blessed', "new game's Excalibur doesn't affect ours, but the previous one did");
+
+my $magicbane = $pool->new_item("Magicbane");
+is($magicbane->identity,   "athame");
+is($magicbane->appearance, "athame");
+is($magicbane->artifact,   "Magicbane");
 
