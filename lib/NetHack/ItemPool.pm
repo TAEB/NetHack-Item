@@ -56,10 +56,6 @@ sub new_item {
         }
     }
 
-    if (defined($item->slot)) {
-        $self->inventory->update($item);
-    }
-
     if ($item->has_appearance && (my $tracker = $self->tracker_for($item))) {
         $item->_set_tracker($tracker);
     }
