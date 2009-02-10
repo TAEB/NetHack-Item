@@ -135,8 +135,8 @@ sub _calculate_weight {
     my ($total_min, $total_max) = (0, 0);
     for my $item ($self->items) {
         my ($min, $max) = (sort $item->spoiler_values('weight'))[0, -1];
-        $total_min += $min;
-        $total_max += $max;
+        $total_min += $min * $item->quantity;
+        $total_max += $max * $item->quantity;
     }
 
     return ($total_max + $total_min) / 2;
