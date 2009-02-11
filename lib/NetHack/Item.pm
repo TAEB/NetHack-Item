@@ -478,9 +478,6 @@ sub _set_appearance_and_identity {
             $self->_set_appearance_and_identity($possibilities[0]);
         }
     }
-
-    # this does an update if everything checks out
-    $self->is_artifact;
 }
 
 sub possibilities {
