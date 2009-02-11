@@ -41,11 +41,17 @@ has trackers => (
     handles => [qw/tracker_for possible_appearances_for/],
 );
 
-sub new_item {
+sub _create_item {
     my $self = shift;
 
     unshift @_, 'raw' if @_ == 1;
-    my $item = $self->item_class->new(@_, pool => $self);
+    return $self->item_class->new(@_, pool => $self);
+}
+
+sub new_item {
+    my $self = shift;
+
+    my $item = $self->_create_item(@_);
 
     if ($item->is_artifact) {
         if (my $existing_arti = $self->get_artifact($item->artifact)) {
