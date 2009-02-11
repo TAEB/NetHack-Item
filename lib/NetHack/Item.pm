@@ -63,7 +63,9 @@ has specific_name => (
     predicate => 'has_specific_name',
     trigger   => sub {
         # recalculate whether this item is an artifact or not (e.g. Sting)
-        shift->is_artifact;
+        my $self = shift;
+        $self->pool->incorporate_artifact($self)
+            if $self->is_artifact && $self->has_pool;
     },
 );
 
@@ -449,10 +451,6 @@ sub is_artifact {
 
         return undef;
     }->();
-
-    if ($is_artifact && $self->has_pool) {
-        $self->pool->incorporate_artifact($self);
-    }
 
     return $is_artifact;
 }
