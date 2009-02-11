@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 13;
+use Test::More tests => 14;
 use NetHack::ItemPool;
 
 my $pool = NetHack::ItemPool->new;
