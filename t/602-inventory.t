@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 15;
+use Test::More tests => 17;
 use NetHack::ItemPool;
 
 my $pool = NetHack::ItemPool->new;
@@ -45,4 +45,11 @@ is($inv->get('l')->quantity, 6, "we should now have 6 elven daggers");
 my $yet_more_l_daggers = $pool->new_item("l - 3 daggers");
 $inv->add($yet_more_l_daggers);
 is($inv->get('l')->quantity, 3, "if the item is different, the quantity should be replaced");
+
+my $m_quarterstaff = $pool->new_item("m - a +1 quarterstaff");
+$inv->add($m_quarterstaff);
+is($inv->get('m')->quantity, 1, "only a single quarterstaff");
+my $m_other_quarterstaff = $pool->new_item("m - a +1 quarterstaff");
+$inv->add($m_other_quarterstaff);
+is($inv->get('m')->quantity, 1, "quarterstaves don't stack");
 
