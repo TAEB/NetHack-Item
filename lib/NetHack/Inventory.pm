@@ -102,6 +102,16 @@ sub update {
     return $item;
 }
 
+sub add {
+    my $self = shift;
+    my ($slot, $item) = _extract_slot(@_);
+    my $current_slot_item = $self->get($slot);
+    if ($current_slot_item) {
+        $item->quantity($item->quantity + $current_slot_item->quantity);
+    }
+    $self->update($slot, $item);
+}
+
 after 'set', 'update', => sub {
     my $self = shift;
     my (undef, $item) = _extract_slot(@_);
