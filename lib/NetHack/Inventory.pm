@@ -108,7 +108,8 @@ sub add {
 
     my $new_item = $self->update(@_);
     $new_item->quantity($new_item->quantity + $item->quantity)
-        if ($new_item->is_evolution_of($item));
+        if ($new_item->is_evolution_of($item))
+        && $new_item->stackable;
 
     return $new_item;
 }

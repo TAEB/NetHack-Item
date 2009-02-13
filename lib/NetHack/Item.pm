@@ -673,7 +673,7 @@ sub name {
     $self->artifact || $self->identity || $self->appearance
 }
 
-__PACKAGE__->meta->install_spoilers(qw/subtype/);
+__PACKAGE__->meta->install_spoilers(qw/subtype stackable/);
 
 # anything can be used as a weapon
 __PACKAGE__->meta->install_spoilers(qw/sdam ldam tohit hands/);
