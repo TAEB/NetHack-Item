@@ -40,6 +40,6 @@ my $l_daggers = $pool->new_item("l - 3 elven daggers");
 $inv->update($l_daggers);
 #simulate picking up 3 more elven daggers to the l slot
 my $more_l_daggers = $pool->new_item("l - 3 elven daggers");
-$inv->update($more_l_daggers);
+$inv->add($more_l_daggers);
 is($inv->get('l')->quantity, 6, "we should now have 6 elven daggers");
 
