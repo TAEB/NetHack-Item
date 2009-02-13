@@ -153,6 +153,7 @@ sub _list {
             appearance => 'candle',
             plural => 'tallow candles',
             subtype => 'light',
+            stackable => 1,
         },
         'wax candle' => {
             price => 20,
@@ -161,6 +162,7 @@ sub _list {
             appearance => 'candle',
             plural => 'wax candles',
             subtype => 'light',
+            stackable => 1,
         },
         'brass lantern' => {
             price => 12,

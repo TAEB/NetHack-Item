@@ -241,7 +241,7 @@ sub _list {
         },
     };
 
-    return $gems, (weight => 1);
+    return $gems, (weight => 1, stackable => 1);
 }
 
 sub extra_plurals {

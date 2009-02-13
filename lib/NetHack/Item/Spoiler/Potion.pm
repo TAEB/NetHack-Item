@@ -95,7 +95,7 @@ sub _list {
         },
     };
 
-    return $potions, (weight => 20, appearances => \@potions,
+    return $potions, (weight => 20, appearances => \@potions, stackable => 1,
                       plural => sub {
                         my $name = shift;
                         $name =~ s/\bpotion\b/potions/;
