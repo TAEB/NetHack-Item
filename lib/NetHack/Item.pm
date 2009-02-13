@@ -579,8 +579,7 @@ sub incorporate_stat {
 
     my ($old_attr, $new_attr) = map {
         $_->meta->find_attribute_by_name($stat)
-            or $_->can('nhi') && $_->nhi->meta->find_attribute_by_name($stat)
-                or confess "No attribute named ($stat)";
+            or confess "No attribute named ($stat)";
     } $self, $other;
 
     my $old_value = $old_attr->get_value($self);
