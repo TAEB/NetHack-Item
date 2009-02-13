@@ -107,6 +107,7 @@ sub add {
     my (undef, $item) = _extract_slot(@_);
 
     my $new_item = $self->update(@_);
+    return unless defined $new_item;
     $new_item->quantity($new_item->quantity + $item->quantity)
         if ($new_item->is_evolution_of($item))
         && $new_item->stackable;
