@@ -116,12 +116,14 @@ sub _list {
             nutrition  => 0,
             plural     => 'empty tins',
             appearance => 'tin',
+            weight     => 10,
             stackable  => 1,
         },
         'tin of spinach' => {
             nutrition  => 800,
             plural     => 'tins of spinach',
             appearance => 'tin',
+            weight     => 10,
             stackable  => 1,
         },
     };
@@ -2076,6 +2078,7 @@ sub _list {
         $food->{"tin of $tin_name"} = {
             appearance => "tin",
             plural     => "tins of $tin_name",
+            weight     => 10,
             stackable  => 1,
         };
 
