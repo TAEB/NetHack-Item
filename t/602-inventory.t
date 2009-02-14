@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 17;
+use Test::More tests => 18;
 use NetHack::ItemPool;
 
 my $pool = NetHack::ItemPool->new;
@@ -53,3 +53,6 @@ my $m_other_quarterstaff = $pool->new_item("m - a +1 quarterstaff");
 $inv->add($m_other_quarterstaff);
 is($inv->get('m')->quantity, 1, "quarterstaves don't stack");
 
+my $n_dart = $pool->new_item("n - a +2 dart");
+$inv->add($n_dart);
+is($inv->get('n')->quantity, 1, "we added only a single dart to our inventory");
