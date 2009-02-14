@@ -79,6 +79,7 @@ around set => sub {
 
 sub update {
     my $self = shift;
+    my $args = ref($_[0]) eq 'HASH' ? shift : {};
     my ($slot, $item) = _extract_slot(@_);
 
     # gold pieces don't belong in inventory
@@ -87,8 +88,11 @@ sub update {
 
     if (my $old = $self->get($slot)) {
         if ($item->is_evolution_of($old)) {
+            my $old_quantity = $old->quantity;
             $old->incorporate_stats_from($item);
             $old->slot($slot);
+            $old->quantity($old_quantity + $item->quantity)
+                if $args->{add} && $old->stackable;
         }
         else {
             warn "Displacing $old in slot $slot with $item.";
@@ -102,21 +106,11 @@ sub update {
     return $item;
 }
 
-sub add {
-    my $self = shift;
-    my (undef, $item) = _extract_slot(@_);
-
-    my $new_item = $self->update(@_);
-    return unless defined $new_item;
-    $new_item->quantity($new_item->quantity + $item->quantity)
-        if ($new_item->is_evolution_of($item))
-        && $new_item->stackable;
-
-    return $new_item;
-}
+sub add { shift->update({add => 1}, @_) }
 
 after 'set', 'update', => sub {
     my $self = shift;
+    my $args = ref($_[0]) eq 'HASH' ? shift : {};
     my (undef, $item) = _extract_slot(@_);
 
     $self->equipment->update($item);
