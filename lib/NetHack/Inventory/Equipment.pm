@@ -64,11 +64,9 @@ sub _update_weapon {
         next unless $item->$check;
         next if $self->$slot && $self->$slot == $item;
 
-        if ($item != $self->$slot) {
-            my $clearer = "clear_$slot";
-            $self->$clearer;
-            $self->$slot($item);
-        }
+        my $clearer = "clear_$slot";
+        $self->$clearer;
+        $self->$slot($item);
     }
 }
 
