@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 12;
+use Test::More tests => 22;
 use NetHack::ItemPool;
 
 my $pool = NetHack::ItemPool->new;
@@ -33,17 +33,23 @@ ok(!$boots->is_worn, "not worn yet");
 is($inv->boots, undef, "no boots yet");
 
 $boots->is_worn(1);
-
 ok($boots->is_worn, "worn now");
 is($inv->boots, $boots, "wearing our boots");
+
+$boots->is_worn(0);
+ok(!$boots->is_worn, "not worn");
+is($inv->boots, undef, "not wearing our boots");
 
 my $ring = $pool->new_item("an opal ring");
 ok(!$ring->is_worn, "not worn yet");
 is($inv->left_ring, undef, "no ring yet");
 
 $ring->hand("left");
-
 is($ring->hand, "left", "worn on left hand now");
 ok($ring->is_worn, "worn now");
-is($inv->boots_ring, $ring, "wearing our left-hand ring");
+is($inv->left_ring, $ring, "wearing our left-hand ring");
 
+$ring->hand(undef);
+is($ring->hand, undef, "no longer on a hand");
+ok(!$ring->is_worn, "no longer worn");
+is($inv->left_ring, undef, "no longer wearing our left-hand ring");
