@@ -71,6 +71,14 @@ after incorporate_stats_from => sub {
     $self->incorporate_stat($other => 'is_worn');
 };
 
+around can_drop => sub {
+    my $orig = shift;
+    my $self = shift;
+
+    return 0 if $self->is_worn;
+    return $orig->($self, @_);
+};
+
 no Moose::Role;
 
 1;
