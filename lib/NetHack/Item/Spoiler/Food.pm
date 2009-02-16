@@ -1353,6 +1353,7 @@ sub _list {
         'lichen' => {
             weight      => 20,
             nutrition   => 200,
+            permanent   => 1,
             vegetarian  => 1,
             vegan       => 1,
         },
@@ -1370,6 +1371,7 @@ sub _list {
             weight      => 10,
             nutrition   => 40,
             confusion   => '100%',
+            permanent   => 1,
             'cure stoning' => '100%',
             'reduce stunning' => '100%',
         },
@@ -2071,6 +2073,7 @@ sub _list {
         $food->{"$name corpse"}{monster} = $name;
         $food->{"$name corpse"}{plural}  = "$name corpses";
         $food->{"$name corpse"}{stackable} = 1;
+        $food->{"$name corpse"}{permanent} ||= 0;
 
         my $tin_name = $name;
         $tin_name .= " meat"
