@@ -47,7 +47,7 @@ sub _update_ring {
     if ($item->type eq 'ring' && (my $hand = $item->hand)) {
         my $slot = "${hand}_ring";
 
-        if ($item != $self->$slot) {
+        if ($item != ($self->$slot || 0)) {
             my $clearer = "clear_$slot";
             $self->$clearer;
             $self->$slot($item);
