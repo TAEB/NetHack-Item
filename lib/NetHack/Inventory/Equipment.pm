@@ -77,29 +77,14 @@ sub _update_armor {
     return unless $item->does('NetHack::Item::Role::Wearable');
 
     if ($item->is_worn) {
-        my %types = (
-            amulet    => ['amulet'],
-            helmet    => ['armor', 'helmet'],
-            gloves    => ['armor', 'gloves'],
-            boots     => ['armor', 'boots'],
-            bodyarmor => ['armor', 'bodyarmor'],
-            cloak     => ['armor', 'cloak'],
-            shirt     => ['armor', 'shirt'],
-            shield    => ['armor', 'shield'],
-        );
+        my $slot = $item->type eq 'armor'
+                 ? $item->subtype
+                 : $item->type;
 
-        for my $slot (keys %types) {
-            my ($type, $subtype) = @{ $types{$slot} };
-            next if $item->type ne $type;
-            next if $subtype && $item->subtype ne $subtype;
-
-            if ($item != $self->$slot) {
-                my $clearer = "clear_$slot";
-                $self->$clearer;
-                $self->$slot($item);
-            }
-
-            last;
+        if ($item != ($self->$slot || 0)) {
+            my $clearer = "clear_$slot";
+            $self->$clearer;
+            $self->$slot($item);
         }
     }
 }
