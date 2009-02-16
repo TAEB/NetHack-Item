@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 22;
+use Test::More tests => 30;
 use NetHack::ItemPool;
 
 my $pool = NetHack::ItemPool->new;
@@ -40,16 +40,30 @@ $boots->is_worn(0);
 ok(!$boots->is_worn, "not worn");
 is($inv->boots, undef, "not wearing our boots");
 
-my $ring = $pool->new_item("an opal ring");
-ok(!$ring->is_worn, "not worn yet");
+my $opal = $pool->new_item("an opal ring");
+ok(!$opal->is_worn, "not worn yet");
 is($inv->left_ring, undef, "no ring yet");
 
-$ring->hand("left");
-is($ring->hand, "left", "worn on left hand now");
-ok($ring->is_worn, "worn now");
-is($inv->left_ring, $ring, "wearing our left-hand ring");
+$opal->hand("left");
+is($opal->hand, "left", "worn on left hand now");
+ok($opal->is_worn, "worn now");
+is($inv->left_ring, $opal, "wearing our left-hand ring");
 
-$ring->hand(undef);
-is($ring->hand, undef, "no longer on a hand");
-ok(!$ring->is_worn, "no longer worn");
+$opal->hand(undef);
+is($opal->hand, undef, "no longer on a hand");
+ok(!$opal->is_worn, "no longer worn");
 is($inv->left_ring, undef, "no longer wearing our left-hand ring");
+
+$opal->hand("right");
+is($opal->hand, "right", "worn on right hand now");
+ok($opal->is_worn, "worn now");
+is($inv->right_ring, $opal, "wearing our right-hand ring");
+
+my $wire = $pool->new_item("a wire ring (on right hand)");
+is($wire->hand, "right", "worn on right hand");
+ok($wire->is_worn, "worn");
+is($inv->right_ring, $wire, "wearing our new right-hand ring");
+
+is($opal->hand, undef, "opal no longer on a hand");
+ok(!$opal->is_worn, "opal no longer worn");
+
