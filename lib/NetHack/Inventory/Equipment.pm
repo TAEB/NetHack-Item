@@ -46,9 +46,12 @@ sub _update_ring {
 
     if ($item->type eq 'ring' && (my $hand = $item->hand)) {
         my $slot = "${hand}_ring";
-        my $clearer = "clear_$slot";
-        $self->$clearer;
-        $self->$slot($item);
+
+        if ($item != $self->$slot) {
+            my $clearer = "clear_$slot";
+            $self->$clearer;
+            $self->$slot($item);
+        }
     }
 }
 
@@ -61,9 +64,11 @@ sub _update_weapon {
         next unless $item->$check;
         next if $self->$slot && $self->$slot == $item;
 
-        my $clearer = "clear_$slot";
-        $self->$clearer;
-        $self->$slot($item);
+        if ($item != $self->$slot) {
+            my $clearer = "clear_$slot";
+            $self->$clearer;
+            $self->$slot($item);
+        }
     }
 }
 
@@ -90,10 +95,11 @@ sub _update_armor {
             next if $item->type ne $type;
             next if $subtype && $item->subtype ne $subtype;
 
-            my $clearer = "clear_$slot";
-            $self->$clearer;
-
-            $self->$slot($item);
+            if ($item != $self->$slot) {
+                my $clearer = "clear_$slot";
+                $self->$clearer;
+                $self->$slot($item);
+            }
 
             last;
         }
