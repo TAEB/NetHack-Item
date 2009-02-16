@@ -12,6 +12,31 @@ has is_worn => (
         set   => 'wear',
         unset => 'remove',
     },
+    trigger   => sub {
+        my ($self, $is_worn) = @_;
+        return unless $self->has_pool;
+
+        my $slot;
+        if ($self->type eq 'armor') {
+            $slot = $self->subtype;
+        }
+        elsif ($self->type eq 'ring') {
+            my $hand = $self->hand;
+            die "When setting a ring as worn, you must have the 'hand' attribute set" if $is_worn && !$hand;
+            $slot = "${hand}_ring";
+        }
+        else {
+            $slot = $self->type;
+        }
+
+        if ($is_worn) {
+            $self->pool->inventory->equipment->$slot($self);
+        }
+        else {
+            my $clearer = "clear_$slot";
+            $self->pool->inventory->equipment->$clearer;
+        }
+    },
 );
 
 after incorporate_stats => sub {
