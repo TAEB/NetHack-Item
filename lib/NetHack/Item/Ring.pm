@@ -2,7 +2,6 @@
 package NetHack::Item::Ring;
 use Moose;
 extends 'NetHack::Item';
-with 'NetHack::Item::Role::Wearable';
 with 'NetHack::Item::Role::Enchantable';
 
 use Moose::Util::TypeConstraints qw/subtype as where/;
@@ -60,6 +59,9 @@ around hand => sub {
 
     return $ret;
 };
+
+# XXX: we need to incorporate "hand" before we incorporate "is_worn" :/
+with 'NetHack::Item::Role::Wearable';
 
 __PACKAGE__->meta->install_spoilers('chargeable');
 
