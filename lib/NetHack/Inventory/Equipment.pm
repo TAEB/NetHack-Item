@@ -121,7 +121,7 @@ for my $slot (keys %weapon_slots) {
     before "clear_$slot" => sub {
         my $self = shift;
         my $item = $self->$slot or return;
-        $item->$accessor(0);
+        $item->$accessor(0) if $item->$accessor;
     };
 };
 
@@ -129,7 +129,7 @@ for my $slot (__PACKAGE__->armor_slots) {
     before "clear_$slot" => sub {
         my $self = shift;
         my $item = $self->$slot or return;
-        $item->is_worn(0);
+        $item->is_worn(0) if $item->is_worn;
     };
 }
 
@@ -137,7 +137,7 @@ for my $hand (qw/left_ring right_ring/) {
     before "clear_$hand" => sub {
         my $self = shift;
         my $item = $self->$hand or return;
-        $item->hand(undef);
+        $item->hand(undef) if $item->hand;
     };
 }
 
