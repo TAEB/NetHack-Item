@@ -41,12 +41,16 @@ around is_worn => sub {
             $slot = $self->type;
         }
 
+        my $equipment = $self->pool->inventory->equipment;
         if ($is_worn) {
-            $self->pool->inventory->equipment->$slot($self);
+            my $existing = $equipment->$slot;
+            $existing->is_worn(0) if $existing && $existing != $self;
+
+            $equipment->$slot($self);
         }
         else {
             my $clearer = "clear_$slot";
-            $self->pool->inventory->equipment->$clearer;
+            $equipment->$clearer;
         }
     }
 
