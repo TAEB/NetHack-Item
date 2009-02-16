@@ -12,11 +12,22 @@ has is_worn => (
         set   => 'wear',
         unset => 'remove',
     },
-    trigger   => sub {
-        my ($self, $is_worn) = @_;
-        return unless $self->has_pool;
+);
 
+around is_worn => sub {
+    my $orig = shift;
+    my $self = shift;
+
+    return $orig->($self) if !@_; # reader
+
+    my $is_worn = shift;
+    my $before = $self->is_worn;
+
+    my $ret = $orig->($self, $is_worn, @_);
+
+    if ($self->has_pool && $is_worn ^ $before) {
         my $slot;
+
         if ($self->type eq 'armor') {
             $slot = $self->subtype;
         }
@@ -37,8 +48,10 @@ has is_worn => (
             my $clearer = "clear_$slot";
             $self->pool->inventory->equipment->$clearer;
         }
-    },
-);
+    }
+
+    return $ret;
+};
 
 after incorporate_stats => sub {
     my $self  = shift;
