@@ -110,16 +110,16 @@ sub remove {
     my $self = shift;
     my $item = shift;
 
-    for my $eq_slot (__PACKAGE__->slots) {
-        my $in_slot = $self->$eq_slot;
+    for my $slot (__PACKAGE__->slots) {
+        my $incumbent = $self->$slot;
 
-        next unless $in_slot
-                 && $in_slot->slot eq $item->slot;
+        next unless $incumbent
+                 && $incumbent->slot eq $item->slot;
 
-        my $clearer = "clear_$eq_slot";
+        my $clearer = "clear_$slot";
         $self->$clearer;
     }
-};
+}
 
 for my $slot (keys %weapon_slots) {
     my $accessor = $weapon_slots{$slot};
@@ -135,6 +135,7 @@ for my $slot (__PACKAGE__->armor_slots) {
     before "clear_$slot" => sub {
         my $self = shift;
         my $item = $self->$slot or return;
+
         $item->is_worn(0) if $item->is_worn;
     };
 }
