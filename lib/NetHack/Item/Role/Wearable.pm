@@ -22,7 +22,8 @@ has is_worn => (
         }
         elsif ($self->type eq 'ring') {
             my $hand = $self->hand;
-            die "When setting a ring as worn, you must have the 'hand' attribute set" if $is_worn && !$hand;
+
+            die "When changing a ring's worn status, you must have the 'hand' attribute set" if !$hand;
             $slot = "${hand}_ring";
         }
         else {
