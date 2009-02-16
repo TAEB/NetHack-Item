@@ -74,8 +74,9 @@ after incorporate_stats_from => sub {
 around can_drop => sub {
     my $orig = shift;
     my $self = shift;
+    my %args = @_;
 
-    return 0 if $self->is_worn;
+    return 0 if $self->is_worn && !$args{ignore_is_worn};
     return $orig->($self, @_);
 };
 
