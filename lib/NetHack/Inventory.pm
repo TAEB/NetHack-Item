@@ -146,7 +146,7 @@ sub _calculate_weight {
         $total_max += $max * $item->quantity;
     }
 
-    return ($total_max + $total_min) / 2;
+    return int(($total_max + $total_min) / 2);
 }
 
 sub decrease_quantity {
