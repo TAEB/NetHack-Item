@@ -3,12 +3,16 @@ package NetHack::Inventory::Equipment;
 use Moose;
 with 'NetHack::ItemPool::Role::HasPool';
 
-my @weapon_slots = (qw/weapon offhand quiver/);
-my @armor_slots = (qw/helmet gloves boots bodyarmor cloak shirt shield/);
-my @accessory_slots = (qw/left_ring right_ring amulet/);
-my @eq_slots = (@weapon_slots, @armor_slots, @accessory_slots);
+sub weapon_slots { qw/weapon offhand quiver/ }
+sub armor_slots  { qw/helmet gloves boots bodyarmor cloak shirt shield/ }
+sub accessory_slots { qw/left_ring right_ring amulet/ }
 
-for my $slot (@eq_slots) {
+sub slots {
+    my $self = shift;
+    return ($self->weapon_slots, $self->armor_slots, $self->accessory_slots)
+}
+
+for my $slot (__PACKAGE__->slots) {
     has $slot => (
         is        => 'rw',
         isa       => 'NetHack::Item',
@@ -100,7 +104,7 @@ sub remove {
     my $self = shift;
     my $item = shift;
 
-    for my $eq_slot (@eq_slots) {
+    for my $eq_slot (__PACKAGE__->slots) {
         my $in_slot = $self->$eq_slot;
 
         next unless $in_slot
@@ -121,7 +125,7 @@ for my $slot (keys %weapon_slots) {
     };
 };
 
-for my $slot (@armor_slots) {
+for my $slot (__PACKAGE__->armor_slots) {
     before "clear_$slot" => sub {
         my $self = shift;
         my $item = $self->$slot or return;
