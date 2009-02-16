@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 8;
+use Test::More tests => 12;
 use NetHack::ItemPool;
 
 my $pool = NetHack::ItemPool->new;
@@ -27,4 +27,23 @@ ok(!$sword->is_wielded, "wielding Excalibur means our sword is no longer wielded
 $inv->remove('f');
 ok(!$excal->is_wielded, "Excalibur is no longer wielded; it left our inventory");
 ok(!$inv->has_weapon, "no weapon");
+
+my $boots = $pool->new_item("a pair of combat boots");
+ok(!$boots->is_worn, "not worn yet");
+is($inv->boots, undef, "no boots yet");
+
+$boots->is_worn(1);
+
+ok($boots->is_worn, "worn now");
+is($inv->boots, $boots, "wearing our boots");
+
+my $ring = $pool->new_item("an opal ring");
+ok(!$ring->is_worn, "not worn yet");
+is($inv->left_ring, undef, "no ring yet");
+
+$ring->hand("left");
+
+is($ring->hand, "left", "worn on left hand now");
+ok($ring->is_worn, "worn now");
+is($inv->boots_ring, $ring, "wearing our left-hand ring");
 
