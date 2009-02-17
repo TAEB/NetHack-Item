@@ -38,7 +38,7 @@ has trackers => (
             pool => $self,
         )
     },
-    handles => [qw/tracker_for possible_appearances_for/],
+    handles => [qw/tracker_for possible_appearances_of/],
 );
 
 sub _create_item {
