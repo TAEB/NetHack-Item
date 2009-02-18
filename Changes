@@ -1,5 +1,30 @@
 Revision history for NetHack-Item
 
+0.06    Tue Feb 17 23:18:05 2009
+        Gold never goes into the inventory
+        Throw a warning if we're throwing away an inventory item in an update
+        Improved artifact handling
+        Fix evolving charge (both items need to do the role)
+        MooseX::Role::Matcher is recommended (but not used) in place of our
+            horrible hack which is now gone
+        Many fixes for equipment tracking
+        Handle plural unidentified eggs
+        Load all tracker classes
+        new_item no longer does inventory tracking, since it could be a
+            container slot
+        Account for quantity in weight
+        Remove some hacks that sneaked in for initial TAEB support
+        Spoilers now track stackability, tin weight, corpse permanence
+        You can't drop worn items
+
+        Item->spoiler_values, maybe_is, remove_damage, throw_range
+        Item->name which is artifact or identity or appearance
+        Inventory->exact_weight, decrease_quantity, add
+        Armor->base_ac
+        Corpse->monster
+        Trackers->possible_appearances_of(identity)
+        ItemPool->item_class, _create_item
+
 0.05    Tue Dec 9 00:46:18 2008
         Depend on Set::Object. Oops.
 
