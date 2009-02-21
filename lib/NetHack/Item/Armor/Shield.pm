@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::Item::Armor::Shield;
 use Moose;
 extends 'NetHack::Item::Armor';

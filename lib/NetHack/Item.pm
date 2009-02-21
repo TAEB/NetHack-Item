@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::Item;
 use Moose -traits => 'NetHack::Item::Meta::Trait::InstallsSpoilers';
 use MooseX::AttributeHelpers;

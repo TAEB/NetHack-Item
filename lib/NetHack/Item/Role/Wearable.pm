@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::Item::Role::Wearable;
 use Moose::Role;
 use MooseX::AttributeHelpers;

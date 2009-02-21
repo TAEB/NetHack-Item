@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::ItemPool::Trackers;
 use Moose;
 use MooseX::AttributeHelpers;

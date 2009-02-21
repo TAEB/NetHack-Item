@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::Item::Food::Corpse;
 use Moose;
 extends 'NetHack::Item::Food';

@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::Item::Spellbook;
 use Moose;
 extends 'NetHack::Item';

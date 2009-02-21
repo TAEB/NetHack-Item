@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::Item::Tool::Candelabrum;
 use Moose;
 extends 'NetHack::Item::Tool::Light';

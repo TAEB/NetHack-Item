@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::Item::Tool::Figurine;
 use Moose;
 extends 'NetHack::Item::Tool';

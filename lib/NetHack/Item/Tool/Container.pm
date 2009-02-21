@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::Item::Tool::Container;
 use Moose;
 use MooseX::AttributeHelpers;

@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::ItemPool::Tracker;
 use Moose;
 use Set::Object;

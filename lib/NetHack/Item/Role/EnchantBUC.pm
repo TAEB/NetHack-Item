@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::Item::Role::EnchantBUC;
 use Moose::Role;
 

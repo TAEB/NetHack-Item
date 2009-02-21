@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::Item::Ring;
 use Moose;
 extends 'NetHack::Item';

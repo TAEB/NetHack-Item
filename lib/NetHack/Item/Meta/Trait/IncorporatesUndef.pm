@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::Item::Meta::Trait::IncorporatesUndef;
 use Moose::Role;
 

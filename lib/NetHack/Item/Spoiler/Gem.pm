@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::Item::Spoiler::Gem;
 use strict;
 use warnings;

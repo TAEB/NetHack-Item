@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::Item::Spoiler::Spellbook;
 use strict;
 use warnings;

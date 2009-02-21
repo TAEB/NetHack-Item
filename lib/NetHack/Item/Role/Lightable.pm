@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::Item::Role::Lightable;
 use Moose::Role;
 use MooseX::AttributeHelpers;

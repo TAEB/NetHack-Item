@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::Inventory;
 use Moose;
 use MooseX::AttributeHelpers;

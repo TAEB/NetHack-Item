@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package Test::NetHack::Item;
 use strict;
 use warnings;

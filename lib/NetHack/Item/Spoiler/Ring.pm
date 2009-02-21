@@ -1,5 +1,3 @@
-
-#!/usr/bin/env perl
 package NetHack::Item::Spoiler::Ring;
 use strict;
 use warnings;

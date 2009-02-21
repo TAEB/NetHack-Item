@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::Item::Tool::Light;
 use Moose;
 extends 'NetHack::Item::Tool';

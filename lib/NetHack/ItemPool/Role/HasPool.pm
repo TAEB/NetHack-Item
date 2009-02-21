@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::ItemPool::Role::HasPool;
 use Moose::Role;
 

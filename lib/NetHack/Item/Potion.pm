@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package NetHack::Item::Potion;
 use Moose;
 extends 'NetHack::Item';
