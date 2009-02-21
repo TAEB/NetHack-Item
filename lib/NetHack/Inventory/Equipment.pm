@@ -73,12 +73,10 @@ sub _update_armor {
     my $self = shift;
     my $item = shift;
 
-    return unless $item->does('NetHack::Item::Role::Wearable');
+    return unless $item->type eq 'armor';
 
     if ($item->is_worn) {
-        my $slot = $item->type eq 'armor'
-                 ? $item->subtype
-                 : $item->type;
+        my $slot = $item->subtype;
 
         if ($item != ($self->$slot || 0)) {
             my $clearer = "clear_$slot";
