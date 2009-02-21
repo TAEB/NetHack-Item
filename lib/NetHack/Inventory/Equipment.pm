@@ -4,7 +4,7 @@ with 'NetHack::ItemPool::Role::HasPool';
 
 sub weapon_slots { qw/weapon offhand quiver/ }
 sub armor_slots  { qw/helmet gloves boots bodyarmor cloak shirt shield/ }
-sub accessory_slots { qw/left_ring right_ring amulet/ }
+sub accessory_slots { qw/left_ring right_ring amulet blindfold/ }
 
 sub slots {
     my $self = shift;
@@ -46,6 +46,29 @@ sub _update_ring {
     if ($item->type eq 'ring' && (my $hand = $item->hand)) {
         my $slot = "${hand}_ring";
 
+        if ($item != ($self->$slot || 0)) {
+            my $clearer = "clear_$slot";
+            $self->$clearer;
+            $self->$slot($item);
+        }
+    }
+}
+
+sub _update_nonring_accessory {
+    my $self = shift;
+    my $item = shift;
+
+    my $slot;
+
+    if ($item->isa('NetHack::Item::Amulet')) {
+        $slot = 'amulet';
+    } elsif ($item->isa('NetHack::Item::Tool::Accessory')) {
+        $slot = 'blindfold';
+    } else {
+        return;
+    }
+
+    if ($item->is_worn) {
         if ($item != ($self->$slot || 0)) {
             my $clearer = "clear_$slot";
             $self->$clearer;
@@ -111,7 +134,7 @@ for my $slot (keys %weapon_slots) {
     };
 };
 
-for my $slot (__PACKAGE__->armor_slots) {
+for my $slot (__PACKAGE__->armor_slots, "amulet", "blindfold") {
     before "clear_$slot" => sub {
         my $self = shift;
         my $item = $self->$slot or return;
