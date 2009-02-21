@@ -137,6 +137,7 @@ our %dependancies = (
     cloak      => ['',  [qw/cloak/], []],
     left_ring  => ['s', [qw/left_ring/], [qw/gloves/]],
     right_ring => ['',  [qw/right_ring/], [qw/gloves weapon/]],
+    gloves     => ['',  [qw/gloves/], [qw/weapon/]],
     helmet     => ['',  [qw/helmet/], []],
     boots      => ['',  [qw/boots/], []],
     shield     => ['h', [qw/shield/], []],
@@ -144,7 +145,7 @@ our %dependancies = (
     blindfold  => ['',  [qw/blindfold/], []],
     weapon     => ['',  [], [qw/weapon/]],
     offhand    => ['',  [], [qw/weapon/]],
-    quiver     => ['', [], []],
+    quiver     => ['',  [], []],
 );
 
 sub _covering_slots {
