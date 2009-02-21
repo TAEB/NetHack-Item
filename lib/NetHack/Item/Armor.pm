@@ -10,6 +10,8 @@ use constant type => "armor";
 
 sub base_ac { shift->collapse_spoiler_value('ac') }
 
+sub specific_slots { [shift->subtype] }
+
 sub ac {
     my $self = shift;
     my $base = $self->base_ac;

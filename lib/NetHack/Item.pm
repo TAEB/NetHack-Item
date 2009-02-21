@@ -672,6 +672,17 @@ sub name {
     $self->artifact || $self->identity || $self->appearance
 }
 
+# Anything can be wielded; subclasses may provide more options
+sub specific_slots { [] }
+
+sub fits_in_slot {
+    my ($self, $slot) = @_;
+
+    return 1 if $slot eq "weapon" || $slot eq "offhand";
+
+    grep { $_ eq $slot } $self->specific_slots;
+}
+
 __PACKAGE__->meta->install_spoilers(qw/subtype stackable/);
 
 # anything can be used as a weapon

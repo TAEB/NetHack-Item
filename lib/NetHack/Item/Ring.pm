@@ -6,6 +6,7 @@ with 'NetHack::Item::Role::Enchantable';
 use Moose::Util::TypeConstraints qw/subtype as where/;
 
 use constant type => "ring";
+use constant specific_slots => [qw/left_hand right_hand/];
 
 subtype 'NetHack::Item::Hand'
      => as 'Item'
