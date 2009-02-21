@@ -117,7 +117,7 @@ sub all_identities {
         }
     }
 
-    return \@identities;
+    return @identities;
 }
 
 sub name_to_type {
