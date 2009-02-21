@@ -15,6 +15,7 @@ memoize 'possibilities_to_appearances';
 memoize 'plurals';
 memoize 'plural_of_list';
 memoize 'singular_of_list';
+memoize 'all_identities';
 
 my %artifact;
 
@@ -103,6 +104,20 @@ sub name_to_type_list {
     }
 
     return \%all_types;
+}
+
+sub all_identities {
+    my $self = shift;
+    my @identities;
+
+    for my $class ($self->spoiler_types) {
+        my $list = $class->list;
+        for (values %$list) {
+            push @identities, $_->{name};
+        }
+    }
+
+    return \@identities;
 }
 
 sub name_to_type {
