@@ -130,6 +130,72 @@ for my $hand (qw/left_ring right_ring/) {
     };
 }
 
+# everything except weapons hard depends on itself because
+# there is no quick swap for armour
+# dependency on 2hander / hard deps / soft deps
+our %dependancies = (
+    shirt      => ['s', [qw/cloak bodyarmor shirt/], []],
+    bodyarmor  => ['s', [qw/cloak bodyarmor/], []],
+    cloak      => ['',  [qw/cloak/], []],
+    left_ring  => ['s', [qw/left_ring/], [qw/gloves/]],
+    right_ring => ['',  [qw/right_ring/], [qw/gloves weapon/]],
+    helmet     => ['',  [qw/helmet/], []],
+    boots      => ['',  [qw/boots/], []],
+    shield     => ['h', [qw/shield/], []],
+    amulet     => ['',  [qw/amulet/], []],
+    blindfold  => ['',  [qw/blindfold/], []],
+    weapon     => ['',  [], [qw/weapon/]],
+    offhand    => ['',  [], [qw/weapon/]],
+    quiver     => ['', [], []],
+);
+
+sub _covering_slots {
+    my ($self, $slot, $hardonly) = @_;
+
+    my @r;
+
+    my ($th, $hard, $soft) = @{ $dependancies{$slot} };
+
+    if ($th && ($th eq 'h' || !$hardonly) && $self->weapon &&
+            $self->weapon->hands == 2) {
+        push @r, 'weapon';
+    }
+
+    push @r, @$hard;
+    push @r, @$soft unless $hardonly;
+
+    grep { $self->$_ } @r;
+}
+
+
+sub under_cursed {
+    my ($self, $slot) = @_;
+
+    for my $cslot ($self->_covering_slots($slot, 0)) {
+        return 1 if $self->$cslot->is_cursed;
+    }
+
+    return 0;
+}
+
+sub blockers {
+    my ($self, $slot) = @_;
+
+    my @r;
+
+    for my $cslot ($self->_covering_slots($slot, 1)) {
+        push @r, $cslot, $self->$cslot;
+    }
+
+    return @r if wantarray;
+    return $r[1];
+}
+
+sub slots_inside_out {
+    qw/shirt bodyarmor boots helmet cloak right_ring left_ring gloves shield
+       amulet blindfold offhand weapon quiver/;
+}
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
@@ -152,6 +218,22 @@ NetHack::Inventory::Equipment - the player's equipment
     is($pool->inventory->weapon, $grayswandir);
 
 =head1 DESCRIPTION
+
+=head2 under_cursed SLOT
+
+Returns true if the slot is inaccessible because it is covered by at
+least one cursed item.
+
+=head2 blockers SLOT
+
+Returns a list of (slot,item) pairs for items that cover the slot and
+have to be removed to access it, outermost first; or the item for the
+outermost blocker in scalar context.
+
+=head2 slots_inside_out
+
+Returns a list of all slots, ordered such that changing a slot need not
+affect any slot earlier in the list.  Right ring comes before left ring.
 
 =cut
 
