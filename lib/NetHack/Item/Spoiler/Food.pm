@@ -9,107 +9,110 @@ sub _list {
     my $food = {
         'meatball' => {
             price => 5, weight => 1, nutrition => 5, time => 1,
-            plural => 'meatballs', stackable => 1,
+            plural => 'meatballs', stackable => 1, material => 'flesh',
         },
         'meat ring' => {
             price => 5, weight => 1, nutrition => 5, time => 1,
-            plural => 'meat rings',
+            plural => 'meat rings', material => 'flesh',
         },
         'meat stick' => {
             price => 5, weight => 1, nutrition => 5, time => 1,
-            plural => 'meat sticks', stackable => 1,
+            plural => 'meat sticks', stackable => 1, material => 'flesh',
         },
         'tripe ration' => {
             price => 15, weight => 10, nutrition => 200, time => 2, unsafe => 1,
-            plural => 'tripe rations', stackable => 1,
+            plural => 'tripe rations', stackable => 1, material => 'flesh',
         },
         'huge chunk of meat' => {
             price => 105, weight => 400, nutrition => 2000, time => 20,
             plural => 'huge chunks of meat', stackable => 1,
+            material => 'flesh',
         },
         'kelp frond' => {
             price => 6, weight => 1, nutrition => 30, time => 1,
-            plural => 'kelp fronds', stackable => 1,
+            plural => 'kelp fronds', stackable => 1, material => 'veggy',
         },
         'eucalyptus leaf' => {
             price => 6, weight => 1, nutrition => 30, time => 1,
-            plural => 'eucalyptus leaves', stackable => 1,
+            plural => 'eucalyptus leaves', stackable => 1, material => 'veggy',
         },
         'clove of garlic' => {
             price => 7, weight => 1, nutrition => 40, time => 1,
-            plural => 'cloves of garlic', stackable => 1,
+            plural => 'cloves of garlic', stackable => 1, material => 'veggy',
         },
         'sprig of wolfsbane' => {
             price => 7, weight => 1, nutrition => 40, time => 1,
             plural => 'sprigs of wolfsbane', stackable => 1,
+            material => 'veggy',
         },
         'apple' => {
             price => 7, weight => 2, nutrition => 50, time => 1,
-            plural => 'apples', stackable => 1,
+            plural => 'apples', stackable => 1, material => 'veggy',
         },
         'carrot' => {
             price => 7, weight => 2, nutrition => 50, time => 1,
-            plural => 'carrots', stackable => 1,
+            plural => 'carrots', stackable => 1, material => 'veggy',
         },
         'pear' => {
             price => 7, weight => 2, nutrition => 50, time => 1,
-            plural => 'pears', stackable => 1,
+            plural => 'pears', stackable => 1, material => 'veggy',
         },
         'banana' => {
             price => 9, weight => 2, nutrition => 80, time => 1,
-            plural => 'bananas', stackable => 1,
+            plural => 'bananas', stackable => 1, material => 'veggy',
         },
         'orange' => {
             price => 9, weight => 2, nutrition => 80, time => 1,
-            plural => 'oranges', stackable => 1,
+            plural => 'oranges', stackable => 1, material => 'veggy',
         },
         'melon' => {
             price => 10, weight => 5, nutrition => 100, time => 1,
-            plural => 'melons', stackable => 1,
+            plural => 'melons', stackable => 1, material => 'veggy',
         },
         'slime mold' => {
             price => 17, weight => 5, nutrition => 250, time => 1,
-            plural => 'slime molds', stackable => 1,
+            plural => 'slime molds', stackable => 1, material => 'veggy',
         },
         'fortune cookie' => {
             price => 7, weight => 1, nutrition => 40, time => 1,
-            plural => 'fortune cookies', stackable => 1,
+            plural => 'fortune cookies', stackable => 1, material => 'veggy',
         },
         'candy bar' => {
             price => 10, weight => 2, nutrition => 100, time => 1,
-            plural => 'candy bars', stackable => 1,
+            plural => 'candy bars', stackable => 1, material => 'veggy',
         },
         'cream pie' => {
             price => 10, weight => 10, nutrition => 100, time => 1,
-            plural => 'cream pies', stackable => 1,
+            plural => 'cream pies', stackable => 1, material => 'veggy',
         },
         'lump of royal jelly' => {
             price => 15, weight => 2, nutrition => 200, time => 1,
             plural => 'lumps of royal jelly', stackable => 1,
+            material => 'veggy',
         },
         'pancake' => {
             price => 15, weight => 2, nutrition => 200, time => 2,
-            plural => 'pancakes', stackable => 1,
+            plural => 'pancakes', stackable => 1, material => 'veggy',
         },
         'C-ration' => {
             price => 20, weight => 10, nutrition => 300, time => 1,
-            plural => 'C-rations', stackable => 1,
+            plural => 'C-rations', stackable => 1, material => 'veggy',
         },
         'K-ration' => {
             price => 25, weight => 10, nutrition => 400, time => 1,
-            plural => 'K-rations', stackable => 1,
+            plural => 'K-rations', stackable => 1, material => 'veggy',
         },
         'cram ration' => {
             price => 35, weight => 15, nutrition => 600, time => 3,
-            plural => 'cram rations', stackable => 1,
+            plural => 'cram rations', stackable => 1, material => 'veggy',
         },
         'food ration' => {
             price => 45, weight => 20, nutrition => 800, time => 5,
-            plural => 'food rations', stackable => 1,
+            plural => 'food rations', stackable => 1, material => 'veggy',
         },
         'lembas wafer' => {
             price => 45, weight => 5, nutrition => 800, time => 2,
-            plural => 'lembas wafers', stackable => 1,
+            plural => 'lembas wafers', stackable => 1, material => 'veggy',
         },
         'empty tin' => {
             nutrition  => 0,
@@ -117,6 +120,7 @@ sub _list {
             appearance => 'tin',
             weight     => 10,
             stackable  => 1,
+            material   => 'metal',
         },
         'tin of spinach' => {
             nutrition  => 800,
@@ -124,6 +128,7 @@ sub _list {
             appearance => 'tin',
             weight     => 10,
             stackable  => 1,
+            material   => 'metal',
         },
     };
 
@@ -2086,6 +2091,7 @@ sub _list {
 
         $food->{"$adjname corpse"}          = $stats;
         $food->{"$adjname corpse"}{corpse}  = 1;
+        $food->{"$adjname corpse"}{material}= 'flesh';
         $food->{"$adjname corpse"}{subtype} = 'corpse';
         $food->{"$adjname corpse"}{monster} = $name;
         $food->{"$adjname corpse"}{plural}  = "$adjname corpses";
@@ -2100,6 +2106,7 @@ sub _list {
             plural     => "tins of $tin_name",
             weight     => 10,
             stackable  => 1,
+            material   => 'metal',
         };
 
         if ($stats->{has_egg}) {
@@ -2112,6 +2119,7 @@ sub _list {
                 appearance => "egg",
                 plural     => "$name eggs",
                 stackable  => 1,
+                material   => 'flesh',
             };
         }
     }
