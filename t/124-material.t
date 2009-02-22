@@ -30,7 +30,7 @@ use Test::NetHack::Items (
     "F - an oval amulet"               => "iron",
     "G - a wand of fire"               => undef,
     "H - a maple wand"                 => "wood",
-    "I - a scroll labeled DUAM XHANT"  => "paper",
+    "I - a scroll labeled DUAM XNAHT"  => "paper",
     "J - a scroll of amnesia"          => "paper",
     "w - a crystal plate mail" =>
         { material => "glass", is_metallic => 0 },
