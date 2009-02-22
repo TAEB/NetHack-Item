@@ -13,6 +13,7 @@ sub _list {
             glyph  => '$',
             plural => 'gold pieces',
             stackable  => 1,
+            material => 'gold',
         },
         'boulder' => {
             price     => 0,
@@ -22,6 +23,7 @@ sub _list {
             ldam      => 'd20',
             nutrition => 2000,
             plural    => 'boulders',
+            material  => 'mineral',
         },
         'statue' => {
             price     => 0,
@@ -31,6 +33,7 @@ sub _list {
             ldam      => 'd20',
             nutrition => 2500,
             plural    => 'statues',
+            material  => 'mineral',
         },
         'heavy iron ball' => {
             price     => 10,
@@ -40,6 +43,7 @@ sub _list {
             ldam      => 'd25',
             nutrition => 480,
             plural    => 'heavy iron balls',
+            material  => 'iron',
         },
         'iron chain' => {
             price     => 0,
@@ -49,6 +53,7 @@ sub _list {
             ldam      => 'd4+1',
             nutrition => 120,
             plural    => 'iron chains',
+            material  => 'iron',
         },
         'acid venom' => {
             price  => 0,
@@ -58,6 +63,7 @@ sub _list {
             ldam   => '2d6',
             plural => 'acid venoms',
             stackable  => 1,
+            material   => 'liquid',
         },
         'blinding venom' => {
             price  => 0,
@@ -65,6 +71,7 @@ sub _list {
             glyph  => '.',
             plural => 'blinding venoms',
             stackable  => 1,
+            material   => 'liquid',
         },
     };
 
