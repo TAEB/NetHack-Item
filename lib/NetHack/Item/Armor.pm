@@ -21,6 +21,14 @@ sub ac {
     return $base + $enchantment;
 }
 
+my %metals = map {$_ => 1} qw/metal iron mithril copper silver gold platinum/;
+
+sub is_metallic {
+    my $matl = shift->material;
+
+    defined $matl ? ($metals{$matl} ? 1 : 0) : undef;
+}
+
 __PACKAGE__->meta->install_spoilers('mc');
 
 __PACKAGE__->meta->make_immutable;
