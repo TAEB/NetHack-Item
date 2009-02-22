@@ -44,7 +44,7 @@ use Test::NetHack::Items (
         { material => undef, is_metallic => undef },
     "B - a pair of levitation boots" =>
         { material => "leather", is_metallic => 0 },
-    "K - a dwarven mithril-coat" =>
+    "K - a dwarvish mithril-coat" =>
         { material => "mithril", is_metallic => 1 },
 );
 
