@@ -269,7 +269,7 @@ sub extract_stats {
         (\(in\ quiver\))?                                 \s*  # quivered
         (\(alternate\ weapon;\ not\ wielded\))?           \s*  # offhand
         (\(wielded\ in\ other.*?\))?                      \s*  # offhand wield
-        (\(weapon.*?\))?                                  \s*  # wielding
+        (\((?:weapon|wielded).*?\))?                      \s*  # wielding
         (\((?:being|embedded|on).*?\))?                   \s*  # worn
 
         # shop cost! there are two forms, with an optional quality comment
