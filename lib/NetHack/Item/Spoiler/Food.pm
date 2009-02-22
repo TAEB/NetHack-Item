@@ -137,7 +137,8 @@ sub _list {
             nutrition   => 0,
         },
         'Arch Priest' => {
-            unique    => 1,
+            unique      => 1,
+            improper    => 1,
             cannibal    => "Hum",
             weight      => 1450,
             nutrition   => 400,
@@ -163,6 +164,7 @@ sub _list {
         },
         'Chromatic Dragon' => {
             unique      => 1,
+            improper    => 1,
             weight      => 4500,
             nutrition   => 1700,
             cold        => '17%',
@@ -181,12 +183,14 @@ sub _list {
         },
         'Cyclops' => {
             unique      => 1,
+            improper    => 1,
             weight      => 1900,
             nutrition   => 700,
             strength    => '100%',
         },
         'Dark One' => {
             unique      => 1,
+            improper    => 1,
             weight      => 1450,
             nutrition   => 0,
         },
@@ -225,6 +229,7 @@ sub _list {
         },
         'Grand Master' => {
             unique      => 1,
+            improper    => 1,
             cannibal    => "Hum",
             weight      => 1450,
             nutrition   => 400,
@@ -305,6 +310,7 @@ sub _list {
         },
         'Master Assassin' => {
             unique      => 1,
+            improper    => 1,
             cannibal    => "Hum",
             weight      => 1450,
             nutrition   => 400,
@@ -318,6 +324,7 @@ sub _list {
         },
         'Master of Thieves' => {
             unique      => 1,
+            improper    => 1,
             cannibal    => "Hum",
             weight      => 1450,
             nutrition   => 400,
@@ -332,6 +339,7 @@ sub _list {
         },
         'Minion of Huhetotl' => {
             unique      => 1,
+            improper    => 1,
             weight      => 1450,
             nutrition   => 0,
         },
@@ -356,6 +364,7 @@ sub _list {
         },
         'Norn' => {
             unique      => 1,
+            improper    => 1,
             cannibal    => "Hum",
             weight      => 1450,
             nutrition   => 400,
@@ -366,6 +375,7 @@ sub _list {
         },
         'Oracle' => {
             unique      => 1,
+            improper    => 1,
             cannibal    => "Hum",
             weight      => 1450,
             nutrition   => 400,
@@ -428,6 +438,7 @@ sub _list {
         },
         'Wizard of Yendor' => {
             unique      => 1,
+            improper    => 1,
             cannibal    => "Hum",
             weight      => 1450,
             nutrition   => 400,
@@ -2066,15 +2077,22 @@ sub _list {
     # Collect monster corpses, tins, and eggs
     for my $name (keys %monsterlist) {
         my $stats = $monsterlist{$name};
-        $food->{"$name corpse"}          = $stats;
-        $food->{"$name corpse"}{corpse}  = 1;
-        $food->{"$name corpse"}{subtype} = 'corpse';
-        $food->{"$name corpse"}{monster} = $name;
-        $food->{"$name corpse"}{plural}  = "$name corpses";
-        $food->{"$name corpse"}{stackable} = 1;
-        $food->{"$name corpse"}{permanent} ||= 0;
+        my $adjname = $name;
 
-        my $tin_name = $name;
+        if ($stats->{unique}) {
+            $adjname .= ($adjname =~ /s$/ ? "'" : "'s");
+            $adjname = "the " . $adjname if $stats->{improper};
+        }
+
+        $food->{"$adjname corpse"}          = $stats;
+        $food->{"$adjname corpse"}{corpse}  = 1;
+        $food->{"$adjname corpse"}{subtype} = 'corpse';
+        $food->{"$adjname corpse"}{monster} = $name;
+        $food->{"$adjname corpse"}{plural}  = "$adjname corpses";
+        $food->{"$adjname corpse"}{stackable} = 1;
+        $food->{"$adjname corpse"}{permanent} ||= 0;
+
+        my $tin_name = $adjname;
         $tin_name .= " meat"
             unless $stats->{vegetarian};
         $food->{"tin of $tin_name"} = {
