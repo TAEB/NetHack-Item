@@ -120,7 +120,7 @@ sub _list {
     };
 
     return $scrolls, (weight => 5, appearances => \@scrolls, stackable => 1,
-                      plural => sub {
+                      material => 'paper', plural => sub {
                         my $name = shift;
                         $name =~ s/\bscroll\b/scrolls/;
                         return $name;

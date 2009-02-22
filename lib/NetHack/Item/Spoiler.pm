@@ -44,6 +44,7 @@ sub list {
         $stats->{name}        = $name;
         $stats->{type}        = $type;
         $stats->{weight}    ||= $defaults{weight};
+        $stats->{material}  ||= $defaults{material};
         $stats->{price}     ||= $defaults{price};
         $stats->{stackable} ||= $defaults{stackable};
         $stats->{plural}      = $defaults{plural}($name)

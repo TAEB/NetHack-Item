@@ -331,7 +331,8 @@ sub _list {
         },
     };
 
-    return $spellbooks, (weight => 50, appearances => \@spellbooks);
+    return $spellbooks, (weight => 50, material => 'paper',
+                         appearances => \@spellbooks);
 }
 
 1;
