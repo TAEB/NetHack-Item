@@ -5,6 +5,8 @@ use Test::NetHack::Items (
     {is_quivered => 0, is_offhand => 0, is_wielded => 1},
     "f - a long sword (alternate weapon; not wielded)",
     {is_quivered => 0, is_offhand => 1, is_wielded => 0},
+    "k - 4 crude daggers (wielded)",
+    {is_quivered => 0, is_offhand => 0, is_wielded => 1},
     "g - 2 darts (in quiver)",
     {is_quivered => 1, is_offhand => 0, is_wielded => 0},
     "e - an uncursed oil lamp (lit)",
