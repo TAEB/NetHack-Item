@@ -1,0 +1,50 @@
+#!/usr/bin/env perl
+use lib 't/lib';
+use constant testing_method => 'material';
+use Test::NetHack::Items (
+    "a - a boulder"                    => "mineral",
+    "b - a potion of acid"             => "glass",
+    "c - a smoky potion"               => "glass",
+    "d - 23 gold pieces"               => "gold",
+    "e - a tin of spinach"             => "metal",
+    "f - 42 eggs"                      => "flesh",
+    "g - a banana"                     => "veggy",
+    "h - Croesus' corpse"              => "flesh",
+    "i - a loadstone"                  => "mineral",
+    "j - a stone"                      => "mineral",
+    "k - a worthless piece of red glass" => "glass",
+    "l - a ruby"                       => "gemstone",
+    "m - the +2 Cleaver"               => "iron",
+    "n - a quarterstaff"               => "wood",
+    "o - a large box"                  => "wood",
+    "p - a mirror"                     => "glass",
+    "q - an iron chain"                => "iron",
+    "r - a wooden ring"                => "wood",
+    "s - a ring of teleport control"   => undef,
+    "t - a moonstone ring"             => "mineral",
+    "u - a red spellbook"              => "paper",
+    "v - a spellbook of knock"         => "paper",
+    "C - the Amulet of Yendor"         => undef,
+    "D - a cheap plastic imitation of the Amulet of Yendor" => "plastic",
+    "E - an amulet of strangulation"   => "iron",
+    "F - an oval amulet"               => "iron",
+    "G - a wand of fire"               => undef,
+    "H - a maple wand"                 => "wood",
+    "I - a scroll labeled DUAM XHANT"  => "paper",
+    "J - a scroll of amnesia"          => "paper",
+    "w - a crystal plate mail" =>
+        { material => "glass", is_metallic => 0 },
+    "x - a helm of opposite alignment" =>
+        { material => "iron", is_metallic => 1 },
+    "y - a visored helmet" =>
+        { material => "iron", is_metallic => 1 },
+    "z - a pair of kicking boots" =>
+        { material => "iron", is_metallic => 1 },
+    "A - a pair of snow boots" =>
+        { material => undef, is_metallic => undef },
+    "B - a pair of levitation boots" =>
+        { material => "leather", is_metallic => 0 },
+    "K - a dwarven mithril-coat" =>
+        { material => "mithril", is_metallic => 1 },
+);
+
