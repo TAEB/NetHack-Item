@@ -15,6 +15,7 @@ sub _list {
             fullname => 'The Bell of Opening',
             appearance => 'silver bell',
             subtype => 'instrument',
+            material => 'silver',
         },
         'Candelabrum of Invocation' => {
             artifact => 1,
@@ -24,6 +25,7 @@ sub _list {
             fullname => 'The Candelabrum of Invocation',
             appearance => 'candelabrum',
             subtype => 'candelabrum',
+            material => 'gold',
         },
 
         'Eyes of the Overworld' => {
@@ -34,6 +36,7 @@ sub _list {
             charge => 0,
             fullname => 'The Eyes of the Overworld',
             subtype => 'accessory',
+            material => 'glass',
         },
         'Magic Mirror of Merlin' => {
             artifact => 1,
@@ -42,6 +45,7 @@ sub _list {
             weight => 13,
             charge => 0,
             fullname => 'The Magic Mirror of Merlin',
+            material => 'glass',
         },
         'Master Key of Thievery' => {
             artifact => 1,
@@ -51,6 +55,7 @@ sub _list {
             charge => 0,
             fullname => 'The Master Key of Thievery',
             subtype => 'key',
+            material => 'iron',
         },
         'Orb of Detection' => {
             artifact => 1,
@@ -59,6 +64,7 @@ sub _list {
             weight => 150,
             charge => 5,
             fullname => 'The Orb of Detection',
+            material => 'glass',
         },
         'Orb of Fate' => {
             artifact => 1,
@@ -67,6 +73,7 @@ sub _list {
             weight => 150,
             charge => 5,
             fullname => 'The Orb of Fate',
+            material => 'glass',
         },
         'Platinum Yendorian Express Card' => {
             artifact => 1,
@@ -76,6 +83,7 @@ sub _list {
             charge => 0,
             fullname => 'The Platinum Yendorian Express Card',
             subtype => 'key',
+            material => 'plastic',
         },
 
         'large box' => {
@@ -83,18 +91,21 @@ sub _list {
             weight => 350,
             charge => 0,
             subtype => 'container',
+            material => 'wood',
         },
         'chest' => {
             price => 16,
             weight => 600,
             charge => 0,
             subtype => 'container',
+            material => 'wood',
         },
         'ice box' => {
             price => 42,
             weight => 900,
             charge => 0,
             subtype => 'container',
+            material => 'plastic',
         },
         'sack' => {
             price => 2,
@@ -102,6 +113,7 @@ sub _list {
             charge => 0,
             appearance => 'bag',
             subtype => 'container',
+            material => 'cloth',
         },
         'bag of holding' => {
             price => 100,
@@ -109,12 +121,14 @@ sub _list {
             charge => 0,
             appearance => 'bag',
             subtype => 'container',
+            material => 'cloth',
         },
         'bag of tricks' => {
             price => 100,
             weight => 15,
             charge => 20,
             appearance => 'bag',
+            material => 'cloth',
             # NOT A CONTAINER!!
         },
         'oilskin sack' => {
@@ -123,6 +137,7 @@ sub _list {
             charge => 0,
             appearance => 'bag',
             subtype => 'container',
+            material => 'cloth',
         },
 
         'credit card' => {
@@ -130,12 +145,14 @@ sub _list {
             weight => 1,
             charge => 0,
             subtype => 'key',
+            material => 'plastic',
         },
         'lock pick' => {
             price => 20,
             weight => 4,
             charge => 0,
             subtype => 'key',
+            material => 'iron',
         },
         'skeleton key' => {
             price => 10,
@@ -143,6 +160,7 @@ sub _list {
             charge => 0,
             appearance => 'key',
             subtype => 'key',
+            material => 'iron',
         },
 
         'tallow candle' => {
@@ -153,6 +171,7 @@ sub _list {
             plural => 'tallow candles',
             subtype => 'light',
             stackable => 1,
+            material => 'wax',
         },
         'wax candle' => {
             price => 20,
@@ -162,12 +181,14 @@ sub _list {
             plural => 'wax candles',
             subtype => 'light',
             stackable => 1,
+            material => 'wax',
         },
         'brass lantern' => {
             price => 12,
             weight => 30,
             charge => 1499,
             subtype => 'light',
+            material => 'copper',
         },
         'oil lamp' => {
             price => 10,
@@ -175,6 +196,7 @@ sub _list {
             charge => 1499,
             appearance => 'lamp',
             subtype => 'light',
+            material => 'copper',
         },
         'magic lamp' => {
             price => 50,
@@ -182,6 +204,7 @@ sub _list {
             charge => 0,
             appearance => 'lamp',
             subtype => 'light',
+            material => 'copper',
         },
 
         'tin whistle' => {
@@ -191,6 +214,7 @@ sub _list {
             appearance => 'whistle',
             subtype => 'instrument',
             tonal => 0,
+            material => 'metal',
         },
         'magic whistle' => {
             price => 10,
@@ -199,6 +223,7 @@ sub _list {
             appearance => 'whistle',
             subtype => 'instrument',
             tonal => 0,
+            material => 'metal',
         },
         'bugle' => {
             price => 15,
@@ -206,6 +231,7 @@ sub _list {
             charge => 0,
             subtype => 'instrument',
             tonal => 1,
+            material => 'copper',
         },
         'wooden flute' => {
             price => 12,
@@ -214,6 +240,7 @@ sub _list {
             appearance => 'flute',
             subtype => 'instrument',
             tonal => 1,
+            material => 'wood',
         },
         'magic flute' => {
             price => 36,
@@ -222,6 +249,7 @@ sub _list {
             appearance => 'flute',
             subtype => 'instrument',
             tonal => 1,
+            material => 'wood',
         },
         'tooled horn' => {
             price => 15,
@@ -230,6 +258,7 @@ sub _list {
             appearance => 'horn',
             subtype => 'instrument',
             tonal => 1,
+            material => 'bone',
         },
         'frost horn' => {
             price => 50,
@@ -238,6 +267,7 @@ sub _list {
             appearance => 'horn',
             subtype => 'instrument',
             tonal => 1,
+            material => 'bone',
         },
         'fire horn' => {
             price => 50,
@@ -246,6 +276,7 @@ sub _list {
             appearance => 'horn',
             subtype => 'instrument',
             tonal => 1,
+            material => 'bone',
         },
         'horn of plenty' => {
             price => 50,
@@ -254,6 +285,7 @@ sub _list {
             appearance => 'horn',
             subtype => 'instrument',
             tonal => 0,
+            material => 'bone',
         },
         'leather drum' => {
             price => 25,
@@ -262,6 +294,7 @@ sub _list {
             appearance => 'drum',
             subtype => 'instrument',
             tonal => 0,
+            material => 'leather',
         },
         'drum of earthquake' => {
             price => 25,
@@ -270,6 +303,7 @@ sub _list {
             appearance => 'drum',
             subtype => 'instrument',
             tonal => 0,
+            material => 'leather',
         },
         'wooden harp' => {
             price => 50,
@@ -278,6 +312,7 @@ sub _list {
             appearance => 'harp',
             subtype => 'instrument',
             tonal => 1,
+            material => 'wood',
         },
         'magic harp' => {
             price => 50,
@@ -286,6 +321,7 @@ sub _list {
             appearance => 'harp',
             subtype => 'instrument',
             tonal => 1,
+            material => 'wood',
         },
         'bell' => {
             price => 50,
@@ -293,6 +329,7 @@ sub _list {
             charge => 0,
             subtype => 'instrument',
             tonal => 0,
+            material => 'copper',
         },
 
         'beartrap' => {
@@ -300,6 +337,7 @@ sub _list {
             weight => 200,
             charge => 0,
             subtype => 'trap',
+            material => 'iron',
         },
         'land mine' => {
             price => 180,
@@ -307,6 +345,7 @@ sub _list {
             charge => 0,
             appearance => 'land mine',
             subtype => 'trap',
+            material => 'iron',
         },
 
         'pick-axe' => {
@@ -348,77 +387,91 @@ sub _list {
             price => 200,
             weight => 12,
             charge => 99,
+            material => 'plastic',
         },
         'mirror' => {
             price => 10,
             weight => 13,
             charge => 0,
             appearance => 'looking glass',
+            material => 'glass',
         },
         'crystal ball' => {
             price => 60,
             weight => 150,
             charge => 5,
             appearance => 'glass orb',
+            material => 'glass',
         },
         'lenses' => {
             price => 80,
             weight => 3,
             charge => 0,
             subtype => 'accessory',
+            material => 'glass',
         },
         'blindfold' => {
             price => 20,
             weight => 2,
             charge => 0,
             subtype => 'accessory',
+            material => 'cloth',
         },
         'towel' => {
             price => 50,
             weight => 2,
             charge => 0,
             subtype => 'accessory',
+            material => 'cloth',
         },
         'saddle' => {
             price => 150,
             weight => 200,
             charge => 0,
+            material => 'leather',
         },
         'leash' => {
             price => 20,
             weight => 12,
             charge => 0,
+            material => 'leather',
         },
         'stethoscope' => {
             price => 75,
             weight => 4,
             charge => 0,
+            material => 'iron',
         },
         'tinning kit' => {
             price => 30,
             weight => 100,
             charge => 99,
+            material => 'iron',
         },
         'tin opener' => {
             price => 30,
             weight => 4,
             charge => 0,
+            material => 'iron',
         },
         'can of grease' => {
             price => 20,
             weight => 15,
             charge => 25,
+            material => 'iron',
         },
         'figurine' => {
             price => 80,
             weight => 50,
             charge => 0,
             subtype => 'figurine',
+            material => 'mineral',
         },
         'magic marker' => {
             price => 50,
             weight => 2,
             charge => 99,
+            material => 'plastic',
         },
     };
 
