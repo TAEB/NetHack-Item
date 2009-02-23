@@ -4,7 +4,7 @@ use warnings;
 use base 'Test::More';
 use Test::Exception ();
 
-our @EXPORT = qw/test_items plan_items incorporate_ok evolution_not_ok evolution_ok/;
+our @EXPORT = qw/test_items plan_items incorporate_ok evolution_not_ok evolution_ok fits_ok fits_not_ok/;
 
 use NetHack::Item;
 
@@ -101,6 +101,17 @@ sub evolution_ok {
     Test::More::ok($new->is_evolution_of($old), "$new_raw is an evolution of $old_raw");
 }
 
+sub fits_ok {
+    my ($slot, $str) = @_;
+
+    Test::More::ok(NetHack::Item->new($str)->fits_in_slot($slot), "$str fits in $slot");
+}
+
+sub fits_not_ok {
+    my ($slot, $str) = @_;
+
+    Test::More::ok(!NetHack::Item->new($str)->fits_in_slot($slot), "$str does not fit in $slot");
+}
 
 1;
 

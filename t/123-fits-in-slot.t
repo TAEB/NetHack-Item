@@ -1,31 +1,26 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
+use lib 't/lib';
+use Test::NetHack::Item;
 
-sub fits_ok {
-    my ($yes, $slot, $str) = @_;
-
-    my $fits = NetHack::Item->new($str)->fits_in_slot($slot);
-
-    ok(($fits ? 1 : 0) == ($yes ? 1 : 0),
-        $str . ($yes ? " fits in " : " does not fit in ") . $slot);
-}
-
-my @list = (
-    [1, cloak      => 'cloak of magic resistance'],
-    [1, offhand    => 'cloak of magic resistance'],
-    [0, helmet     => 'cloak of magic resistance'],
-    [1, cloak      => 'ornamental cope'],
-    [1, weapon     => 'Cleaver'],
-    [0, shield     => 'Cleaver'],
-    [1, left_ring  => 'ring of regeneration'],
-    [1, right_ring => 'sapphire ring'],
-    [0, amulet     => 'sapphire ring'],
-    [1, blindfold  => 'towel'],
-    [0, blindfold  => 'katana'],
+my @fits = (
+    [cloak      => 'cloak of magic resistance'],
+    [offhand    => 'cloak of magic resistance'],
+    [cloak      => 'ornamental cope'],
+    [weapon     => 'Cleaver'],
+    [left_ring  => 'ring of regeneration'],
+    [right_ring => 'sapphire ring'],
+    [blindfold  => 'towel'],
 );
 
-require Test::More; Test::More->import(tests => scalar @list);
-require NetHack::Item;
+my @doesnt_fit = (
+    [helmet     => 'cloak of magic resistance'],
+    [shield     => 'Cleaver'],
+    [amulet     => 'sapphire ring'],
+    [blindfold  => 'katana'],
+);
 
-for (@list) { fits_ok @$_; }
+plan tests => @fits + @doesnt_fit;
+
+fits_ok     @$_ for @fits;
+fits_not_ok @$_ for @doesnt_fit;
+
