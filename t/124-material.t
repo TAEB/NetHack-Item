@@ -1,7 +1,9 @@
 #!/usr/bin/env perl
 use lib 't/lib';
 use constant testing_method => 'material';
-use Test::NetHack::Items (
+use Test::NetHack::Item tests => 44;
+
+test_items(
     "a - a boulder"                    => "mineral",
     "b - a potion of acid"             => "glass",
     "c - a smoky potion"               => "glass",
@@ -21,7 +23,6 @@ use Test::NetHack::Items (
     "s - a ring of teleport control"   => undef,
     "u - a red spellbook"              => "paper",
     "v - a spellbook of knock"         => "paper",
-    "C - the Amulet of Yendor"         => undef,
     "D - a cheap plastic imitation of the Amulet of Yendor" => "plastic",
     "E - an amulet of strangulation"   => "iron",
     "F - an oval amulet"               => "iron",
@@ -44,8 +45,13 @@ use Test::NetHack::Items (
         { material => "mithril", is_metallic => 1 },
 );
 
-# TODO we don't currently have a system for appearance-specific spoilers
-#   "j - a stone"                      => "mineral",
-#   "t - a moonstone ring"             => "mineral",
-#   "r - a wooden ring"                => "wood",
-#   "H - a maple wand"                 => "wood",
+TODO: {
+    local $TODO = "We don't currently have a system for appearance-specific spoilers";
+    test_items(
+        "C - the Amulet of Yendor"         => undef,
+        "j - a stone"                      => "mineral",
+        "t - a moonstone ring"             => "mineral",
+        "r - a wooden ring"                => "wood",
+        "H - a maple wand"                 => "wood",
+    );
+}
