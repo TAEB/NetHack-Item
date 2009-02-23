@@ -16,6 +16,7 @@ sub _list {
             appearance => 'silver bell',
             subtype => 'instrument',
             material => 'silver',
+            tonal => 0,
         },
         'Candelabrum of Invocation' => {
             artifact => 1,
