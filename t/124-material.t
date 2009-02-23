@@ -11,7 +11,6 @@ use Test::NetHack::Items (
     "g - a banana"                     => "veggy",
     "h - Croesus' corpse"              => "flesh",
     "i - a loadstone"                  => "mineral",
-    "j - a stone"                      => "mineral",
     "k - a worthless piece of red glass" => "glass",
     "l - a ruby"                       => "gemstone",
     "m - the +2 Cleaver"               => "iron",
@@ -19,9 +18,7 @@ use Test::NetHack::Items (
     "o - a large box"                  => "wood",
     "p - a mirror"                     => "glass",
     "q - an iron chain"                => "iron",
-    "r - a wooden ring"                => "wood",
     "s - a ring of teleport control"   => undef,
-    "t - a moonstone ring"             => "mineral",
     "u - a red spellbook"              => "paper",
     "v - a spellbook of knock"         => "paper",
     "C - the Amulet of Yendor"         => undef,
@@ -29,7 +26,6 @@ use Test::NetHack::Items (
     "E - an amulet of strangulation"   => "iron",
     "F - an oval amulet"               => "iron",
     "G - a wand of fire"               => undef,
-    "H - a maple wand"                 => "wood",
     "I - a scroll labeled DUAM XNAHT"  => "paper",
     "J - a scroll of amnesia"          => "paper",
     "w - a crystal plate mail" =>
@@ -48,3 +44,8 @@ use Test::NetHack::Items (
         { material => "mithril", is_metallic => 1 },
 );
 
+# TODO we don't currently have a system for appearance-specific spoilers
+#   "j - a stone"                      => "mineral",
+#   "t - a moonstone ring"             => "mineral",
+#   "r - a wooden ring"                => "wood",
+#   "H - a maple wand"                 => "wood",
