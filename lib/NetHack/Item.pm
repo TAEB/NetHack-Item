@@ -513,13 +513,6 @@ sub collapse_spoiler_value {
     return $self->spoiler_class->collapse_value($key, $self->possibilities);
 }
 
-sub weight {
-    my $self   = shift;
-    my $weight = $self->collapse_spoiler_value('weight');
-    return $weight if !defined($weight);
-    return $weight * $self->quantity;
-}
-
 sub can_drop { 1 }
 
 sub is_evolution_of {
@@ -683,10 +676,18 @@ sub fits_in_slot {
     grep { $_ eq $slot } @{ $self->specific_slots };
 }
 
-__PACKAGE__->meta->install_spoilers(qw/subtype stackable material/);
+__PACKAGE__->meta->install_spoilers(qw/subtype stackable material weight/);
 
 # anything can be used as a weapon
 __PACKAGE__->meta->install_spoilers(qw/sdam ldam tohit hands/);
+
+around weight => sub {
+    my $orig = shift;
+    my $self = shift;
+    my $weight = $orig->($self, @_);
+    return $weight if !defined($weight);
+    return $weight * $self->quantity;
+};
 
 __PACKAGE__->meta->make_immutable;
 no Moose;
