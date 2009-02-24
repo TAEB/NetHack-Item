@@ -153,40 +153,73 @@ for my $hand (qw/left_ring right_ring/) {
 
 # everything except weapons hard depends on itself because
 # there is no quick swap for armour
-# dependency on 2hander / hard deps / soft deps
-our %dependancies = (
-    shirt      => ['s', [qw/cloak bodyarmor shirt/], []],
-    bodyarmor  => ['s', [qw/cloak bodyarmor/], []],
-    cloak      => ['',  [qw/cloak/], []],
-    left_ring  => ['s', [qw/left_ring/], [qw/gloves/]],
-    right_ring => ['',  [qw/right_ring/], [qw/gloves weapon/]],
-    gloves     => ['',  [qw/gloves/], [qw/weapon/]],
-    helmet     => ['',  [qw/helmet/], []],
-    boots      => ['',  [qw/boots/], []],
-    shield     => ['h', [qw/shield/], []],
-    amulet     => ['',  [qw/amulet/], []],
-    blindfold  => ['',  [qw/blindfold/], []],
-    weapon     => ['',  [], [qw/weapon/]],
-    offhand    => ['',  [], [qw/weapon/]],
-    quiver     => ['',  [], []],
+my %dependencies = (
+    shirt => {
+        hard => [qw/cloak bodyarmor shirt/],
+        two_hand => 'soft',
+    },
+    bodyarmor => {
+        hard => [qw/cloak bodyarmor/],
+        two_hand => 'soft',
+    },
+    cloak => {
+        hard => [qw/cloak/],
+    },
+    left_ring => {
+        hard => [qw/left_ring/],
+        soft => [qw/gloves/],
+        two_hand => 'soft',
+    },
+    right_ring => {
+        hard => [qw/right_ring/],
+        soft => [qw/gloves weapon/],
+    },
+    gloves => {
+        hard => [qw/gloves/],
+        soft => [qw/weapon/],
+    },
+    helmet => {
+        hard => [qw/helmet/],
+    },
+    boots => {
+        hard => [qw/boots/],
+    },
+    shield => {
+        hard => [qw/shield/],
+        two_hand => 'hard',
+    },
+    amulet => {
+        hard => [qw/amulet/],
+    },
+    blindfold => {
+        hard => [qw/blindfold/],
+    },
+    weapon => {
+        soft => [qw/weapon/],
+    },
+    offhand => {
+        soft => [qw/weapon/],
+    },
+    quiver => {
+    },
 );
 
 sub _covering_slots {
     my ($self, $slot, $hardonly) = @_;
+    my $dependencies = $dependencies{$slot};
+    my @hard_deps = @{ $dependencies->{hard} || [] };
+    my @soft_deps = @{ $dependencies->{soft} || [] };
 
-    my @r;
+    my @covering;
+    push @covering, 'weapon'
+        if $dependencies->{two_hand}
+        && ($dependencies->{two_hand} eq 'hard' || !$hardonly)
+        && $self->weapon && $self->weapon->hands == 2;
 
-    my ($th, $hard, $soft) = @{ $dependancies{$slot} };
+    push @covering, @hard_deps;
+    push @covering, @soft_deps unless $hardonly;
 
-    if ($th && ($th eq 'h' || !$hardonly) && $self->weapon &&
-            $self->weapon->hands == 2) {
-        push @r, 'weapon';
-    }
-
-    push @r, @$hard;
-    push @r, @$soft unless $hardonly;
-
-    grep { $self->$_ } @r;
+    return grep { $self->$_ } @covering;
 }
 
 
