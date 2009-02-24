@@ -5,6 +5,7 @@ use MooseX::AttributeHelpers;
 use NetHack::ItemPool;
 
 use NetHack::Item::Meta::Trait::IncorporatesUndef;
+use NetHack::Item::Meta::Types;
 
 with 'NetHack::ItemPool::Role::HasPool';
 
