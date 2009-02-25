@@ -1,5 +1,17 @@
 Revision history for NetHack-Item
 
+0.07    Wed Feb 25 01:52:39 2009
+        Spoiler->all_identities (Sartak)
+        Instrument->tonal (Sartak)
+        Item->fits_in_slot, under_cursed, blockers, slots_inside_out (sorear)
+        Fix update_armor to work on rings (sorear)
+        Support for tracking worn amulet and blindfold (sorear)
+        Parser enhancement for "4 daggers (wielded)" (sorear)
+        Materials are now listed in spoilers (sorear)
+        Item->is_metallic (sorear)
+        Better handling for unique corpses (sorear)
+        NetHack::Item::Slot (equipment) type (sorear)
+
 0.06    Tue Feb 17 23:18:05 2009
         Gold never goes into the inventory
         Throw a warning if we're throwing away an inventory item in an update
