@@ -1,5 +1,7 @@
 Revision history for NetHack-Item
 
+0.09
+
 0.08    Sat Mar 14 11:08:32 2009
         Fix major bug where equipment would get out of date (sorear)
 
