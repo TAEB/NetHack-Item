@@ -1,5 +1,8 @@
 Revision history for NetHack-Item
 
+0.08    Sat Mar 14 11:08:32 2009
+        Fix major bug where equipment would get out of date (sorear)
+
 0.07    Wed Feb 25 01:52:39 2009
         Spoiler->all_identities (Sartak)
         Instrument->tonal (Sartak)
