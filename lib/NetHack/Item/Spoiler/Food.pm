@@ -167,7 +167,7 @@ sub _list {
 
         my $corpse_name = "$item corpse";
         (my $corpse_plural = $corpse_name) =~ s/corpse$/corpses/;
-        my $tin_name = "tin of $item";
+        my $tin_name = "tin of $monster_name";
         $tin_name .= ' meat' if $monster->vegetarian;
         (my $tin_plural = $tin_name) =~ s/^tin/tins/;
         my $egg_name = "$item egg";
