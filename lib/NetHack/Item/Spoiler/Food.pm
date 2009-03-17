@@ -10,109 +10,135 @@ sub _list {
         'meatball' => {
             price => 5, weight => 1, nutrition => 5, time => 1,
             plural => 'meatballs', stackable => 1, material => 'flesh',
+            vegan => 0, vegetarian => 0,
         },
         'meat ring' => {
             price => 5, weight => 1, nutrition => 5, time => 1,
             plural => 'meat rings', material => 'flesh',
+            vegan => 0, vegetarian => 0,
         },
         'meat stick' => {
             price => 5, weight => 1, nutrition => 5, time => 1,
             plural => 'meat sticks', stackable => 1, material => 'flesh',
+            vegan => 0, vegetarian => 0,
         },
         'tripe ration' => {
             price => 15, weight => 10, nutrition => 200, time => 2, unsafe => 1,
             plural => 'tripe rations', stackable => 1, material => 'flesh',
+            vegan => 0, vegetarian => 0,
         },
         'huge chunk of meat' => {
             price => 105, weight => 400, nutrition => 2000, time => 20,
             plural => 'huge chunks of meat', stackable => 1,
             material => 'flesh',
+            vegan => 0, vegetarian => 0,
         },
         'kelp frond' => {
             price => 6, weight => 1, nutrition => 30, time => 1,
             plural => 'kelp fronds', stackable => 1, material => 'veggy',
+            vegan => 1, vegetarian => 1,
         },
         'eucalyptus leaf' => {
             price => 6, weight => 1, nutrition => 30, time => 1,
             plural => 'eucalyptus leaves', stackable => 1, material => 'veggy',
+            vegan => 1, vegetarian => 1,
         },
         'clove of garlic' => {
             price => 7, weight => 1, nutrition => 40, time => 1,
             plural => 'cloves of garlic', stackable => 1, material => 'veggy',
+            vegan => 1, vegetarian => 1,
         },
         'sprig of wolfsbane' => {
             price => 7, weight => 1, nutrition => 40, time => 1,
             plural => 'sprigs of wolfsbane', stackable => 1,
             material => 'veggy',
+            vegan => 1, vegetarian => 1,
         },
         'apple' => {
             price => 7, weight => 2, nutrition => 50, time => 1,
             plural => 'apples', stackable => 1, material => 'veggy',
+            vegan => 1, vegetarian => 1,
         },
         'carrot' => {
             price => 7, weight => 2, nutrition => 50, time => 1,
             plural => 'carrots', stackable => 1, material => 'veggy',
+            vegan => 1, vegetarian => 1,
         },
         'pear' => {
             price => 7, weight => 2, nutrition => 50, time => 1,
             plural => 'pears', stackable => 1, material => 'veggy',
+            vegan => 1, vegetarian => 1,
         },
         'banana' => {
             price => 9, weight => 2, nutrition => 80, time => 1,
             plural => 'bananas', stackable => 1, material => 'veggy',
+            vegan => 1, vegetarian => 1,
         },
         'orange' => {
             price => 9, weight => 2, nutrition => 80, time => 1,
             plural => 'oranges', stackable => 1, material => 'veggy',
+            vegan => 1, vegetarian => 1,
         },
         'melon' => {
             price => 10, weight => 5, nutrition => 100, time => 1,
             plural => 'melons', stackable => 1, material => 'veggy',
+            vegan => 1, vegetarian => 1,
         },
         'slime mold' => {
             price => 17, weight => 5, nutrition => 250, time => 1,
             plural => 'slime molds', stackable => 1, material => 'veggy',
+            vegan => 1, vegetarian => 1,
         },
         'fortune cookie' => {
             price => 7, weight => 1, nutrition => 40, time => 1,
             plural => 'fortune cookies', stackable => 1, material => 'veggy',
+            vegan => 0, vegetarian => 1,
         },
         'candy bar' => {
             price => 10, weight => 2, nutrition => 100, time => 1,
             plural => 'candy bars', stackable => 1, material => 'veggy',
+            vegan => 0, vegetarian => 1,
         },
         'cream pie' => {
             price => 10, weight => 10, nutrition => 100, time => 1,
             plural => 'cream pies', stackable => 1, material => 'veggy',
+            vegan => 0, vegetarian => 1,
         },
         'lump of royal jelly' => {
             price => 15, weight => 2, nutrition => 200, time => 1,
             plural => 'lumps of royal jelly', stackable => 1,
             material => 'veggy',
+            vegan => 0, vegetarian => 1,
         },
         'pancake' => {
             price => 15, weight => 2, nutrition => 200, time => 2,
             plural => 'pancakes', stackable => 1, material => 'veggy',
+            vegan => 0, vegetarian => 1,
         },
         'C-ration' => {
             price => 20, weight => 10, nutrition => 300, time => 1,
             plural => 'C-rations', stackable => 1, material => 'veggy',
+            vegan => 1, vegetarian => 1,
         },
         'K-ration' => {
             price => 25, weight => 10, nutrition => 400, time => 1,
             plural => 'K-rations', stackable => 1, material => 'veggy',
+            vegan => 1, vegetarian => 1,
         },
         'cram ration' => {
             price => 35, weight => 15, nutrition => 600, time => 3,
             plural => 'cram rations', stackable => 1, material => 'veggy',
+            vegan => 1, vegetarian => 1,
         },
         'food ration' => {
             price => 45, weight => 20, nutrition => 800, time => 5,
             plural => 'food rations', stackable => 1, material => 'veggy',
+            vegan => 1, vegetarian => 1,
         },
         'lembas wafer' => {
             price => 45, weight => 5, nutrition => 800, time => 2,
             plural => 'lembas wafers', stackable => 1, material => 'veggy',
+            vegan => 1, vegetarian => 1,
         },
         'empty tin' => {
             nutrition  => 0,
@@ -121,6 +147,8 @@ sub _list {
             weight     => 10,
             stackable  => 1,
             material   => 'metal',
+            vegan      => 1,
+            vegetarian => 1,
         },
         'tin of spinach' => {
             nutrition  => 800,
@@ -129,6 +157,8 @@ sub _list {
             weight     => 10,
             stackable  => 1,
             material   => 'metal',
+            vegan      => 1,
+            vegetarian => 1,
         },
     };
 
