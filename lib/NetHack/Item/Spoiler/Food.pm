@@ -162,7 +162,7 @@ sub _list {
         my $item = $monster_name;
         if ($monster->is_unique) {
             $item .= ($item =~ /s$/ ? "'" : "'s");
-            $item = "the " . $item if $monster->has_proper_name;
+            $item = "the " . $item unless $monster->has_proper_name;
         }
 
         my $corpse_name = "$item corpse";
