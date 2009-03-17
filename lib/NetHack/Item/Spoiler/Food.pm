@@ -14,7 +14,7 @@ sub _list {
         },
         'meat ring' => {
             price => 5, weight => 1, nutrition => 5, time => 1,
-            plural => 'meat rings', material => 'flesh',
+            plural => 'meat rings', stackable => 0, material => 'flesh',
             vegan => 0, vegetarian => 0,
         },
         'meat stick' => {
@@ -141,6 +141,7 @@ sub _list {
             vegan => 1, vegetarian => 1,
         },
         'empty tin' => {
+            price      => 5,
             nutrition  => 0,
             plural     => 'empty tins',
             appearance => 'tin',
@@ -151,6 +152,7 @@ sub _list {
             vegetarian => 1,
         },
         'tin of spinach' => {
+            price      => 5,
             nutrition  => 800,
             plural     => 'tins of spinach',
             appearance => 'tin',
