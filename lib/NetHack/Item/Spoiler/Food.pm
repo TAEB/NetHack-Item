@@ -168,7 +168,7 @@ sub _list {
         my $corpse_name = "$item corpse";
         (my $corpse_plural = $corpse_name) =~ s/corpse$/corpses/;
         my $tin_name = "tin of $item";
-        $tin_name .= ' meat' if 1; #$monster->vegetarian_corpse
+        $tin_name .= ' meat' if $monster->vegetarian;
         (my $tin_plural = $tin_name) =~ s/^tin/tins/;
         my $egg_name = "$item egg";
         (my $egg_plural = $egg_name) =~ s/egg$/eggs/;
@@ -185,8 +185,8 @@ sub _list {
             monster    => $monster_name,
             permanent  => ($monster_name eq 'lizard'
                         || $monster_name eq 'lichen'),
-            vegan      => 0, # XXX
-            vegetarian => 0, # XXX
+            vegan      => $monster->vegan,
+            vegetarian => $monster->vegetarian,
             time       => 3 + ($monster->weight >> 6),
         };
         $food->{$corpse_name}{cannibal} = 'Hum' if $monster->is_human;
@@ -202,8 +202,8 @@ sub _list {
             material   => 'metal',
             price      => 5,
             monster    => $monster_name,
-            vegan      => 0, # XXX
-            vegetarian => 0, # XXX
+            vegan      => $monster->vegan,
+            vegetarian => $monster->vegetarian,
         };
         $food->{$tin_name}{cannibal} = 'Hum' if $monster->is_human;
         $food->{$tin_name}{cannibal} = 'Gno' if $monster->is_gnome;
