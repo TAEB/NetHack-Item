@@ -188,6 +188,8 @@ sub _list {
             vegan      => $monster->vegan,
             vegetarian => $monster->vegetarian,
             time       => 3 + ($monster->weight >> 6),
+            reanimates => $monster->corpse_reanimates,
+            effects    => $monster->corpse,
         };
 
         $food->{$tin_name} = {
@@ -200,6 +202,7 @@ sub _list {
             monster    => $monster_name,
             vegan      => $monster->vegan,
             vegetarian => $monster->vegetarian,
+            effects    => $monster->corpse,
         };
 
         if ($monster->lays_eggs) {
