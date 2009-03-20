@@ -189,10 +189,6 @@ sub _list {
             vegetarian => $monster->vegetarian,
             time       => 3 + ($monster->weight >> 6),
         };
-        $food->{$corpse_name}{cannibal} = 'Hum' if $monster->is_human;
-        $food->{$corpse_name}{cannibal} = 'Gno' if $monster->is_gnome;
-        $food->{$corpse_name}{cannibal} = 'Elf' if $monster->is_elf;
-        $food->{$corpse_name}{cannibal} = 'Dwa' if $monster->is_dwarf;
 
         $food->{$tin_name} = {
             plural     => $tin_plural,
@@ -205,10 +201,6 @@ sub _list {
             vegan      => $monster->vegan,
             vegetarian => $monster->vegetarian,
         };
-        $food->{$tin_name}{cannibal} = 'Hum' if $monster->is_human;
-        $food->{$tin_name}{cannibal} = 'Gno' if $monster->is_gnome;
-        $food->{$tin_name}{cannibal} = 'Elf' if $monster->is_elf;
-        $food->{$tin_name}{cannibal} = 'Dwa' if $monster->is_dwarf;
 
         if ($monster->lays_eggs) {
             $food->{$egg_name} = {
