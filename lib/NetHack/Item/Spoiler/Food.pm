@@ -219,9 +219,10 @@ sub _list {
                 time       => 1,
                 effects    => {
                     vomit   => 1,
-                    petrify => $monster->touch_petrifies,
                 }
-            }
+            };
+            $food->{$egg_name}{effects}{petrify} = 1
+                if $monster->touch_petrifies;
         }
     }
 
