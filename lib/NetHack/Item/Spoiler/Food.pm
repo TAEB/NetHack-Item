@@ -189,7 +189,7 @@ sub _list {
             vegetarian => $monster->vegetarian,
             time       => 3 + ($monster->weight >> 6),
             reanimates => $monster->corpse_reanimates,
-            effects    => $monster->corpse,
+            %{ $monster->corpse },
         };
 
         $food->{$tin_name} = {
@@ -202,7 +202,7 @@ sub _list {
             monster    => $monster,
             vegan      => $monster->vegan,
             vegetarian => $monster->vegetarian,
-            effects    => $monster->corpse,
+            %{ $monster->corpse },
         };
 
         if ($monster->lays_eggs) {
@@ -218,12 +218,9 @@ sub _list {
                 vegan      => 0,
                 vegetarian => 0,
                 time       => 1,
-                effects    => {
-                    vomit   => 1,
-                }
+                vomit      => 1,
             };
-            $food->{$egg_name}{effects}{petrify} = 1
-                if $monster->touch_petrifies;
+            $food->{$egg_name}{petrify} = 1 if $monster->touch_petrifies;
         }
     }
 
