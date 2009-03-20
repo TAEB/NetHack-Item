@@ -32,7 +32,7 @@ after incorporate_stats_from => sub {
     $self->incorporate_stat($other => 'is_partly_eaten');
 };
 
-__PACKAGE__->meta->install_spoilers(qw/nutrition time/);
+__PACKAGE__->meta->install_spoilers(qw/nutrition time vegan vegetarian/);
 
 __PACKAGE__->meta->make_immutable;
 no Moose;

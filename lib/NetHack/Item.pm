@@ -677,7 +677,8 @@ sub fits_in_slot {
     grep { $_ eq $slot } @{ $self->specific_slots };
 }
 
-__PACKAGE__->meta->install_spoilers(qw/subtype stackable material weight/);
+__PACKAGE__->meta->install_spoilers(qw/subtype stackable material weight price
+                                       plural/);
 
 # anything can be used as a weapon
 __PACKAGE__->meta->install_spoilers(qw/sdam ldam tohit hands/);
