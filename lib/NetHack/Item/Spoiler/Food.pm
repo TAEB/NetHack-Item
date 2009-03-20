@@ -216,8 +216,11 @@ sub _list {
                 price      => 9,
                 vegan      => 0,
                 vegetarian => 0,
-                unsafe     => 1,
                 time       => 1,
+                effects    => {
+                    vomit   => 1,
+                    petrify => $monster->touch_petrifies,
+                }
             }
         }
     }
