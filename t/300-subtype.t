@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 use lib 't/lib';
+use NetHack::Monster::Spoiler;
 use Test::NetHack::Items (
     "a long sword" => {
         subtype => undef,
@@ -27,7 +28,7 @@ use Test::NetHack::Items (
     "a lichen corpse" => {
         type    => 'food',
         subtype => 'corpse',
-        monster => 'lichen',
+        monster => NetHack::Monster::Spoiler->lookup('lichen'),
     },
     "a food ration" => {
         type    => 'food',
