@@ -158,6 +158,12 @@ use Test::NetHack::Items (
         possibilities => ["figurine of a lichen"],
         monster       => NetHack::Monster::Spoiler->lookup('lichen'),
     },
+    "u - a figurine of an orc mummy" => {
+        appearance    => "figurine of an orc mummy",
+        identity      => "figurine of an orc mummy",
+        possibilities => ["figurine of an orc mummy"],
+        monster       => NetHack::Monster::Spoiler->lookup('orc mummy'),
+    },
     "u - 53 rocks" => {
         appearance    => "rock",
         identity      => "rock",
@@ -174,5 +180,11 @@ use Test::NetHack::Items (
         identity      => "statue of a lichen",
         possibilities => ["statue of a lichen"],
         monster       => NetHack::Monster::Spoiler->lookup('lichen'),
+    },
+    "v - a statue of an orc mummy" => {
+        appearance    => "statue of an orc mummy",
+        identity      => "statue of an orc mummy",
+        possibilities => ["statue of an orc mummy"],
+        monster       => NetHack::Monster::Spoiler->lookup('orc mummy'),
     },
 );
