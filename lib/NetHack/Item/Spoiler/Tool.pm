@@ -2,6 +2,7 @@ package NetHack::Item::Spoiler::Tool;
 use strict;
 use warnings;
 use base 'NetHack::Item::Spoiler';
+use NetHack::Monster::Spoiler;
 
 use constant type => 'tool';
 
@@ -461,13 +462,6 @@ sub _list {
             charge => 25,
             material => 'iron',
         },
-        'figurine' => {
-            price => 80,
-            weight => 50,
-            charge => 0,
-            subtype => 'figurine',
-            material => 'mineral',
-        },
         'magic marker' => {
             price => 50,
             weight => 2,
@@ -475,6 +469,23 @@ sub _list {
             material => 'plastic',
         },
     };
+
+    for my $monster (NetHack::Monster::Spoiler->list) {
+        next if $monster->is_unique;
+        next if $monster->is_human;
+        next if $monster->name eq 'mail daemon';
+
+        my $name = "figurine of a " . $monster->name;
+
+        $tools->{$name} = {
+            price    => 80,
+            weight   => 50,
+            charge   => 0,
+            subtype  => 'figurine',
+            material => 'mineral',
+            monster  => $monster,
+        };
+    }
 
     return $tools;
 }

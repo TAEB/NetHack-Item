@@ -291,14 +291,6 @@ sub extract_stats {
         $stats{buc}  = $1;
     }
 
-    if ($stats{item} =~ /^(statue|figurine) of (.*)$/) {
-        $stats{item} = $1;
-        $stats{$1}   = $2;
-
-        # drop the leading "A lichen" or "THE shopkeeper"
-        $stats{$1} =~ s/^(a|the)\s+//;
-    }
-
     # go from japanese to english if possible
     my $spoiler = $self->spoiler_class;
 

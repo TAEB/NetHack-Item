@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 use lib 't/lib';
+use NetHack::Monster::Spoiler;
 
 use Test::NetHack::Items (
     "x - 100 gold pieces" => {
@@ -152,10 +153,10 @@ use Test::NetHack::Items (
         possibilities => ["wax candle"],
     },
     "u - a figurine of a lichen" => {
-        appearance    => "figurine",
-        identity      => "figurine",
-        possibilities => ["figurine"],
-        figurine      => "lichen",
+        appearance    => "figurine of a lichen",
+        identity      => "figurine of a lichen",
+        possibilities => ["figurine of a lichen"],
+        monster       => NetHack::Monster::Spoiler->lookup('lichen'),
     },
     "u - 53 rocks" => {
         appearance    => "rock",
@@ -169,9 +170,9 @@ use Test::NetHack::Items (
         artifact      => 'Heart of Ahriman',
     },
     "v - a statue of a lichen" => {
-        appearance    => "statue",
-        identity      => "statue",
-        possibilities => ["statue"],
-        statue        => "lichen",
+        appearance    => "statue of a lichen",
+        identity      => "statue of a lichen",
+        possibilities => ["statue of a lichen"],
+        monster       => NetHack::Monster::Spoiler->lookup('lichen'),
     },
 );

@@ -4,16 +4,7 @@ extends 'NetHack::Item::Tool';
 
 use constant subtype => 'figurine';
 
-has figurine => (
-    is  => 'rw',
-    isa => 'Str',
-);
-
-after incorporate_stats => sub {
-    my $self  = shift;
-    my $stats = shift;
-    $self->figurine($stats->{figurine}) if exists $stats->{figurine};
-};
+__PACKAGE__->meta->install_spoilers(qw/monster/);
 
 __PACKAGE__->meta->make_immutable;
 no Moose;
