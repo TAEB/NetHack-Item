@@ -95,7 +95,7 @@ sub _list {
     };
 
     return $potions, (weight => 20, appearances => \@potions, stackable => 1,
-                      material => 'glass', plural => sub {
+                      material => 'glass', glyph => '!', plural => sub {
                         my $name = shift;
                         $name =~ s/\bpotion\b/potions/;
                         return $name;

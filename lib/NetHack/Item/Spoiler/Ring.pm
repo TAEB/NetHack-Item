@@ -127,7 +127,7 @@ sub _list {
         },
     };
 
-    return $rings, (weight => 3, appearances => \@rings);
+    return $rings, (weight => 3, appearances => \@rings, glyph => '=');
 }
 
 1;

@@ -703,7 +703,7 @@ sub _list {
         },
     };
 
-    return $armor;
+    return $armor, (glyph => '[');
 }
 
 1;

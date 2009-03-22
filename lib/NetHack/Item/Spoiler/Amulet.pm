@@ -64,7 +64,8 @@ sub _list {
         },
     };
 
-    return $amulets, (weight => 20, price => 150, appearances => \@amulets);
+    return $amulets, (weight => 20, price => 150, appearances => \@amulets,
+                      glyph => '"');
 }
 
 1;

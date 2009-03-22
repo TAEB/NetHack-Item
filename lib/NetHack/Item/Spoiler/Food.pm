@@ -224,7 +224,7 @@ sub _list {
         }
     }
 
-    return $food;
+    return $food, (glyph => '%');
 }
 
 sub extra_plurals {

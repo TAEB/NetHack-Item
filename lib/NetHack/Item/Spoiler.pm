@@ -47,6 +47,7 @@ sub list {
         $stats->{material}  ||= $defaults{material};
         $stats->{price}     ||= $defaults{price};
         $stats->{stackable} ||= $defaults{stackable};
+        $stats->{glyph}     ||= $defaults{glyph};
         $stats->{plural}      = $defaults{plural}($name)
             if exists $defaults{plural};
 

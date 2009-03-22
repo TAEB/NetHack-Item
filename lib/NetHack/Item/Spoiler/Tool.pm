@@ -487,7 +487,7 @@ sub _list {
         };
     }
 
-    return $tools;
+    return $tools, (glyph => '(');
 }
 
 sub extra_plurals {

@@ -1049,7 +1049,7 @@ sub _list {
             },
     };
 
-    return $weapons;
+    return $weapons, (glyph => ')');
 }
 
 # these are stackable weapon appearances where name != appearance

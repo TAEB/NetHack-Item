@@ -670,7 +670,7 @@ sub fits_in_slot {
 }
 
 __PACKAGE__->meta->install_spoilers(qw/subtype stackable material weight price
-                                       plural/);
+                                       plural glyph/);
 
 # anything can be used as a weapon
 __PACKAGE__->meta->install_spoilers(qw/sdam ldam tohit hands/);

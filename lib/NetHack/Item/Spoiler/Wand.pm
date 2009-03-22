@@ -134,7 +134,7 @@ sub _list {
         },
     };
 
-    return $wands, (weight => 7, appearances => \@wands);
+    return $wands, (weight => 7, appearances => \@wands, glyph => '/');
 }
 
 1;
