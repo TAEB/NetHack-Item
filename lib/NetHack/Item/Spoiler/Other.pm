@@ -69,7 +69,8 @@ sub _list {
     for my $monster (NetHack::Monster::Spoiler->list) {
         my $name = "statue of ";
         $name .= "the " if $monster->is_unique && !$monster->has_proper_name;
-        $name .= "a "   if !$monster->is_unique;
+        $name .= $monster->name =~ /^[aeiou]/i ? "an " : "a "
+            if !$monster->is_unique;
         $name .= $monster->name;
 
         $others->{$name} = {

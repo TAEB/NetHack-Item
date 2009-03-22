@@ -475,7 +475,9 @@ sub _list {
         next if $monster->is_human;
         next if $monster->name eq 'mail daemon';
 
-        my $name = "figurine of a " . $monster->name;
+        my $name = "figurine of ";
+        $name .= $monster->name =~ /^[aeiou]/i ? "an " : "a ";
+        $name .= $monster->name;
 
         $tools->{$name} = {
             price    => 80,
