@@ -1,6 +1,13 @@
 Revision history for NetHack-Item
 
-0.09
+0.09    Sun Apr 5 15:40:31 2009
+        Depend on NetHack::Monster::Spoiler instead of including monster
+            spoilers in this dist (doy)
+        Add vegan and vegetarian to food spoilers (doy)
+        Tin fixes (doy)
+        Replace 'unsafe' with a hash of what's actually unsafe about food (doy)
+        Reify statues and figurines (doy)
+        Add glyphs (doy)
 
 0.08    Sat Mar 14 11:08:32 2009
         Fix major bug where equipment would get out of date (sorear)
