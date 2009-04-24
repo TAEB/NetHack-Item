@@ -592,7 +592,7 @@ sub fork_quantity {
     confess "Unable to fork the entire quantity ($quantity) of item ($self)"
         if $quantity == $self->quantity;
 
-    my $new_item = $self->meta->clone_instance($self);
+    my $new_item = $self->meta->clone_object($self);
     $new_item->quantity($quantity);
     $self->quantity($self->quantity - $quantity);
 
