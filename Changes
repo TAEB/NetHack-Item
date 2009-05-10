@@ -1,6 +1,9 @@
 Revision history for NetHack-Item
 
-0.10
+0.10    Sun May 10 16:22:14 2009
+        Make incorporate_stats and incorporate_stats_from a parameterized
+            role (Sartak)
+        Moose fixes (doy)
 
 0.09    Sun Apr 5 15:40:31 2009
         Depend on NetHack::Monster::Spoiler instead of including monster
