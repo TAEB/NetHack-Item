@@ -10,18 +10,9 @@ has is_chained_to_you => (
     isa    => 'Bool',
 );
 
-after incorporate_stats => sub {
-    my $self  = shift;
-    my $stats = shift;
-
-    $self->is_chained_to_you($stats->{chained});
-};
-
-after incorporate_stats_from => sub {
-    my $self  = shift;
-    my $other = shift;
-
-    $self->incorporate_stat($other => 'is_chained_to_you');
+with 'NetHack::Item::Role::IncorporatesStats' => {
+    attribute => 'is_chained_to_you',
+    stat      => 'chained',
 };
 
 __PACKAGE__->meta->install_spoilers(qw/monster/);

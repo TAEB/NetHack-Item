@@ -17,19 +17,14 @@ has is_laid_by_you => (
     default => 0,
 );
 
-after incorporate_stats => sub {
-    my $self  = shift;
-    my $stats = shift;
-
-    $self->is_partly_eaten($stats->{eaten});
-    $self->is_laid_by_you($stats->{laid});
+with 'NetHack::Item::Role::IncorporatesStats' => {
+    attribute => 'is_partly_eaten',
+    stat      => 'eaten',
 };
 
-after incorporate_stats_from => sub {
-    my $self  = shift;
-    my $other = shift;
-
-    $self->incorporate_stat($other => 'is_partly_eaten');
+with 'NetHack::Item::Role::IncorporatesStats' => {
+    attribute => 'is_laid_by_you',
+    stat      => 'laid',
 };
 
 __PACKAGE__->meta->install_spoilers(qw/nutrition time vegan vegetarian/);

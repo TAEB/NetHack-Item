@@ -19,24 +19,15 @@ has proofed => (
     },
 );
 
-after incorporate_stats => sub {
-    my $self  = shift;
-    my $stats = shift;
+for my $damage (qw/burnt corroded rotted rusty/) {
+    with 'NetHack::Item::Role::IncorporatesStats' => {
+        attribute => $damage,
+    };
+}
 
-    for (qw/burnt corroded rotted rusty/) {
-        $self->$_($stats->{$_});
-    }
-
-    $self->proofed($stats->{proofed})
-        if defined $stats->{proofed};
-};
-
-after incorporate_stats_from => sub {
-    my $self  = shift;
-    my $other = shift;
-
-    $self->incorporate_stat($other => $_)
-        for qw/burnt corroded rotted rusty proofed/;
+with 'NetHack::Item::Role::IncorporatesStats' => {
+    attribute    => 'proofed',
+    defined_stat => 1,
 };
 
 sub remove_damage {

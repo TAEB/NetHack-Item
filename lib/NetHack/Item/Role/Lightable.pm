@@ -13,18 +13,10 @@ has is_lit => (
     },
 );
 
-after incorporate_stats => sub {
-    my $self  = shift;
-    my $stats = shift;
-
-    $self->is_lit($stats->{lit} ? 1 : 0);
-};
-
-after incorporate_stats_from => sub {
-    my $self  = shift;
-    my $other = shift;
-
-    $self->incorporate_stat($other => 'is_lit');
+with 'NetHack::Item::Role::IncorporatesStats' => {
+    attribute => 'is_lit',
+    stat      => 'lit',
+    bool_stat => 1,
 };
 
 no Moose::Role;

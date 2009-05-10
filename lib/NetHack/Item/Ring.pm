@@ -18,20 +18,10 @@ has hand => (
     isa     => 'NetHack::Item::Hand',
 );
 
-after incorporate_stats => sub {
-    my $self  = shift;
-    my $stats = shift;
-
-    if (($stats->{worn} || '') =~ /(left|right)/) {
-        $self->hand($1);
-    }
-};
-
-after incorporate_stats_from => sub {
-    my $self  = shift;
-    my $other = shift;
-
-    $self->incorporate_stat($other => 'hand');
+with 'NetHack::Item::Role::IncorporatesStats' => {
+    attribute      => 'hand',
+    stat           => 'worn',
+    stat_predicate => sub { /(left|right)/ ? $1 : undef },
 };
 
 around hand => sub {
