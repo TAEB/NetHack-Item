@@ -7,6 +7,8 @@ use NetHack::ItemPool;
 use NetHack::Item::Meta::Trait::IncorporatesUndef;
 use NetHack::Item::Meta::Types;
 
+our $VERSION = '0.11';
+
 with 'NetHack::ItemPool::Role::HasPool';
 
 has tracker => (
@@ -789,6 +791,16 @@ Returns "blessed", "cursed", "uncursed", or C<undef>.
 Synonyms for L</is_blessed> and L</is_cursed>.
 
 =back
+
+=head1 AUTHORS
+
+Shawn M Moore C<sartak@bestpractical.com>
+
+Jesse Luehrs C<doy@tozt.net>
+
+Sean Kelly C<cpan@katron.org>
+
+Stefan O'Rear C<stefanor@cox.net>
 
 =head1 SEE ALSO
 
