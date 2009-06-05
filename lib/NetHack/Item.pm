@@ -794,13 +794,13 @@ Synonyms for L</is_blessed> and L</is_cursed>.
 
 =head1 AUTHORS
 
-Shawn M Moore C<sartak@bestpractical.com>
+Shawn M Moore, C<sartak@bestpractical.com>
 
-Jesse Luehrs C<doy@tozt.net>
+Jesse Luehrs, C<doy@tozt.net>
 
-Sean Kelly C<cpan@katron.org>
+Sean Kelly, C<cpan@katron.org>
 
-Stefan O'Rear C<stefanor@cox.net>
+Stefan O'Rear, C<stefanor@cox.net>
 
 =head1 SEE ALSO
 
