@@ -142,7 +142,7 @@ for my $buc (qw/is_blessed is_uncursed is_cursed/) {
                 if (@must_be_true == 0) {
                     die "There are no possible BUC states for $self";
                 }
-                else {
+                elsif (@must_be_true > 1) {
                     die "There are multiple possible BUC states for $self: @must_be_true";
                 }
                 my ($must_be_true) = @must_be_true;
