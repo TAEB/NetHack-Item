@@ -109,6 +109,7 @@ for my $type (qw/wield quiver grease offhand/) {
 for my $buc (qw/is_blessed is_uncursed is_cursed/) {
     my %others = map { $_ => 1 } qw/is_blessed is_uncursed is_cursed/;
     delete $others{$buc};
+    my @others = keys %others;
 
     has $buc => (
         is      => 'rw',
@@ -119,11 +120,11 @@ for my $buc (qw/is_blessed is_uncursed is_cursed/) {
 
             # if this is true, the others must be false
             if ($set) {
-                $self->$_(0) for keys %others;
+                $self->$_(0) for @others;
             }
             # if this is false, then see if only one can be true
             elsif (defined($set)) {
-                my %other_vals = map { $_ => $self->$_ } keys %others;
+                my %other_vals = map { $_ => $self->$_ } @others;
 
                 my $unknown = 0;
 
@@ -137,7 +138,7 @@ for my $buc (qw/is_blessed is_uncursed is_cursed/) {
 
                 # only one item is unknown, find it and set it to true
                 my @must_be_true = grep { !defined($other_vals{$_}) }
-                                   keys %other_vals;
+                                   @others;
 
                 if (@must_be_true == 0) {
                     die "There are no possible BUC states for $self";
