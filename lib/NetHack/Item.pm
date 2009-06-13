@@ -136,8 +136,17 @@ for my $buc (qw/is_blessed is_uncursed is_cursed/) {
                 return if $unknown > 1;
 
                 # only one item is unknown, find it and set it to true
-                my ($must_be_true) = grep { !defined($other_vals{$_}) }
-                                     keys %other_vals;
+                my @must_be_true = grep { !defined($other_vals{$_}) }
+                                   keys %other_vals;
+
+                if (@must_be_true == 0) {
+                    die "There are no possible BUC states for $self";
+                }
+                else {
+                    die "There are multiple possible BUC states for $self: @must_be_true";
+                }
+                my ($must_be_true) = @must_be_true;
+
                 $self->$must_be_true(1);
             }
         },
