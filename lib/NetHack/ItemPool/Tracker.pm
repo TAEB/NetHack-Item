@@ -8,7 +8,6 @@ use Module::Pluggable (
     require     => 1,
     sub_name    => 'tracker_types',
 );
-__PACKAGE__->tracker_types; # load all
 
 has type => (
     is       => 'ro',
@@ -119,6 +118,10 @@ around rule_out => sub {
 
 __PACKAGE__->meta->make_immutable;
 no Moose;
+
+# need to delay this until after this class is already immutable, or else the
+# subclasses get broken constructors
+__PACKAGE__->tracker_types; # load all
 
 1;
 
