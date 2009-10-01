@@ -53,9 +53,8 @@ sub BUILD {
     my $self = shift;
 
     my $class = __PACKAGE__ . '::' . ucfirst($self->type);
-    if (my $meta = Class::MOP::load_class($class)) {
-        $meta->rebless_instance($self);
-    }
+    Class::MOP::load_class($class);
+    $class->meta->rebless_instance($self);
 }
 
 around BUILDARGS => sub {

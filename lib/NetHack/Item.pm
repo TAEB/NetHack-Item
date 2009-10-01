@@ -236,8 +236,8 @@ sub _rebless_into {
     return if !blessed($self);
 
     my $class = $self->choose_item_class($type, $subtype);
-    my $meta = Class::MOP::load_class($class);
-    $meta->rebless_instance($self);
+    Class::MOP::load_class($class);
+    $class->meta->rebless_instance($self);
 }
 
 sub extract_stats {
