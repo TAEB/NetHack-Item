@@ -1,6 +1,5 @@
 package NetHack::Inventory;
 use Moose;
-use MooseX::AttributeHelpers;
 with 'NetHack::ItemPool::Role::HasPool';
 
 use NetHack::Inventory::Equipment;
@@ -8,17 +7,17 @@ use NetHack::Inventory::Equipment;
 use constant equipment_class => 'NetHack::Inventory::Equipment';
 
 has inventory => (
-    metaclass => 'Collection::Hash',
+    traits    => ['Hash'],
     is        => 'ro',
     isa       => 'HashRef[NetHack::Item]',
     default   => sub { {} },
-    provides  => {
-        get    => 'get',
-        set    => 'set',
-        delete => 'remove',
-        values => 'items',
-        keys   => 'slots',
-        empty  => 'has_items',
+    handles   => {
+        get       => 'get',
+        set       => 'set',
+        remove    => 'delete',
+        items     => 'values',
+        slots     => 'keys',
+        has_items => 'count',
     },
 );
 

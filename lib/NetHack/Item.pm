@@ -1,6 +1,5 @@
 package NetHack::Item;
 use Moose -traits => 'NetHack::Item::Meta::Trait::InstallsSpoilers';
-use MooseX::AttributeHelpers;
 
 use NetHack::ItemPool;
 
@@ -94,14 +93,13 @@ for my $type (qw/wield quiver grease offhand/) {
     }
 
     has $is => (
-        metaclass => 'Bool',
-        traits    => [qw/IncorporatesUndef/],
+        traits    => [qw/Bool IncorporatesUndef/],
         is        => 'rw',
         isa       => 'Bool',
         default   => 0,
-        provides  => {
-            set   => "$type",
-            unset => "un$type",
+        handles   => {
+            "$type"   => 'set',
+            "un$type" => 'unset',
         },
     )
 }

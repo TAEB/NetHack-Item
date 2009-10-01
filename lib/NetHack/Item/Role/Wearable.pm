@@ -1,15 +1,14 @@
 package NetHack::Item::Role::Wearable;
 use Moose::Role;
-use MooseX::AttributeHelpers;
 
 has is_worn => (
-    metaclass => 'Bool',
+    traits    => ['Bool'],
     is        => 'rw',
     isa       => 'Bool',
     default   => 0,
-    provides  => {
-        set   => 'wear',
-        unset => 'remove',
+    handles   => {
+        wear   => 'set',
+        remove => 'unset',
     },
 );
 

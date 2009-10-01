@@ -1,6 +1,5 @@
 package NetHack::Item::Role::Damageable;
 use Moose::Role;
-use MooseX::AttributeHelpers;
 
 has [qw/burnt corroded rotted rusty/]=> (
     is      => 'rw',
@@ -9,13 +8,12 @@ has [qw/burnt corroded rotted rusty/]=> (
 );
 
 has proofed => (
-    metaclass => 'Bool',
-    traits    => [qw/IncorporatesUndef/],
+    traits    => [qw/Bool IncorporatesUndef/],
     is        => 'rw',
     isa       => 'Bool',
-    provides  => {
-        set   => 'proof',
-        unset => 'unproof',
+    handles   => {
+        proof   => 'set',
+        unproof => 'unset',
     },
 );
 

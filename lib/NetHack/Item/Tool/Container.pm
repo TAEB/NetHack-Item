@@ -1,18 +1,17 @@
 package NetHack::Item::Tool::Container;
 use Moose;
-use MooseX::AttributeHelpers;
 extends 'NetHack::Item::Tool';
 
 use constant subtype => 'container';
 
 has contents => (
-    metaclass => 'Collection::Array',
+    traits    => ['Array'],
     is        => 'rw',
     isa       => 'ArrayRef[NetHack::Item]',
     default   => sub { [] },
-    provides  => {
-        push     => 'add_item',
-        elements => 'items',
+    handles   => {
+        add_item => 'push',
+        items    => 'elements',
     },
 );
 

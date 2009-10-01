@@ -1,51 +1,46 @@
 package NetHack::Item::Role::Chargeable;
 use Moose::Role;
-use MooseX::AttributeHelpers;
 
 has recharges => (
-    metaclass => 'Counter',
+    traits    => ['Counter'],
     is        => 'rw',
     isa       => 'Int',
     predicate => 'recharges_known',
     clearer   => '_clear_recharges',
-    provides  => {
-        inc => 'inc_recharges',
+    handles   => {
+        inc_recharges => 'inc',
     },
 );
 
 has charges => (
-    metaclass => 'Number',
+    traits    => ['Number'],
     is        => 'rw',
     isa       => 'Int',
     predicate => 'charges_known',
     clearer   => 'set_charges_unknown',
-    provides  => {
-        'sub' => 'subtract_charges',
+    handles   => {
+        subtract_charges => 'sub',
     },
 );
 
 has charges_spent_this_recharge => (
-    metaclass => 'Number',
+    traits    => ['Counter'],
     is        => 'rw',
     isa       => 'Int',
     default   => 0,
-    provides  => {
-        add   => 'add_charges_spent_this_recharge',
-    },
-    curries => {
-        set => {
-            reset_charges_spent_this_recharge => [ 0 ],
-        },
+    handles   => {
+        add_charges_spent_this_recharge   => 'inc',
+        reset_charges_spent_this_recharge => 'reset',
     },
 );
 
 has times_recharged => (
-    metaclass => 'Counter',
+    traits    => ['Counter'],
     is        => 'rw',
     isa       => 'Int',
     default   => 0,
-    provides  => {
-        inc => 'inc_times_recharged',
+    handles   => {
+        inc_times_recharged => 'inc',
     },
 );
 
