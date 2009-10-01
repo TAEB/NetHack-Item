@@ -1,6 +1,8 @@
 Revision history for NetHack-Item
 
-0.11
+0.11    Wed Sep 30 21:28:31 2009
+        Better handling for unknown/inconsistent BUC states (Sartak)
+        More Moose fixes (doy)
 
 0.10    Sun May 10 16:22:14 2009
         Make incorporate_stats and incorporate_stats_from a parameterized
