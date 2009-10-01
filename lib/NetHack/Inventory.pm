@@ -96,7 +96,8 @@ sub update {
             $self->invalidate_weight;
         }
         else {
-            warn "Displacing $old in slot $slot with $item.";
+            warn "Displacing [" . $old->raw . "] in slot $slot with "
+               . "[" . $item->raw . "].";
             $self->set($slot => $item);
         }
 
