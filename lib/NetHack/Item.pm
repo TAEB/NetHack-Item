@@ -6,8 +6,6 @@ use NetHack::ItemPool;
 use NetHack::Item::Meta::Trait::IncorporatesUndef;
 use NetHack::Item::Meta::Types;
 
-our $VERSION = '0.11';
-
 with 'NetHack::ItemPool::Role::HasPool';
 
 has tracker => (
