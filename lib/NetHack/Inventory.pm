@@ -157,6 +157,11 @@ sub decrease_quantity {
     my $by   = shift || 1;
 
     my $item = $self->get($slot);
+    if (!$item) {
+        warn "Inventory->decrease_quantity called on an empty slot '$slot'";
+        return 0;
+    }
+
     my $orig_quantity = $item->quantity;
 
     if ($by >= $orig_quantity) {
