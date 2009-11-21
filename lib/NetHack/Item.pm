@@ -1,4 +1,5 @@
 package NetHack::Item;
+use 5.008001;
 use Moose -traits => 'NetHack::Item::Meta::Trait::InstallsSpoilers';
 
 use NetHack::ItemPool;
