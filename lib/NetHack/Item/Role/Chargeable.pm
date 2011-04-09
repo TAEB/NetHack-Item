@@ -1,14 +1,9 @@
 package NetHack::Item::Role::Chargeable;
 use Moose::Role;
 
-# XXX native attrs don't support Maybe[Type]
-#     and we need to support undef values for
-#     backcompat, so we have to remove the trait
-#     and delegate manually
-
 has recharges => (
     is        => 'rw',
-    isa       => 'Maybe[Num]',
+    isa       => 'Int',
     predicate => 'recharges_known',
     clearer   => '_clear_recharges',
 );
@@ -16,7 +11,7 @@ sub inc_recharges { $_[0]->recharges($_[0]->recharges + 1) }
 
 has charges => (
     is        => 'rw',
-    isa       => 'Maybe[Num]',
+    isa       => 'Int',
     predicate => 'charges_known',
     clearer   => 'set_charges_unknown',
 );
