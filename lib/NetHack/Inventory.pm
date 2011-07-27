@@ -25,7 +25,11 @@ has equipment => (
     is      => 'ro',
     isa     => 'NetHack::Inventory::Equipment',
     lazy    => 1,
-    handles => qr/^(?!update|remove|(has_)?pool|slots)\w/,
+    #handles => qr/^(?!update|remove|(has_)?pool|slots)\w/,
+    handles => qr/^ under_cursed |
+      (has_|clear_)? 
+      (blockers|shield|weapon|offhand|quiver|boots|left_ring|right_ring|
+         helmet|gloves|boots|bodyarmor|cloak|shirt|amulet|blindfold)  $/x,
     default => sub {
         my $self = shift;
         $self->equipment_class->new(
