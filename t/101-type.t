@@ -16,6 +16,7 @@ use Test::NetHack::Items (
     "t - a set of gray dragon scales"                 => "armor",
     "x - an elven mithril-coat"                       => "armor",
     "d - 2 uncursed food rations"                     => "food",
+    "m - a tin"                                       => "food",
     "j - a cursed tin of lichen"                      => "food",
     "K - an uncursed tin of newt meat"                => "food",
     "r - an uncursed partly eaten tripe ration"       => "food",
