@@ -289,6 +289,11 @@ my %all_checks = (
         buc  => "uncursed",
         type => "gem",
     },
+    "tin (7 zorkmids)" => {
+        item => "tin",
+        type => "food",
+        cost => 7,
+    },
 );
 
 plan tests => scalar keys %all_checks;

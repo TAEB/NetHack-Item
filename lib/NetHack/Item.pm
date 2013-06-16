@@ -350,8 +350,11 @@ sub extract_stats {
         $stats{$_} = defined($stats{$_}) ? 1 : undef;
     }
 
-    $stats{cost} ||= delete($stats{cost2});
-    $stats{cost} ||= delete($stats{cost3});
+    my $cost2 = delete $stats{cost2};
+    $stats{cost} ||= $cost2;
+
+    my $cost3 = delete $stats{cost3};
+    $stats{cost} ||= $cost3;
 
     # numeric, undef = 0 stats
     for (qw/candles cost/) {
