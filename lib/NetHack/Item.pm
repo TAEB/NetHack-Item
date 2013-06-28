@@ -680,6 +680,15 @@ sub fits_in_slot {
     grep { $_ eq $slot } @{ $self->specific_slots };
 }
 
+sub did_polymorph_from {
+    my $self = shift;
+    my $older = shift;
+
+    $self->is_blessed($older->is_blessed);
+    $self->is_uncursed($older->is_uncursed);
+    $self->is_cursed($older->is_cursed);
+}
+
 __PACKAGE__->meta->install_spoilers(qw/subtype stackable material weight price
                                        plural glyph/);
 
