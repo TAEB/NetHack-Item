@@ -6,6 +6,7 @@ use Test::NetHack::Items (
     'spellbook of finger of death' => 'finger of death',
     'spellbook of jumping'         => 'jumping',
 
+    'plain spellbook'              => undef,
     'spellbook of blank paper'     => undef,
     'Book of the Dead'             => undef,
 
