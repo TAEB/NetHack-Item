@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 89;
+use Test::More tests => 95;
 use NetHack::Item;
 
 my %equivalents = (
@@ -51,6 +51,14 @@ is($sword->is_cursed, 0, "is_cursed");
 
 $sword->is_blessed(0);
 
+is($sword->$_, 0, $_) for qw/is_blessed is_cursed/;
+is($sword->is_uncursed, 1, "setting two of the three to 0 will set the other to 1");
+
+
+my $spellbook = NetHack::Item->new("a white spellbook");
+is($spellbook->$_, undef, $_) for qw/is_blessed is_uncursed is_cursed/;
+
+$spellbook->is_uncursed(1);
 is($sword->$_, 0, $_) for qw/is_blessed is_cursed/;
 is($sword->is_uncursed, 1, "setting two of the three to 0 will set the other to 1");
 
