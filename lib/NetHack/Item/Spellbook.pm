@@ -4,6 +4,11 @@ extends 'NetHack::Item';
 
 use constant type => "spellbook";
 
+has difficult_for_level => (
+    is  => 'rw',
+    isa => 'Int',
+);
+
 sub spell {
     my $self = shift;
 
