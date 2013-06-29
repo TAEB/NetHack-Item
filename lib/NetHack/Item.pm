@@ -680,9 +680,13 @@ sub fits_in_slot {
     grep { $_ eq $slot } @{ $self->specific_slots };
 }
 
+sub did_polymorph { }
+
 sub did_polymorph_from {
     my $self = shift;
     my $older = shift;
+
+    $self->did_polymorph;
 
     $self->is_blessed($older->is_blessed);
     $self->is_uncursed($older->is_uncursed);
