@@ -1,5 +1,10 @@
 Revision history for NetHack-Item
 
+0.15    Jun 30 2013
+        Skill and direction spoilers for spells (Sartak)
+        Track spellbook->difficult_for_level (Sartak)
+        Basic polymorph support (Sartak)
+
 0.14    Jun 27 2013
         Adjust regex to accommodate new nethack.alt.org patches (Sartak)
 
