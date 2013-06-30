@@ -370,7 +370,7 @@ sub _list {
             time      => 36,
             ink       => 60,
             emergency => 0,
-            skill     => 'escape'
+            skill     => 'escape',
             direction => 'beam',
         },
         'spellbook of knock' => {
