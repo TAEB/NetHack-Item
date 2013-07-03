@@ -85,13 +85,7 @@ sub update {
            && $item->identity eq 'gold piece';
 
     if (my $old = $self->get($slot)) {
-        if ($item->is_evolution_of($old)) {
-            my $old_quantity = $old->quantity;
-            $old->incorporate_stats_from($item);
-            $old->slot($slot);
-            $old->quantity($old_quantity + $item->quantity)
-                if $args->{add} && $old->stackable;
-
+        if ($old->evolve_from($item, $args)) {
             $self->equipment->update($old);
             $self->invalidate_weight;
         }
