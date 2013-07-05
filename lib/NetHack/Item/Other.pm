@@ -15,8 +15,6 @@ with 'NetHack::Item::Role::IncorporatesStats' => {
     stat      => 'chained',
 };
 
-__PACKAGE__->meta->install_spoilers(qw/monster/);
-
 __PACKAGE__->meta->make_immutable;
 no Moose;
 

@@ -37,6 +37,6 @@ use Test::NetHack::Items (
     "u - a figurine of a lichen"                      => "tool",
     "u - 53 rocks"                                    => "gem",
     "n - the Heart of Ahriman"                        => "gem",
-    "v - a statue of a lichen"                        => "other",
+    "v - a statue of a lichen"                        => "statue",
 );
 
