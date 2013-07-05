@@ -1,5 +1,9 @@
 Revision history for NetHack-Item
 
+0.17    Jul 5 2013
+        Add evolve_from API (Sartak)
+            (it's what we did for reconciling Inventory, but now we want it for TAEB tiles too)
+
 0.16    Jun 30 2013
         Oops (Sartak)
 
