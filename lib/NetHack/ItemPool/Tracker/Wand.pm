@@ -50,7 +50,20 @@ sub engrave_useful {
 
 sub no_engrave_message {
     my $self = shift;
-    $self->rule_out_all_but(map { "wand of $_" } 'locking', 'nothing', 'opening', 'probing', 'undead turning', 'secret door detection');
+    $self->rule_out_all_but('wand of locking', 'wand of nothing', 'wand of opening', 'wand of probing', 'wand of undead turning', 'wand of secret door detection');
+}
+
+sub is_nomessage {
+    my $self = shift;
+    my %is_nomessage = map { $_ => 1 } 'wand of locking', 'wand of nothing', 'wand of opening', 'wand of probing', 'wand of undead turning', 'wand of secret door detection';
+
+    for my $possibility ($self->possibilities) {
+        if (!$is_nomessage{$possibility}) {
+            return 0;
+        }
+    }
+
+    return 1;
 }
 
 __PACKAGE__->meta->make_immutable;
