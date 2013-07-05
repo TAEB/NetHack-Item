@@ -27,6 +27,11 @@ with 'NetHack::Item::Role::IncorporatesStats' => {
     stat      => 'laid',
 };
 
+sub nutrition_per_weight {
+    my $self = shift;
+    return $self->nutrition / $self->weight;
+}
+
 __PACKAGE__->meta->install_spoilers(qw/nutrition time vegan vegetarian/);
 
 __PACKAGE__->meta->make_immutable;
