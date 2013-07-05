@@ -8,14 +8,6 @@ use constant type => 'other';
 
 sub _list {
     my $others = {
-        'gold piece' => {
-            price  => 1,
-            weight => 0.01,
-            glyph  => '$',
-            plural => 'gold pieces',
-            stackable  => 1,
-            material => 'gold',
-        },
         'boulder' => {
             price     => 0,
             weight    => 6000,

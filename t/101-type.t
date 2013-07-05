@@ -2,7 +2,7 @@
 use lib 't/lib';
 use constant testing_method => 'type';
 use Test::NetHack::Items (
-    "x - 100 gold pieces"                             => "other",
+    "x - 100 gold pieces"                             => "gold",
     "a - a +1 long sword (weapon in hand)"            => "weapon",
     "b - a blessed +0 dagger"                         => "weapon",
     "h - 8 +0 darts"                                  => "weapon",

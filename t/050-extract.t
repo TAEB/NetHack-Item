@@ -254,7 +254,7 @@ my %all_checks = (
         slot     => 'h',
         item     => 'gold piece',
         quantity => 100,
-        type     => 'other',
+        type     => 'gold',
     },
     "l - a turquoise spellbook" => {
         slot => 'l',
