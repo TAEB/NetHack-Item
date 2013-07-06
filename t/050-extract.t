@@ -298,10 +298,13 @@ my %all_checks = (
 
 plan tests => scalar keys %all_checks;
 
-for my $item (sort keys %all_checks) {
-    my $checks = { %base, %{ $all_checks{$item} } };
+my $pool = NetHack::ItemPool->new;
 
-    my $stats = NetHack::Item->extract_stats($item);
-    is_deeply($stats, $checks, "'$item'");
+for my $description (sort keys %all_checks) {
+    my $checks = { %base, %{ $all_checks{$description} } };
+
+    my $item = NetHack::Item->new(raw => $description, pool => $pool);
+    my $stats = $item->extract_stats($description);
+    is_deeply($stats, $checks, "'$description'");
 }
 
