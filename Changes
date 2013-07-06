@@ -1,5 +1,13 @@
 Revision history for NetHack-Item
 
+0.19    Jul 6 2013
+        Support for custom fruit names (Sartak)
+        Notice when a piece of equipment goes missing (Sartak)
+        Add item type for statue too, rather than "other" (Sartak)
+        Track spellbook->difficult_for_int (Sartak)
+        Wand identity trackers now have an is_nomessage helper (Sartak)
+        Modernize testing with done_testing and Test::Fatal (Sartak)
+
 0.18    Jul 5 2013
         Add item type for gold, rather than stuffing it into "other" (Sartak)
         $food->nutrition_per_weight (Sartak)
