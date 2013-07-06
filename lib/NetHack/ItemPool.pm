@@ -9,6 +9,18 @@ use constant item_class      => 'NetHack::Item';
 use constant inventory_class => 'NetHack::Inventory';
 use constant trackers_class  => 'NetHack::ItemPool::Trackers';
 
+has fruit_name => (
+    is      => 'ro',
+    isa     => 'Str',
+    default => 'slime mold',
+);
+
+has fruit_plural => (
+    is      => 'ro',
+    isa     => 'Str',
+    default => 'slime molds',
+);
+
 has artifacts => (
     is      => 'ro',
     isa     => 'HashRef',

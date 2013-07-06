@@ -34,6 +34,7 @@ my %base = (
     offhand_wielded => 0,
     worn            => 0,
     cost            => 0,
+    is_custom_fruit => 0,
 );
 
 my %all_checks = (

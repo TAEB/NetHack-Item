@@ -311,6 +311,15 @@ sub extract_stats {
 
     $stats{type} = $spoiler->name_to_type($stats{item});
 
+    if ($self->has_pool && ($stats{item} eq $self->pool->fruit_name || $stats{item} eq $self->pool->fruit_plural)) {
+        $stats{item} = $self->pool->fruit_name; # singularize
+        $stats{is_custom_fruit} = 1;
+        $stats{type} = 'food';
+    }
+    else {
+        $stats{is_custom_fruit} = 0;
+    }
+
     confess "Unknown item type for '$stats{item}' from $raw"
         if !$stats{type};
 
@@ -462,7 +471,11 @@ sub _set_appearance_and_identity {
     my $self       = shift;
     my $best_match = shift;
 
-    if (my $spoiler = $self->spoiler_class->spoiler_for($best_match)) {
+    if ($self->has_pool && $best_match eq $self->pool->fruit_name) {
+        $self->identity("slime mold");
+        $self->appearance($best_match);
+    }
+    elsif (my $spoiler = $self->spoiler_class->spoiler_for($best_match)) {
         if ($spoiler->{artifact}) {
             $self->artifact($spoiler->{name});
             $spoiler = $self->spoiler_class->spoiler_for($spoiler->{base})
