@@ -98,13 +98,19 @@ sub _update_armor {
 
     return unless $item->type eq 'armor';
 
-    if ($item->is_worn) {
-        my $slot = $item->subtype;
+    my $slot = $item->subtype;
 
+    if ($item->is_worn) {
         if ($item != ($self->$slot || 0)) {
             my $clearer = "clear_$slot";
             $self->$clearer;
             $self->$slot($item);
+        }
+    }
+    else {
+        if ($item == ($self->$slot || 0)) {
+            my $clearer = "clear_$slot";
+            $self->$clearer;
         }
     }
 }
