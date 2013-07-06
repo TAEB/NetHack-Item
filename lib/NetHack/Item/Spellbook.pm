@@ -9,6 +9,11 @@ has difficult_for_level => (
     isa => 'Int',
 );
 
+has difficult_for_int => (
+    is  => 'rw',
+    isa => 'Int',
+);
+
 sub spell {
     my $self = shift;
 
