@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 use lib 't/lib';
 use Test::NetHack::Item;
+use Test::Fatal;
 
 my $pool = NetHack::ItemPool->new;
 
@@ -17,8 +18,8 @@ is($steel->identity, 'wand of nothing');
 
 my $short = $pool->new_item("a short wand");
 
-throws_ok {
+like(exception {
     $short->tracker->identify_as('wand of light');
-} qr/^wand of light is not a possibility for short wand/;
+}, qr/^wand of light is not a possibility for short wand/);
 
 done_testing;
