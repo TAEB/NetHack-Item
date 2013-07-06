@@ -1,7 +1,6 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-use Test::More tests => 8;
+use lib 't/lib';
+use Test::NetHack::Item;
 
 use NetHack::Item;
 my $item = NetHack::Item->new("f - a wand of wishing named SWEET (0:3)" );
@@ -20,3 +19,4 @@ is($item->is_wielded, 1, "is_wielded");
 is($item->is_blessed, 1, "is_blessed");
 is($item->is_cursed, 0, "is_cursed");
 
+done_testing;

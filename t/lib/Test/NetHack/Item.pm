@@ -4,7 +4,7 @@ use warnings;
 use base 'Test::More';
 use Test::Exception ();
 
-our @EXPORT = qw/test_items plan_items incorporate_ok evolution_not_ok evolution_ok fits_ok fits_not_ok/;
+our @EXPORT = qw/test_items incorporate_ok evolution_not_ok evolution_ok fits_ok fits_not_ok/;
 
 use NetHack::Item;
 
@@ -46,19 +46,6 @@ sub test_items {
             }
         }
     }
-}
-
-sub plan_items {
-    my @all_checks = @_;
-
-    my $tests = 0;
-    while (my ($item, $checks) = splice @_, 0, 2) {
-        $tests += ref($checks) eq 'HASH' ? keys %$checks : 1;
-    }
-
-    return $tests if defined wantarray;
-
-    Test::More::plan(tests => $tests);
 }
 
 sub incorporate_ok {

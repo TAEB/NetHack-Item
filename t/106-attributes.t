@@ -1,6 +1,8 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     "a - a +1 club" => {
         is_poisoned => 0,
         proofed     => undef,
@@ -88,3 +90,4 @@ use Test::NetHack::Items (
         is_partly_eaten => 1,
     },
 );
+done_testing;

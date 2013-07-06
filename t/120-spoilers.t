@@ -1,6 +1,8 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     "n - a dwarvish mithril-coat" => {
         ac => 6,
         mc => 3,
@@ -116,3 +118,4 @@ use Test::NetHack::Items (
     },
 );
 
+done_testing;

@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Item tests => 25;
+use Test::NetHack::Item;
 
 my $bag = NetHack::Item->new("a bag");
 is($bag->type, 'tool', "bags are tools");
@@ -49,3 +49,4 @@ is_deeply($sack->contents, [], "nothing left in the sack");
 is($holy_water->container, undef, "holy water is not in the sack");
 is($tenner->container, undef, "the forked quantity is not in the sack");
 
+done_testing;

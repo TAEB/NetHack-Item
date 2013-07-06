@@ -1,6 +1,8 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     "a - a +1 long sword (weapon in hand)",
      {generic_name => "", specific_name => ""},
     "f - a pair of fencing gloves named x",
@@ -10,3 +12,4 @@ use Test::NetHack::Items (
     "c - 16 uncursed flint stones named x (in quiver)",
      {generic_name => "", specific_name => "x"},
 );
+done_testing;

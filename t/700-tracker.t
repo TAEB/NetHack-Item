@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-use Test::More tests => 17;
-use NetHack::ItemPool;
+use lib 't/lib';
+use Test::NetHack::Item;
 
 my $pool = NetHack::ItemPool->new;
 my $kirje = $pool->new_item("a scroll labeled KIRJE");
@@ -32,3 +30,4 @@ ok($tharr_tracker->includes_possibility('scroll of fire'), "THARR can be fire");
 ok(!$tharr_tracker->includes_possibility('scroll of genocide'), "THARR cannot be genocide");
 
 is(@{ $tharr->tracker->all_possibilities }, 21, "all possibilities is immutable");
+done_testing;

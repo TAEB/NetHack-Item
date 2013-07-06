@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-use Test::More tests => 30;
-use NetHack::ItemPool;
+use lib 't/lib';
+use Test::NetHack::Item;
 
 my $pool = NetHack::ItemPool->new;
 my $inv = $pool->inventory;
@@ -67,3 +65,4 @@ is($inv->right_ring, $wire, "wearing our new right-hand ring");
 is($opal->hand, undef, "opal no longer on a hand");
 ok(!$opal->is_worn, "opal no longer worn");
 
+done_testing;

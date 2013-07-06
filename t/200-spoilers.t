@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-use Test::More tests => 18;
-use NetHack::Item::Spoiler;
+use lib 't/lib';
+use Test::NetHack::Item;
 
 my $spoiler = "NetHack::Item::Spoiler";
 is($spoiler->pluralize("scroll of mail"), "scrolls of mail");
@@ -31,3 +29,4 @@ ok($heart, "Heart spoiler");
 ok($heart->{artifact}, "Heart is an artifact");
 is($heart->{base}, "luckstone", "Heart's base item is a luckstone");
 
+done_testing;

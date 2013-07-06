@@ -1,7 +1,9 @@
 #!/usr/bin/env perl
 use lib 't/lib';
 use constant testing_method => 'is_artifact';
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     (map { $_ => 1 }
         "Cleaver",
         "battle-axe named Cleaver",
@@ -90,3 +92,4 @@ use Test::NetHack::Items (
     ),
 );
 
+done_testing;

@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Item tests => 15;
+use Test::NetHack::Item;
 
 evolution_ok "shuriken" => "shuriken";
 
@@ -12,3 +12,4 @@ evolution_not_ok "Excalibur" => "long sword";
 evolution_not_ok "a wand of wishing (0:1)" => "a wand of wishing (0:2)";
 evolution_not_ok "a wand of wishing (1:0)" => "a wand of wishing (0:3)";
 
+done_testing;

@@ -1,7 +1,9 @@
 #!/usr/bin/env perl
 use lib 't/lib';
 use constant testing_method => 'buc';
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     "a - a +1 long sword (weapon in hand)"  => 'uncursed',
     "i - a blessed murky potion"            => 'blessed',
     "j - a cursed skeleton key"             => 'cursed',
@@ -23,3 +25,4 @@ use Test::NetHack::Items (
     "p - a unicorn horn"                    => undef,
     "p - a +2 unicorn horn"                 => 'uncursed',
 );
+done_testing;

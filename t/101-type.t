@@ -1,7 +1,9 @@
 #!/usr/bin/env perl
 use lib 't/lib';
 use constant testing_method => 'type';
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     "x - 100 gold pieces"                             => "gold",
     "a - a +1 long sword (weapon in hand)"            => "weapon",
     "b - a blessed +0 dagger"                         => "weapon",
@@ -40,3 +42,4 @@ use Test::NetHack::Items (
     "v - a statue of a lichen"                        => "statue",
 );
 
+done_testing;

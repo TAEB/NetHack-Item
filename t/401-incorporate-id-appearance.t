@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Item tests => 8;
+use Test::NetHack::Item;
 
 incorporate_ok "a scroll labeled KIRJE" => "a scroll of genocide" => {
     identity   => 'scroll of genocide',
@@ -14,3 +14,4 @@ incorporate_ok "a scroll of genocide" => "a scroll labeled KIRJE" => {
     appearance => 'scroll labeled KIRJE',
 };
 
+done_testing;

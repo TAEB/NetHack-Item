@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Item tests => 80;
+use Test::NetHack::Item;
 
 incorporate_ok "a +1 long sword" => "a blessed +1 long sword" => {
     buc => 'blessed',
@@ -129,3 +129,4 @@ incorporate_ok "an uncursed +1 ring mail (being worn)" => "an uncursed +1 ring m
     is_worn => 0,
 };
 
+done_testing;

@@ -1,6 +1,8 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     "a - a +1 long sword (weapon in hand)" => {
         slot          => 'a',
         quantity      => 1,
@@ -12,3 +14,4 @@ use Test::NetHack::Items (
     },
 );
 
+done_testing;

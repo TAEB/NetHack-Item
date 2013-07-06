@@ -1,9 +1,6 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-use Test::More tests => 146;
-use NetHack::Item;
-use NetHack::Item::Spoiler;
+use lib 't/lib';
+use Test::NetHack::Item;
 
 my $spoiler = "NetHack::Item::Spoiler";
 my @artifacts;
@@ -37,3 +34,4 @@ for my $artifact (@artifacts) {
     is($spoiler_data->{name}, $base, "base is identity");
 }
 
+done_testing;

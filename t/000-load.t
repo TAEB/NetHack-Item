@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-use Test::More tests => 1;
+use lib 't/lib';
+use Test::NetHack::Item;
 
 use_ok 'NetHack::Item';
 
+done_testing;

@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-use Test::More tests => 19;
-use NetHack::ItemPool;
+use lib 't/lib';
+use Test::NetHack::Item;
 
 my $pool = NetHack::ItemPool->new;
 my $excalibur = $pool->new_item("the +1 Excalibur");
@@ -42,3 +40,4 @@ is($magicbane->identity,   "athame");
 is($magicbane->appearance, "athame");
 is($magicbane->artifact,   "Magicbane");
 
+done_testing;

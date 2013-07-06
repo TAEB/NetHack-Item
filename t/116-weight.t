@@ -1,7 +1,9 @@
 #!/usr/bin/env perl
 use lib 't/lib';
 use constant testing_method => 'weight';
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     "oil lamp"               => 20,
     "magic lamp"             => 20,
     "lamp"                   => 20,
@@ -21,3 +23,4 @@ use Test::NetHack::Items (
     "a bag of holding"       => undef,
 );
 
+done_testing;

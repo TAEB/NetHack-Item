@@ -1,9 +1,6 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-use Test::More tests => 3;
-use NetHack::ItemPool;
-use Test::Exception;
+use lib 't/lib';
+use Test::NetHack::Item;
 
 my $pool = NetHack::ItemPool->new;
 
@@ -24,3 +21,4 @@ throws_ok {
     $short->tracker->identify_as('wand of light');
 } qr/^wand of light is not a possibility for short wand/;
 
+done_testing;

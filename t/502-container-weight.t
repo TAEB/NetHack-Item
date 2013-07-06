@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Item tests => 8;
+use Test::NetHack::Item;
 
 my $sack = NetHack::Item->new("a sack");
 is($sack->weight, undef, "don't know the weight yet, because we don't know the contents");
@@ -23,3 +23,4 @@ is($boh->weight, undef, "we don't know the BUC of the boh so we don't know the w
 
 $boh->is_cursed(1);
 is($boh->weight, 21, "weight is 15 + ring(3)*2");
+done_testing;

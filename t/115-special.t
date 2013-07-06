@@ -1,6 +1,8 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     "a candelabrum (no candles attached)" => {
         candles_attached => 0,
         is_lit           => 0,
@@ -23,3 +25,4 @@ use Test::NetHack::Items (
     },
 );
 
+done_testing;

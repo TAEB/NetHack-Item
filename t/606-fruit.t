@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-use Test::More;
-use NetHack::ItemPool;
+use lib 't/lib';
+use Test::NetHack::Item;
 
 my $slime_pool = NetHack::ItemPool->new;
 my $slime_mold = $slime_pool->new_item("a slime mold");
@@ -49,6 +47,5 @@ is($children->nutrition, 250);
 ok($children->is_custom_fruit, "children is custom fruit");
 is($children->appearance, 'child');
 is($children->identity, 'slime mold');
-
 
 done_testing;

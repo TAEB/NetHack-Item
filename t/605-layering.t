@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-use Test::More tests => 12;
-use NetHack::ItemPool;
+use lib 't/lib';
+use Test::NetHack::Item;
 
 my $pool = NetHack::ItemPool->new;
 my $inv = $pool->inventory;
@@ -59,3 +57,4 @@ for my $slot (@slots) {
 }
 
 ok($order_met, "Ordering rules for slots_inside_out are met");
+done_testing;

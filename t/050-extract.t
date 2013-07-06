@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-use Test::More;
-use NetHack::Item;
+use lib 't/lib';
+use Test::NetHack::Item;
 
 my %base = (
     slot            => undef,
@@ -297,8 +295,6 @@ my %all_checks = (
     },
 );
 
-plan tests => scalar keys %all_checks;
-
 my $pool = NetHack::ItemPool->new;
 
 for my $description (sort keys %all_checks) {
@@ -309,3 +305,4 @@ for my $description (sort keys %all_checks) {
     is_deeply($stats, $checks, "'$description'");
 }
 
+done_testing;

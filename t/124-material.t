@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use lib 't/lib';
 use constant testing_method => 'material';
-use Test::NetHack::Item tests => 44;
+use Test::NetHack::Item;
 
 test_items(
     "a - a boulder"                    => "mineral",
@@ -55,3 +55,4 @@ TODO: {
         "H - a maple wand"                 => "wood",
     );
 }
+done_testing;

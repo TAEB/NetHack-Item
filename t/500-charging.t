@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-use Test::More tests => 8;
-use NetHack::Item;
+use lib 't/lib';
+use Test::NetHack::Item;
 
 my $bot = NetHack::Item->new("a bag of tricks (0:1)");
 
@@ -29,3 +27,4 @@ $wow->spend_charge;
 ok($wow->recharge, "Recharging /oW first time");
 
 is($wow->chance_to_recharge, 0, "Cannot recharge a second time");
+done_testing;

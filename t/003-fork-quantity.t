@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Item tests => 9;
+use Test::NetHack::Item;
 
 my $daggers = NetHack::Item->new("10 +1 daggers");
 is($daggers->quantity, 10);
@@ -24,3 +24,4 @@ throws_ok {
     $daggers->fork_quantity(18);
 } qr/^Unable to fork more \(18\) than the entire quantity \(9\) of item \(NetHack::Item::Weapon=HASH\(\w+\)\)/;
 
+done_testing;

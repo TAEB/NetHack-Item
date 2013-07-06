@@ -19,8 +19,7 @@ my @doesnt_fit = (
     [blindfold  => 'katana'],
 );
 
-plan tests => @fits + @doesnt_fit;
-
 fits_ok     @$_ for @fits;
 fits_not_ok @$_ for @doesnt_fit;
 
+done_testing;

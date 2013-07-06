@@ -1,7 +1,9 @@
 #!/usr/bin/env perl
 use lib 't/lib';
 use constant testing_method => 'numeric_enchantment';
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     "a - a +1 long sword (weapon in hand)"           => 1,
     "f - the +0 Cleaver"                             => 0,
     "m - a blessed +4 long sword"                    => 4,
@@ -10,3 +12,4 @@ use Test::NetHack::Items (
     "p - a -10 unicorn horn"                         => -10,
     "x - a robe"                                     => undef,
 );
+done_testing;

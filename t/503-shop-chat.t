@@ -1,6 +1,8 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     "a candle, 13 zorkmids" => {
         appearance       => 'candle',
         quantity         => 1,
@@ -52,3 +54,4 @@ use Test::NetHack::Items (
     },
 );
 
+done_testing;

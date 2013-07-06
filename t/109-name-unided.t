@@ -1,7 +1,9 @@
 #!/usr/bin/env perl
 use lib 't/lib';
 
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     "x - a samurai sword" => {
         appearance    => "samurai sword",
         identity      => "katana",
@@ -177,3 +179,4 @@ use Test::NetHack::Items (
     },
 );
 
+done_testing;

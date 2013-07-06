@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-use Test::More tests => 20;
-use NetHack::ItemPool;
+use lib 't/lib';
+use Test::NetHack::Item;
 
 my $pool = NetHack::ItemPool->new;
 my $inv = $pool->inventory;
@@ -66,3 +64,4 @@ is($inv->get('m')->quantity, 1, "quarterstaves don't stack");
 my $n_dart = $pool->new_item("n - a +2 dart");
 $inv->add($n_dart);
 is($inv->get('n')->quantity, 1, "we added only a single dart to our inventory");
+done_testing;

@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Item tests => 24;
+use Test::NetHack::Item;
 
 incorporate_ok "a long sword" => "a blessed long sword" => {
     buc         => "blessed",
@@ -22,3 +22,4 @@ incorporate_ok "a blessed long sword" => "a cursed long sword" => {
     is_holy     => 0,
 };
 
+done_testing;

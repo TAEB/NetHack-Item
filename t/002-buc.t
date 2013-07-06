@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-use Test::More tests => 95;
-use NetHack::Item;
+use lib 't/lib';
+use Test::NetHack::Item;
 
 my %equivalents = (
     blessed => ['holy'],
@@ -62,3 +60,4 @@ $spellbook->is_uncursed(1);
 is($sword->$_, 0, $_) for qw/is_blessed is_cursed/;
 is($sword->is_uncursed, 1, "setting two of the three to 0 will set the other to 1");
 
+done_testing;

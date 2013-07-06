@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-use Test::More tests => 8;
-use NetHack::Item;
+use lib 't/lib';
+use Test::NetHack::Item;
 
 my $pool = NetHack::ItemPool->new;
 
@@ -27,3 +25,4 @@ $elven_broadsword->specific_name("Orcrist");
 ok($elven_broadsword->is_artifact, "naming an elven broadsword Orcrist makes it an artifact");
 
 is($pool->get_artifact("Orcrist"), $elven_broadsword, "Orcrist saved");
+done_testing;

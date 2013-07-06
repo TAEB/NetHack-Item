@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-use Test::More tests => 7;
-use NetHack::Item;
+use lib 't/lib';
+use Test::NetHack::Item;
 
 my $pool = NetHack::ItemPool->new;
 
@@ -21,3 +19,4 @@ $pool->new_item("+5 Excalibur");
 is($long_sword->enchantment, '+5', "successfully incorporated");
 is($pool->get_artifact("Excalibur")->enchantment, '+5', "successfully incorporated");
 
+done_testing;

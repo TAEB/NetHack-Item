@@ -1,6 +1,8 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     "a - a +1 long sword (weapon in hand)",
     {is_quivered => 0, is_offhand => 0, is_wielded => 1},
     "f - a long sword (alternate weapon; not wielded)",
@@ -60,3 +62,4 @@ use Test::NetHack::Items (
     "o - an uncursed amulet of reflection (being worn)",
     {is_quivered => 0, is_offhand => 0, is_wielded => 0, is_worn => 1},
 );
+done_testing;

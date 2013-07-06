@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-use Test::More tests => 14;
-use NetHack::ItemPool;
+use lib 't/lib';
+use Test::NetHack::Item;
 
 my $pool = NetHack::ItemPool->new;
 my $balsa = $pool->new_item("a balsa wand");
@@ -31,3 +29,4 @@ $glass->tracker->no_engrave_message;
 ok(!$glass->tracker->engrave_useful);
 ok($glass->tracker->is_nomessage);
 
+done_testing;

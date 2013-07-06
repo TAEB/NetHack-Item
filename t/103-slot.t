@@ -1,7 +1,9 @@
 #!/usr/bin/env perl
 use lib 't/lib';
 use constant testing_method => 'slot';
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     "a - a +1 long sword (weapon in hand)" => 'a',
     "B + a blessed +0 alchemy smock"       => 'B',
 
@@ -11,3 +13,4 @@ use Test::NetHack::Items (
     "# - a cursed gray stone"              => '#',
 );
 
+done_testing;

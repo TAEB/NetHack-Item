@@ -1,7 +1,9 @@
 #!/usr/bin/env perl
 use lib 't/lib';
 use NetHack::Monster::Spoiler;
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     "a long sword" => {
         subtype => undef,
     },
@@ -36,3 +38,4 @@ use Test::NetHack::Items (
     },
 );
 
+done_testing;

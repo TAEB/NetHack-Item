@@ -1,7 +1,9 @@
 #!/usr/bin/env perl
 use lib 't/lib';
 use constant testing_method => 'spell';
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     'spellbook of force bolt'      => 'force bolt',
     'spellbook of finger of death' => 'finger of death',
     'spellbook of jumping'         => 'jumping',
@@ -15,3 +17,4 @@ use Test::NetHack::Items (
     'dog eared spellbook'          => undef,
 );
 
+done_testing;

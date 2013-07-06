@@ -1,7 +1,9 @@
 #!/usr/bin/env perl
 use lib 't/lib';
 use constant testing_method => 'identity';
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     "b - a wakizashi"      => "short sword",
     "f - a ninja-to"       => "broadsword",
     "g - a nunchaku"       => "flail",
@@ -17,3 +19,4 @@ use Test::NetHack::Items (
     "r - potions of sake"  => "potion of booze",
 );
 
+done_testing;

@@ -2,7 +2,9 @@
 use lib 't/lib';
 use NetHack::Monster::Spoiler;
 
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     "x - 100 gold pieces" => {
         appearance    => "gold piece",
         identity      => "gold piece",
@@ -188,3 +190,4 @@ use Test::NetHack::Items (
         monster       => NetHack::Monster::Spoiler->lookup('orc mummy'),
     },
 );
+done_testing;

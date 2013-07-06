@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-use Test::More tests => 4;
-use NetHack::ItemPool;
+use lib 't/lib';
+use Test::NetHack::Item;
 
 my $pool = NetHack::ItemPool->new;
 
@@ -13,3 +11,4 @@ is($pool->trackers->possible_appearances_of('wand of fire'), 27, 'all wand appea
 
 $spiked->tracker->rule_out('wand of fire');
 is($pool->trackers->possible_appearances_of('wand of fire'), 26, 'appearances of wand of fire does not include spiked');
+done_testing;

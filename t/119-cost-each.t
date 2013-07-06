@@ -1,7 +1,9 @@
 #!/usr/bin/env perl
 use lib 't/lib';
 use constant testing_method => 'cost_each';
-use Test::NetHack::Items (
+use Test::NetHack::Item;
+
+test_items(
     "a - a blessed +1 quarterstaff (weapon in hands) (unpaid, 15 zorkmids)" => 15,
     "p - a +0 studded leather armor (being worn) (unpaid, 15 zorkmids)" => 15,
     "x - 11 arrows (in quiver) (unpaid, 22 zorkmids)" => 22,
@@ -14,3 +16,4 @@ use Test::NetHack::Items (
     "H - a partly used candle" => 0,
 );
 
+done_testing;
