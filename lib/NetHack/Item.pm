@@ -293,6 +293,9 @@ sub extract_stats {
         $                                                      # anchor
     }x;
 
+    confess "Couldn't parse $raw"
+        unless defined($stats{item}) && length($stats{item});
+
     # this canonicalization must come early
     if ($stats{item} =~ /^potions? of ((?:un)?holy) water$/) {
         $stats{item} = 'potion of water';
@@ -313,11 +316,10 @@ sub extract_stats {
 
     if ($self->has_pool && ($stats{item} eq $self->pool->fruit_name || $stats{item} eq $self->pool->fruit_plural)) {
         $stats{item} = $self->pool->fruit_name; # singularize
-        $stats{is_custom_fruit} = 1;
         $stats{type} = 'food';
     }
-    else {
-        $stats{is_custom_fruit} = 0;
+    elsif ($self->has_pool && $self->pool->allow_other_fruit_names) {
+        $stats{type} = 'food';
     }
 
     confess "Unknown item type for '$stats{item}' from $raw"
@@ -375,6 +377,8 @@ sub extract_stats {
         $stats{$_} = '' if !defined($stats{$_});
     }
 
+    $stats{is_custom_fruit} = 0;
+
     return \%stats;
 }
 
@@ -386,7 +390,7 @@ sub parse_raw {
 
     # exploit the fact that appearances don't show up in the spoiler table as
     # keys
-    $self->_set_appearance_and_identity($stats->{item});
+    $self->_set_appearance_and_identity($stats);
 
     $self->_rebless_into($stats->{type}, $self->subtype);
 
@@ -468,12 +472,15 @@ sub is_artifact {
 }
 
 sub _set_appearance_and_identity {
-    my $self       = shift;
-    my $best_match = shift;
+    my $self  = shift;
+    my $stats = shift;
+
+    my $best_match = $stats->{item};
 
     if ($self->has_pool && $best_match eq $self->pool->fruit_name) {
         $self->identity("slime mold");
         $self->appearance($best_match);
+        $stats->{is_custom_fruit} = 1;
     }
     elsif (my $spoiler = $self->spoiler_class->spoiler_for($best_match)) {
         if ($spoiler->{artifact}) {
@@ -491,7 +498,11 @@ sub _set_appearance_and_identity {
         $self->appearance($best_match);
         my @possibilities = $self->possibilities;
         if (@possibilities == 1 && $best_match ne $possibilities[0]) {
-            $self->_set_appearance_and_identity($possibilities[0]);
+            $stats->{item} = $possibilities[0];
+            $self->_set_appearance_and_identity($stats);
+        }
+        if ($self->identity && $self->identity eq 'slime mold') {
+            $stats->{is_custom_fruit} = 1;
         }
     }
 }
@@ -506,7 +517,12 @@ sub possibilities {
 
     return $self->tracker->possibilities if $self->has_tracker;
 
-    return sort @{ $self->spoiler_class->possibilities_for_appearance($self->appearance) };
+    my @possibilities = @{ $self->spoiler_class->possibilities_for_appearance($self->appearance) || [] };
+    if (@possibilities == 0 && $self->has_pool && $self->pool->allow_other_fruit_names) {
+        $self->identity('slime mold');
+        @possibilities = ($self->appearance);
+    }
+    return sort @possibilities;
 }
 
 sub spoiler {
