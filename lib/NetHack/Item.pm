@@ -12,6 +12,7 @@ with 'NetHack::ItemPool::Role::HasPool';
 has tracker => (
     is        => 'ro',
     writer    => '_set_tracker',
+    clearer   => '_clear_tracker',
     isa       => 'NetHack::ItemPool::Tracker',
     predicate => 'has_tracker',
 );
