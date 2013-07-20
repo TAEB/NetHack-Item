@@ -13,7 +13,7 @@ my $water_tracker = $water->tracker;
 $orange_tracker->rule_out("potion of sickness");
 
 ok($orange->tracker, "got a tracker");
-ok($orange->tracker->includes_possibility("potion of enlightenment"), "includes englightenment");
+ok($orange->tracker->includes_possibility("potion of enlightenment"), "includes enlightenment");
 ok(!$orange->tracker->includes_possibility("potion of sickness"), "doesn't include sickness");
 ok(!$orange->tracker->includes_possibility("potion of water"), "doesn't include water");
 ok(!$orange->is_diluted, "is_diluted");
@@ -24,7 +24,7 @@ is($orange->buc, "blessed", "buc");
 
 $orange->did_dilute_partially;
 is($orange->tracker, $orange_tracker, "same tracker");
-ok($orange->tracker->includes_possibility("potion of enlightenment"), "includes englightenment");
+ok($orange->tracker->includes_possibility("potion of enlightenment"), "includes enlightenment");
 ok(!$orange->tracker->includes_possibility("potion of sickness"), "doesn't include sickness");
 ok(!$orange->tracker->includes_possibility("potion of water"), "doesn't include water");
 ok($orange->is_diluted, "is_diluted");
@@ -41,9 +41,9 @@ is($orange->identity, "potion of water", "identity");
 is($orange->quantity, 3, "quantity");
 is($orange->buc, "uncursed", "buc");
 
-my $new_orange = $pool->new_item("an orange potions");
+my $new_orange = $pool->new_item("an orange potion");
 is($new_orange->tracker, $orange_tracker, "tracker");
-ok($new_orange->tracker->includes_possibility("potion of enlightenment"), "includes englightenment");
+ok($new_orange->tracker->includes_possibility("potion of enlightenment"), "includes enlightenment");
 ok(!$new_orange->tracker->includes_possibility("potion of sickness"), "doesn't include sickness");
 ok(!$new_orange->tracker->includes_possibility("potion of water"), "doesn't include water");
 
