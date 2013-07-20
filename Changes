@@ -1,5 +1,9 @@
 Revision history for NetHack-Item
 
+0.20
+        Potion dilution management (Sartak)
+        Scroll and spellbook blanking management (Sartak)
+
 0.19    Jul 6 2013
         Support for custom fruit names (Sartak)
         Notice when a piece of equipment goes missing (Sartak)
