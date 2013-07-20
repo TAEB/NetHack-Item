@@ -23,6 +23,15 @@ sub spell {
     return $1;
 }
 
+sub did_blank {
+    my $self = shift;
+
+    # convert to blank
+    $self->_clear_tracker;
+    $self->appearance("plain spellbook");
+    $self->identity("spellbook of blank paper");
+}
+
 __PACKAGE__->meta->install_spoilers(qw/ink level time emergency role skill direction/);
 
 __PACKAGE__->meta->make_immutable;
