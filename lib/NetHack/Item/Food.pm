@@ -45,7 +45,16 @@ after incorporate_stats => sub {
     $self->is_custom_fruit($stats->{is_custom_fruit});
 };
 
-__PACKAGE__->meta->install_spoilers(qw/nutrition time vegan vegetarian/);
+sub nutrition_each {
+    return shift->collapse_spoiler_value("nutrition");
+}
+
+sub total_nutrition {
+    my $self = shift;
+    return $self->nutrition_each * $self->quantity;
+}
+
+__PACKAGE__->meta->install_spoilers(qw/time vegan vegetarian/);
 
 __PACKAGE__->meta->make_immutable;
 no Moose;

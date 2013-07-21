@@ -20,8 +20,8 @@ test_items(
         mc => 1,
     },
     "k - a food ration" => {
-        nutrition => 800,
-        time      => 5,
+        nutrition_each => 800,
+        time           => 5,
     },
     "j - a violet gem" => {
         hardness => 'soft',
