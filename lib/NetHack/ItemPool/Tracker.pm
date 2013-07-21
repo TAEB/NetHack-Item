@@ -1,6 +1,7 @@
 package NetHack::ItemPool::Tracker;
 use Moose;
 use Set::Object;
+use NetHack::Item::Spoiler;
 with 'NetHack::ItemPool::Role::HasPool';
 
 use Module::Pluggable (
@@ -114,6 +115,24 @@ around rule_out => sub {
         confess "Ruled out all possibilities for " . $self->appearance . "!";
     }
 };
+
+sub priceid_useful {
+    my $self = shift;
+    my %seen_prices;
+
+    for my $possibility ($self->possibilities) {
+        my $spoiler = NetHack::Item::Spoiler->spoiler_for($possibility);
+        my $price = $spoiler->{price} || 0;
+
+        $seen_prices{ $price }++;
+
+        if (keys %seen_prices >= 2) {
+            return 1;
+        }
+    }
+
+    return 0;
+}
 
 __PACKAGE__->meta->make_immutable;
 no Moose;
