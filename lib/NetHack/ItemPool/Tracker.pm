@@ -42,8 +42,9 @@ has possibilities => (
     },
 );
 
-has all_possibilities => (
+has _all_possibilities => (
     is       => 'ro',
+    init_arg => 'all_possibilities',
     isa      => 'Set::Object',
     required => 1,
 );
@@ -96,7 +97,7 @@ around rule_out => sub {
     my $self = shift;
 
     for my $possibility (@_) {
-        next if $self->all_possibilities->includes($possibility);
+        next if $self->_all_possibilities->includes($possibility);
         confess "$possibility is not included in " . $self->appearance . "'s set of all possibilities.";
     }
 

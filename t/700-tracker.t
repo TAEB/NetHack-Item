@@ -29,5 +29,5 @@ is($tharr_tracker->possibilities, 20, "20 possibilities");
 ok($tharr_tracker->includes_possibility('scroll of fire'), "THARR can be fire");
 ok(!$tharr_tracker->includes_possibility('scroll of genocide'), "THARR cannot be genocide");
 
-is(@{ $tharr->tracker->all_possibilities }, 21, "all possibilities is immutable");
+is(@{ $tharr->tracker->_all_possibilities }, 21, "all possibilities is immutable");
 done_testing;
