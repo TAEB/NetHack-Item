@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 use lib 't/lib';
-use constant testing_method => 'cost';
+use constant testing_method => 'total_cost';
 use Test::NetHack::Item;
 
 test_items(

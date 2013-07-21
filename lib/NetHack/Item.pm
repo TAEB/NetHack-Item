@@ -650,7 +650,7 @@ before 'identity', 'has_identity' => sub {
     $self->identity($self->tracker->possibilities);
 };
 
-sub cost {
+sub total_cost {
     my $self = shift;
     confess "Set cost_each instead." if @_;
     return $self->cost_each * $self->quantity;
