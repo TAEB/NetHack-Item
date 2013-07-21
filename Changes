@@ -1,6 +1,9 @@
 Revision history for NetHack-Item
 
-0.20
+0.21
+        Disambiguate cost and nutrition into *_each and total_* (Sartak)
+
+0.20    Jul 20 2013
         Potion dilution management (Sartak)
         Scroll and spellbook blanking management (Sartak)
 
