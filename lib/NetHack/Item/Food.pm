@@ -35,7 +35,7 @@ with 'NetHack::Item::Role::IncorporatesStats' => {
 
 sub nutrition_per_weight {
     my $self = shift;
-    return $self->nutrition / $self->weight;
+    return $self->nutrition_each / $self->weight;
 }
 
 after incorporate_stats => sub {
