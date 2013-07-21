@@ -32,12 +32,11 @@ has '+pool' => (
     handles  => [qw/trackers/],
 );
 
-has _possibilities => (
-    is       => 'ro',
+has possibilities => (
     isa      => 'Set::Object',
-    init_arg => 'possibilities',
     required => 1,
-    handles => {
+    handles  => {
+        _possibilities       => 'members',
         rule_out             => 'remove',
         includes_possibility => 'includes',
     },
@@ -68,7 +67,7 @@ around BUILDARGS => sub {
 };
 
 sub possibilities {
-    my @possibilities = shift->_possibilities->members;
+    my @possibilities = shift->_possibilities;
     return @possibilities if !wantarray;
     return sort @possibilities;
 }
