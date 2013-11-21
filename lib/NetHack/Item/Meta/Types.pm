@@ -8,7 +8,7 @@ NetHack::Item::Meta::Types - NetHack::Item-specific types
 
 use Moose::Util::TypeConstraints;
 
-enum 'NetHack::Item::Slot' => qw(left_ring right_ring gloves amulet helmet
-    shield weapon offhand quiver boots cloak bodyarmor shirt blindfold);
+enum 'NetHack::Item::Slot' => [qw(left_ring right_ring gloves amulet helmet
+    shield weapon offhand quiver boots cloak bodyarmor shirt blindfold)];
 
 1;
