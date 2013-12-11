@@ -40,6 +40,7 @@ has possibilities => (
         _possibilities       => 'members',
         rule_out             => 'remove',
         includes_possibility => 'includes',
+        possibility_count    => 'size',
     },
 );
 

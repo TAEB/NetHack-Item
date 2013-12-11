@@ -1,5 +1,8 @@
 Revision history for NetHack-Item
 
+0.22
+        ItemPool->has_identified(identity) API (Sartak)
+
 0.21    Dec 10 2013
         Disambiguate cost and nutrition into *_each and total_* (Sartak)
         Fix Moose compat issue (doy)

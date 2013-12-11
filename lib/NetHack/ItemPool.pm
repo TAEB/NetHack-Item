@@ -52,6 +52,12 @@ has trackers => (
     handles => [qw/tracker_for possible_appearances_of/],
 );
 
+sub has_identified {
+    my $self = shift;
+
+    return $self->trackers->has_identified(@_);
+}
+
 sub _create_item {
     my $self = shift;
 
