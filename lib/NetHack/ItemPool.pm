@@ -53,9 +53,12 @@ has trackers => (
 );
 
 sub has_identified {
-    my $self = shift;
+    my $self     = shift;
+    my $identity = shift;
 
-    return $self->trackers->has_identified(@_);
+    my @appearances = $self->possible_appearances_of($identity);
+    return $self->trackers->get_tracker($appearances[0]) if @appearances == 1;
+    return;
 }
 
 sub _create_item {

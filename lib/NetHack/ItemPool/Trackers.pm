@@ -142,18 +142,6 @@ sub identified {
 
 sub ruled_out {}
 
-sub has_identified {
-    my $self     = shift;
-    my $identity = shift;
-
-    for my $tracker ($self->trackers) {
-        return $tracker if $tracker->includes_possibility($identity)
-                        && $tracker->possibility_count == 1;
-    }
-
-    return;
-}
-
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
