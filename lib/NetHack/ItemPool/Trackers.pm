@@ -134,9 +134,9 @@ sub identified {
     my $tracker  = shift;
     my $identity = shift;
 
-    for my $foo ($self->trackers) {
-        next if $tracker == $foo;
-        $foo->rule_out($identity) if $foo->includes_possibility($identity);
+    for my $other ($self->trackers) {
+        next if $tracker == $other;
+        $other->rule_out($identity) if $other->includes_possibility($identity);
     }
 }
 
