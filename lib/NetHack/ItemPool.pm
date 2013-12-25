@@ -21,6 +21,11 @@ has fruit_plural => (
     default => 'slime molds',
 );
 
+has allow_other_fruit_names => (
+    is  => 'ro',
+    isa => 'Bool',
+);
+
 has artifacts => (
     is      => 'ro',
     isa     => 'HashRef',
